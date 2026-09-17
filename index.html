@@ -3,1872 +3,8275 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Leo — Visual Creator in Virudhunagar, Tamil Nadu. Photography, portraits, photo editing, album design and creative design.">
-<meta name="theme-color" content="#080808">
-<title>Leo — Visual Creator</title>
+
+<meta name="description" content="Leo — Visual Creator. Photography, Portraits, Creative Editing, Album Design and Visual Storytelling.">
+
+<meta name="theme-color" content="#0b0a08">
+
+<title>LEO — Visual Creator</title>
 
 <style>
+
+/* =========================================================
+   LEO — LUXURY VISUAL EXPERIENCE
+   PART 1 / 4
+   ========================================================= */
+
 :root{
---bg:#11100e;
---panel:#181613;
---panel2:#211e19;
---text:#f2ede3;
---muted:#a59d90;
---line:#39342c;
---gold:#c7a76a;
---cream:#eee5d4;
---white:#fff
+  --bg:#0b0a08;
+  --bg2:#11100d;
+  --panel:#15130f;
+  --panel2:#1b1813;
+
+  --text:#f4efe5;
+  --soft:#d9d0c1;
+  --muted:#918a80;
+  --dim:#5f5a53;
+
+  --gold:#c9aa70;
+  --gold2:#e1c78f;
+  --cream:#eee3d0;
+
+  --line:rgba(238,227,208,.13);
+  --line2:rgba(238,227,208,.07);
+
+  --ease:cubic-bezier(.22,1,.36,1);
 }
 
-*{box-sizing:border-box}
+/* RESET */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 html{
-scroll-behavior:smooth
+  scroll-behavior:smooth;
+  scroll-padding-top:90px;
 }
 
 body{
-margin:0;
-background:
-radial-gradient(circle at 75% 10%,rgba(199,167,106,.07),transparent 28%),
-var(--bg);
-color:var(--text);
-font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-line-height:1.5;
-overflow-x:hidden
+  background:
+    radial-gradient(
+      circle at 75% 0%,
+      rgba(201,170,112,.09),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 0% 60%,
+      rgba(201,170,112,.035),
+      transparent 30%
+    ),
+    var(--bg);
+
+  color:var(--text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  line-height:1.5;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9998;
+
+  opacity:.035;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+
+  mix-blend-mode:soft-light;
+}
+
+body.no-scroll{
+  overflow:hidden;
 }
 
 a{
-color:inherit;
-text-decoration:none
+  color:inherit;
+  text-decoration:none;
 }
 
-button,input,select,textarea{
-font:inherit
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  border:0;
 }
 
 img{
-display:block;
-max-width:100%
+  display:block;
+  max-width:100%;
 }
+
+::selection{
+  background:var(--gold);
+  color:#111;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+  width:7px;
+}
+
+::-webkit-scrollbar-track{
+  background:#080807;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#3d3529;
+  border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:var(--gold);
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
 .wrap{
-width:min(1240px,92%);
-margin:auto
+  width:min(1240px,92%);
+  margin:auto;
 }
 
-/* NAVIGATION */
+section{
+  position:relative;
+  border-top:1px solid var(--line2);
+  padding:140px 0;
+  scroll-margin-top:90px;
+}
+
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  color:var(--gold);
+
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:.3em;
+  text-transform:uppercase;
+}
+
+.eyebrow::before{
+  content:"";
+  width:28px;
+  height:1px;
+  background:var(--gold);
+}
+
+.num{
+  color:var(--gold);
+
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:.28em;
+  text-transform:uppercase;
+}
+
+.title{
+  margin-top:18px;
+
+  font-size:
+    clamp(52px,7vw,100px);
+
+  line-height:.82;
+
+  letter-spacing:-.085em;
+
+  font-weight:950;
+}
+
+.desc{
+  max-width:450px;
+
+  color:var(--muted);
+
+  font-size:14px;
+  line-height:1.9;
+}
+
+.head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:50px;
+
+  margin-bottom:65px;
+}
+
+
+/* =========================================================
+   PRELOADER
+   ========================================================= */
+
+.preloader{
+  position:fixed;
+  inset:0;
+
+  z-index:10000;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#090806;
+
+  transition:
+    opacity .8s var(--ease),
+    visibility .8s;
+}
+
+.preloader.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.loaderInner{
+  text-align:center;
+}
+
+.loaderLogo{
+  font-size:14px;
+  font-weight:950;
+  letter-spacing:.45em;
+
+  color:var(--cream);
+
+  margin-left:.45em;
+}
+
+.loaderLine{
+  width:150px;
+  height:1px;
+
+  margin:20px auto 12px;
+
+  background:#2c2924;
+
+  overflow:hidden;
+}
+
+.loaderProgress{
+  width:0%;
+  height:100%;
+
+  background:var(--gold);
+
+  animation:
+    loaderProgress 1.4s var(--ease) forwards;
+}
+
+.loaderText{
+  color:#666057;
+
+  font-size:8px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+}
+
+@keyframes loaderProgress{
+  from{
+    width:0%;
+  }
+
+  to{
+    width:100%;
+  }
+}
+
+
+/* =========================================================
+   SCROLL PROGRESS
+   ========================================================= */
+
+.scrollProgress{
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:0%;
+  height:2px;
+
+  z-index:10001;
+
+  background:var(--gold);
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
 nav{
-position:fixed;
-top:0;
-left:0;
-right:0;
-z-index:100;
-background:rgba(8,8,8,.78);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
-border-bottom:1px solid rgba(255,255,255,.08)
+  position:fixed;
+
+  top:0;
+  left:0;
+  right:0;
+
+  z-index:9000;
+
+  border-bottom:1px solid transparent;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(8,8,7,.88),
+      rgba(8,8,7,.52)
+    );
+
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+
+  transition:
+    background .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+nav.scrolled{
+  background:rgba(10,9,8,.88);
+  border-color:var(--line);
+  box-shadow:0 15px 60px rgba(0,0,0,.25);
 }
 
 .nav{
-height:74px;
-display:flex;
-align-items:center;
-justify-content:space-between
+  height:82px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  transition:height .35s var(--ease);
+}
+
+nav.scrolled .nav{
+  height:68px;
 }
 
 .logo{
-font-weight:900;
-letter-spacing:.28em;
-font-size:16px;
-color:var(--cream)
+  position:relative;
+
+  display:inline-flex;
+  align-items:center;
+
+  color:var(--cream);
+
+  font-size:17px;
+  font-weight:950;
+
+  letter-spacing:.34em;
+
+  padding-left:2px;
+}
+
+.logo::after{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  bottom:-5px;
+
+  width:18px;
+  height:1px;
+
+  background:var(--gold);
+
+  transition:
+    width .45s var(--ease);
+}
+
+.logo:hover::after{
+  width:100%;
 }
 
 .navlinks{
-display:flex;
-align-items:center;
-gap:30px;
-font-size:13px;
-color:#aaa
+  display:flex;
+  align-items:center;
+  gap:30px;
 }
 
-.navlinks a:hover{
-color:#fff
+.navlinks>a{
+  position:relative;
+
+  color:#99928a;
+
+  font-size:11px;
+  font-weight:700;
+
+  letter-spacing:.08em;
+
+  transition:
+    color .25s ease;
 }
+
+.navlinks>a::after{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  bottom:-7px;
+
+  width:0;
+  height:1px;
+
+  background:var(--gold);
+
+  transition:
+    width .35s var(--ease);
+}
+
+.navlinks>a:hover,
+.navlinks>a.active{
+  color:#f2eadc;
+}
+
+.navlinks>a:hover::after,
+.navlinks>a.active::after{
+  width:100%;
+}
+
+
+/* LET'S TALK */
 
 .talkMenu{
-position:relative
+  position:relative;
 }
 
 .talkMenu summary{
-list-style:none;
-cursor:pointer;
-color:#111;
-background:linear-gradient(135deg,#d8bd82,#a9864b);
-padding:10px 17px;
-border-radius:999px;
-font-weight:900;
-box-shadow:0 8px 30px rgba(199,167,106,.12)
+  list-style:none;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:42px;
+
+  padding:0 19px;
+
+  border:1px solid rgba(201,170,112,.55);
+  border-radius:999px;
+
+  color:#15120d;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold2),
+      var(--gold)
+    );
+
+  font-size:11px;
+  font-weight:950;
+
+  letter-spacing:.06em;
+
+  box-shadow:
+    0 8px 35px rgba(201,170,112,.09);
+
+  transition:
+    transform .3s var(--ease),
+    box-shadow .3s ease;
 }
 
 .talkMenu summary::-webkit-details-marker{
-display:none
+  display:none;
+}
+
+.talkMenu summary:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 14px 45px rgba(201,170,112,.18);
 }
 
 .talkPanel{
-position:absolute;
-right:0;
-top:48px;
-width:220px;
-padding:10px;
-background:#10100f;
-border:1px solid #3a342b;
-box-shadow:0 18px 45px rgba(0,0,0,.45)
+  position:absolute;
+
+  right:0;
+  top:54px;
+
+  width:235px;
+
+  padding:8px;
+
+  background:
+    rgba(17,15,12,.96);
+
+  border:1px solid var(--line);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.5);
+
+  backdrop-filter:blur(20px);
 }
 
 .talkPanel a{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:13px 10px;
-border-bottom:1px solid #29251f;
-color:#eee;
-font-size:13px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:14px 12px;
+
+  border-bottom:1px solid var(--line2);
+
+  color:#d7d0c6;
+
+  font-size:12px;
+
+  transition:
+    color .25s ease,
+    padding .3s var(--ease);
 }
 
 .talkPanel a:last-child{
-border-bottom:0
+  border-bottom:0;
 }
 
 .talkPanel a:hover{
-color:#d8bd82
+  padding-left:17px;
+  color:var(--gold2);
 }
 
+
 /* MOBILE NAV */
+
 .mobileNav{
-display:none!important;
-position:relative
+  display:none;
+  position:relative;
 }
 
 .mobileNav summary{
-list-style:none;
-cursor:pointer;
-color:#fff;
-font-size:25px;
-line-height:1
+  list-style:none;
+
+  cursor:pointer;
+
+  width:44px;
+  height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--line);
+
+  color:var(--cream);
+
+  font-size:20px;
 }
 
 .mobileNav summary::-webkit-details-marker{
-display:none
+  display:none;
 }
 
 .mobilePanel{
-display:none;
-position:absolute;
-right:0;
-top:50px;
-width:min(280px,88vw);
-padding:16px;
-background:#0c0c0c;
-border:1px solid #292929;
-box-shadow:0 18px 45px rgba(0,0,0,.45)
+  position:absolute;
+
+  right:0;
+  top:58px;
+
+  width:min(310px,88vw);
+
+  padding:10px;
+
+  background:
+    rgba(13,12,10,.97);
+
+  border:1px solid var(--line);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.55);
+
+  backdrop-filter:blur(25px);
 }
 
-.mobileNav[open] .mobilePanel{
-display:block
+.mobilePanel>a{
+  display:block;
+
+  padding:15px 12px;
+
+  border-bottom:1px solid var(--line2);
+
+  color:#d6cec1;
+
+  font-size:13px;
 }
 
-.mobilePanel a{
-display:block;
-padding:14px 8px;
-border-bottom:1px solid #222;
-color:#ddd;
-font-size:14px
+.mobileTalk{
+  margin-top:8px;
+  padding:8px;
+
+  border:1px solid var(--line);
+
+  background:#11100d;
 }
 
-.mobilePanel a:last-child{
-border-bottom:0
+.mobileTalkTitle{
+  padding:10px 8px;
+
+  color:var(--gold);
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:.22em;
+  text-transform:uppercase;
 }
 
-.mobilePanel .mobileTalk{
-margin-top:8px;
-background:#fff;
-color:#000;
-text-align:center;
-font-weight:900;
-border-radius:999px
+.mobileTalk a{
+  display:block;
+
+  padding:12px 8px;
+
+  border-top:1px solid var(--line2);
+
+  color:#ddd4c7;
+
+  font-size:12px;
 }
 
-/* HERO */
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero{
-min-height:100svh;
-padding:130px 0 70px;
-display:flex;
-align-items:center
+  min-height:100svh;
+
+  padding:
+    150px 0
+    80px;
+
+  display:flex;
+  align-items:center;
+
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  right:-220px;
+  top:15%;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201,170,112,.12),
+      transparent 65%
+    );
+
+  filter:blur(20px);
+
+  pointer-events:none;
 }
 
 .heroGrid{
-display:grid;
-grid-template-columns:1.08fr .92fr;
-gap:70px;
-align-items:center
+  display:grid;
+
+  grid-template-columns:
+    1.04fr
+    .96fr;
+
+  align-items:center;
+
+  gap:80px;
 }
 
-.eyebrow,.num{
-font-size:10px;
-letter-spacing:.28em;
-text-transform:uppercase;
-color:var(--gold)
+.heroCopy{
+  position:relative;
+  z-index:2;
+}
+
+.heroEyebrow{
+  opacity:0;
+  transform:translateY(18px);
+
+  animation:
+    heroReveal .9s .15s var(--ease) forwards;
 }
 
 .hero h1{
-font-size:clamp(64px,10vw,145px);
-line-height:.78;
-letter-spacing:-.09em;
-margin:24px 0 30px;
-font-weight:950
+  margin:
+    30px 0
+    35px;
+
+  font-size:
+    clamp(68px,10.7vw,154px);
+
+  line-height:.76;
+
+  letter-spacing:-.105em;
+
+  font-weight:950;
+
+  text-transform:uppercase;
+
+  opacity:0;
+
+  transform:translateY(35px);
+
+  animation:
+    heroReveal 1s .28s var(--ease) forwards;
+}
+
+.hero h1 span{
+  display:block;
 }
 
 .hero h1 .outline{
-color:transparent;
--webkit-text-stroke:1px #8d806d
+  color:transparent;
+
+  -webkit-text-stroke:
+    1px rgba(221,205,176,.65);
+
+  text-stroke:
+    1px rgba(221,205,176,.65);
 }
 
-.hero p{
-max-width:620px;
-color:#aaa;
-font-size:17px;
-line-height:1.75;
-margin:0
+.heroText{
+  max-width:590px;
+
+  color:#a49d93;
+
+  font-size:16px;
+
+  line-height:1.85;
+
+  opacity:0;
+
+  transform:translateY(20px);
+
+  animation:
+    heroReveal .9s .48s var(--ease) forwards;
 }
 
 .actions{
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-margin-top:30px
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:12px;
+
+  margin-top:32px;
+
+  opacity:0;
+
+  transform:translateY(20px);
+
+  animation:
+    heroReveal .9s .62s var(--ease) forwards;
 }
 
+
+/* BUTTONS */
+
 .btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-min-height:48px;
-padding:0 20px;
-border:1px solid #383838;
-border-radius:999px;
-font-size:13px;
-font-weight:800;
-transition:.25s
+  position:relative;
+
+  min-height:52px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:0 22px;
+
+  overflow:hidden;
+
+  border:1px solid var(--line);
+
+  border-radius:999px;
+
+  color:#dcd4c8;
+
+  background:
+    rgba(255,255,255,.018);
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:.06em;
+
+  transition:
+    transform .35s var(--ease),
+    border-color .35s ease,
+    color .35s ease,
+    box-shadow .35s ease;
+}
+
+.btn::before{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  transform:translateY(105%);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold2),
+      var(--gold)
+    );
+
+  transition:
+    transform .45s var(--ease);
+
+  z-index:-1;
 }
 
 .btn:hover{
-transform:translateY(-2px);
-border-color:var(--gold);
-box-shadow:0 12px 35px rgba(199,167,106,.12)
+  transform:translateY(-3px);
+
+  border-color:var(--gold);
+
+  color:#111;
+
+  box-shadow:
+    0 15px 45px rgba(201,170,112,.13);
+}
+
+.btn:hover::before{
+  transform:translateY(0);
 }
 
 .btn.primary{
-background:linear-gradient(135deg,#d8bd82,#a9864b);
-color:#111;
-border-color:#d8bd82;
-box-shadow:0 10px 30px rgba(199,167,106,.12)
+  color:#111;
+
+  border-color:var(--gold);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold2),
+      var(--gold)
+    );
+
+  box-shadow:
+    0 12px 40px rgba(201,170,112,.12);
 }
 
+.btn.primary::before{
+  background:#f2e8d7;
+}
+
+
+/* HERO VISUAL */
+
 .heroVisual{
-position:relative
+  position:relative;
+
+  opacity:0;
+
+  transform:
+    translateY(35px)
+    scale(.97);
+
+  animation:
+    heroVisualReveal 1.15s .35s var(--ease) forwards;
 }
 
 .heroImg{
-height:650px;
-border:1px solid #4a4031;
-overflow:hidden;
-background:#0b0a09;
-box-shadow:
-0 25px 80px rgba(0,0,0,.38),
-inset 0 0 0 1px rgba(199,167,106,.08)
+  position:relative;
+
+  height:680px;
+
+  overflow:hidden;
+
+  background:#090807;
+
+  border:
+    1px solid
+    rgba(201,170,112,.34);
+
+  box-shadow:
+    0 35px 110px rgba(0,0,0,.5),
+    inset 0 0 0 1px rgba(201,170,112,.06);
+}
+
+.heroImg::before{
+  content:"";
+
+  position:absolute;
+
+  inset:15px;
+
+  z-index:2;
+
+  border:
+    1px solid
+    rgba(238,227,208,.1);
+
+  pointer-events:none;
+}
+
+.heroImg::after{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:1;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.06),
+      transparent 25%,
+      transparent 70%,
+      rgba(201,170,112,.08)
+    );
+
+  pointer-events:none;
 }
 
 .heroImg img{
-width:100%;
-height:100%;
-object-fit:contain;
-object-position:center;
-background:#0b0a09;
-transition:transform .8s
-}
-
-.heroVisual:hover img{
-transform:scale(1.035)
-}
-
-.label{
-position:absolute;
-right:-15px;
-bottom:25px;
-background:#fff;
-color:#000;
-padding:12px 16px;
-font-size:9px;
-font-weight:900;
-letter-spacing:.16em;
-text-transform:uppercase
-}
-
-/* SECTIONS */
-section{
-border-top:1px solid #28241f;
-padding:120px 0;
-scroll-margin-top:88px
-}
-
-.head{
-display:flex;
-justify-content:space-between;
-align-items:end;
-gap:40px;
-margin-bottom:55px
-}
-
-.title{
-font-size:clamp(48px,7vw,88px);
-line-height:.86;
-letter-spacing:-.075em;
-margin:12px 0 0;
-font-weight:900
-}
-
-.desc{
-max-width:430px;
-color:#888;
-font-size:14px;
-line-height:1.8
-}
-
-/* ABOUT */
-.aboutGrid{
-display:grid;
-grid-template-columns:1.3fr .7fr;
-gap:18px
-}
-
-.aboutMain,.aboutSide{
-background:linear-gradient(145deg,#1a1815,#12110f);
-border:1px solid #3a342b;
-padding:45px;
-box-shadow:0 25px 70px rgba(0,0,0,.16)
-}
-
-.aboutMain p{
-color:#c9c9c5;
-font-size:23px;
-line-height:1.55;
-letter-spacing:-.02em;
-margin:0 0 28px
-}
-
-.aboutMain p:last-of-type{
-margin-bottom:55px
-}
+  width:100%;
+  height:100%;
 
-.aboutBottom{
-display:flex;
-justify-content:space-between;
-align-items:end
-}
-
-.location{
-font-size:11px;
-line-height:1.8;
-color:#777;
-text-transform:uppercase;
-letter-spacing:.08em
-}
-
-.stat{
-text-align:right
-}
-
-.stat b{
-font-size:58px;
-line-height:.8;
-letter-spacing:-.08em
-}
-
-.stat span{
-display:block;
-color:#777;
-font-size:9px;
-text-transform:uppercase;
-letter-spacing:.18em;
-margin-top:10px
-}
-
-.aboutSide h3{
-font-size:11px;
-text-transform:uppercase;
-letter-spacing:.2em;
-color:#777;
-margin:0 0 25px
-}
-
-.skills{
-display:flex;
-flex-wrap:wrap;
-gap:8px
-}
-
-.skill{
-border:1px solid #4a4135;
-border-radius:999px;
-padding:9px 12px;
-font-size:12px;
-color:#d9cfbf;
-background:rgba(199,167,106,.04)
-}
+  object-fit:contain;
 
-.small{
-font-size:13px;
-color:#777;
-line-height:1.8;
-margin-top:35px
-}
-
-/* SERVICES */
-.services{
-border-top:1px solid var(--line)
-}
+  object-position:center;
 
-.service{
-display:grid;
-grid-template-columns:60px 1fr 40px;
-gap:25px;
-align-items:center;
-border-bottom:1px solid var(--line);
-padding:27px 10px;
-transition:.25s
-}
+  background:#080807;
 
-.service:hover{
-background:#0d0d0d;
-padding-left:20px
+  transition:
+    transform 1.2s var(--ease),
+    filter 1s ease;
 }
 
-.serviceNo{
-color:#555;
-font-size:11px
+.heroVisual:hover .heroImg img{
+  transform:scale(1.035);
+  filter:saturate(1.05);
 }
 
-.service h3{
-font-size:clamp(23px,3vw,38px);
-letter-spacing:-.045em;
-margin:0
-}
+.heroLabel{
+  position:absolute;
 
-.service p{
-color:#777;
-font-size:12px;
-margin:5px 0 0
-}
+  right:-20px;
+  bottom:30px;
 
-.arrow{
-color:#666;
-font-size:20px
-}
+  z-index:5;
 
-/* WORK */
-.featured{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:16px
-}
+  padding:15px 19px;
 
-.project{
-background:var(--panel);
-border:1px solid var(--line);
-overflow:hidden
-}
+  background:#eee5d6;
 
-.project.big{
-grid-column:1/-1
-}
+  color:#111;
 
-.projectImg{
-height:530px;
-overflow:hidden;
-background:#111
-}
+  font-size:9px;
+  font-weight:950;
 
-.project.big .projectImg{
-height:680px
-}
+  letter-spacing:.2em;
 
-.projectImg img{
-width:100%;
-height:100%;
-object-fit:contain;
-object-position:center;
-background:#0b0a09;
-transition:transform .7s
-}
+  text-transform:uppercase;
 
-.project:hover img{
-transform:scale(1.035)
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.25);
 }
 
-.projectInfo{
-display:flex;
-justify-content:space-between;
-gap:15px;
-padding:17px 18px
+.heroLabel span{
+  color:#766d61;
 }
 
-.projectInfo strong{
-font-size:14px
-}
+.heroCorner{
+  position:absolute;
 
-.meta{
-font-size:10px;
-color:#777;
-text-transform:uppercase;
-letter-spacing:.14em
-}
+  left:-15px;
+  top:35px;
 
-/* GALLERY */
-.gallery{
-columns:3 270px;
-column-gap:12px
-}
+  z-index:4;
 
-.galleryItem{
-break-inside:avoid;
-margin:0 0 12px;
-background:#111;
-border:1px solid var(--line);
-overflow:hidden
-}
+  width:55px;
+  height:55px;
 
-.galleryItem img{
-width:100%;
-height:auto;
-transition:transform .6s
-}
+  border-left:1px solid var(--gold);
+  border-top:1px solid var(--gold);
 
-.galleryItem:hover img{
-transform:scale(1.025)
+  opacity:.65;
 }
 
-/* MARQUEE */
-.marquee{
-border-top:1px solid var(--line);
-border-bottom:1px solid var(--line);
-overflow:hidden;
-white-space:nowrap;
-padding:23px 0
-}
+.heroSideText{
+  position:absolute;
 
-.track{
-display:inline-block;
-font-size:39px;
-font-weight:900;
-letter-spacing:-.04em;
-animation:move 24s linear infinite
-}
+  right:-42px;
+  top:50%;
 
-.track span{
-color:#444;
-margin:0 25px
-}
+  transform:
+    translateY(-50%)
+    rotate(90deg);
 
-@keyframes move{
-to{
-transform:translateX(-50%)
-}
-}
+  color:#555047;
 
-/* PROCESS */
-.process{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:1px;
-background:var(--line);
-border:1px solid var(--line)
-}
+  font-size:8px;
+  font-weight:800;
 
-.step{
-background:#0c0c0c;
-padding:30px;
-min-height:245px
-}
+  letter-spacing:.32em;
 
-.stepNo{
-font-size:10px;
-letter-spacing:.2em;
-color:#555
-}
+  text-transform:uppercase;
 
-.step h3{
-margin-top:75px;
-font-size:23px;
-letter-spacing:-.04em
+  white-space:nowrap;
 }
 
-.step p{
-font-size:12px;
-color:#777;
-line-height:1.7;
-margin:10px 0 0
-}
 
-/* CONTACT */
-.contactSection{
-padding-bottom:90px
-}
+/* HERO BOTTOM */
 
-.contactBox{
-background:
-radial-gradient(circle at 85% 15%,rgba(199,167,106,.13),transparent 30%),
-linear-gradient(145deg,#201d18,#12110f);
-color:var(--cream);
-border:1px solid #4a4031;
-padding:75px 65px;
-box-shadow:0 30px 100px rgba(0,0,0,.28)
-}
+.heroBottom{
+  position:absolute;
 
-.contactBox .eyebrow{
-color:var(--gold)
-}
+  left:4%;
+  right:4%;
+  bottom:24px;
 
-.contactBox h2{
-font-size:clamp(55px,9vw,120px);
-line-height:.82;
-letter-spacing:-.09em;
-margin:22px 0 30px;
-color:#eee5d4
-}
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-.contactBox>p{
-max-width:600px;
-color:#a9a093;
-line-height:1.75
-}
+  color:#59544d;
 
-.contactGrid{
-display:grid;
-grid-template-columns:1fr 390px;
-gap:65px;
-margin-top:45px
-}
+  font-size:8px;
+  font-weight:800;
 
-.contactLinks{
-display:flex;
-flex-direction:column
-}
+  letter-spacing:.22em;
 
-.contactLink{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
-border-top:1px solid #413a30;
-font-size:14px;
-font-weight:800;
-color:#e8dfd0
+  text-transform:uppercase;
 }
 
-.contactLink:last-child{
-border-bottom:1px solid #413a30
+.heroBottom .scrollHint{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.contactLink span:last-child{
-font-size:18px
-}
+.scrollDot{
+  width:5px;
+  height:5px;
 
-.form{
-display:flex;
-flex-direction:column;
-gap:11px
-}
+  border-radius:50%;
 
-.form input,.form select,.form textarea{
-width:100%;
-border:1px solid #4a4135;
-background:rgba(255,255,255,.025);
-color:#eee7db;
-padding:14px;
-outline:none;
-border-radius:0
-}
+  background:var(--gold);
 
-.form textarea{
-min-height:125px;
-resize:vertical
+  box-shadow:
+    0 0 15px rgba(201,170,112,.6);
 }
 
-.form input:focus,.form select:focus,.form textarea:focus{
-border-color:#c7a76a
+@keyframes heroReveal{
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
-.form button{
-border:1px solid #c7a76a;
-background:linear-gradient(135deg,#d8bd82,#a9864b);
-color:#111;
-padding:16px;
-cursor:pointer;
-font-weight:950
+@keyframes heroVisualReveal{
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
-.form button:hover{
-background:#333
-}
 
-.note{
-font-size:10px;
-color:#777;
-margin-top:10px
-}
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
 
-/* FOOTER */
-footer{
-border-top:1px solid #191919;
-padding:35px 0 55px;
-color:#666;
-font-size:11px
-}
+@media(max-width:1000px){
 
-.footer{
-display:flex;
-justify-content:space-between;
-gap:20px;
-align-items:center
-}
+  .navlinks{
+    gap:18px;
+  }
 
-.footerLogo{
-font-size:15px;
-color:#eee;
-font-weight:900;
-letter-spacing:.25em
-}
+  .heroGrid{
+    gap:45px;
+  }
 
-.footerLinks{
-display:flex;
-gap:20px;
-flex-wrap:wrap
-}
+  .heroImg{
+    height:570px;
+  }
 
-.footerLinks a:hover{
-color:#fff
-}
+  .heroSideText{
+    display:none;
+  }
 
-/* REVEAL */
-.reveal{
-opacity:1;
-transform:none
 }
 
-.js .reveal{
-animation:rise .7s both
-}
 
-@keyframes rise{
-from{
-opacity:0;
-transform:translateY(18px)
-}
-to{
-opacity:1;
-transform:none
-}
-}
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
 
-/* TABLET */
 @media(max-width:900px){
 
-.navlinks{
-display:none!important
+  .navlinks{
+    display:none;
+  }
+
+  .mobileNav{
+    display:block;
+  }
+
+  .talkMenu{
+    display:none;
+  }
+
+  .nav{
+    height:72px;
+  }
+
+  nav.scrolled .nav{
+    height:64px;
+  }
+
+  .hero{
+    padding:
+      125px 0
+      85px;
+  }
+
+  .heroGrid{
+    grid-template-columns:1fr;
+    gap:55px;
+  }
+
+  .hero h1{
+    font-size:
+      clamp(62px,16vw,110px);
+  }
+
+  .heroText{
+    font-size:15px;
+  }
+
+  .heroImg{
+    height:570px;
+  }
+
+  .heroLabel{
+    right:10px;
+  }
+
+  .heroCorner{
+    left:10px;
+  }
+
+  section{
+    padding:105px 0;
+  }
+
+  .head{
+    display:block;
+    margin-bottom:45px;
+  }
+
+  .desc{
+    margin-top:25px;
+  }
+
 }
 
-.mobileNav{
-display:block!important
-}
 
-.talkMenu{
-display:none!important
-}
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
 
-.heroGrid{
-grid-template-columns:1fr;
-gap:45px
-}
-
-.heroImg{
-height:540px
-}
-
-.head{
-display:block
-}
-
-.desc{
-margin-top:20px
-}
-
-.aboutGrid{
-grid-template-columns:1fr
-}
-
-.featured{
-grid-template-columns:1fr
-}
-
-.project.big{
-grid-column:auto
-}
-
-.projectImg,
-.project.big .projectImg{
-height:500px
-}
-
-.process{
-grid-template-columns:1fr 1fr
-}
-
-.contactBox{
-padding:60px 35px
-}
-
-.contactGrid{
-grid-template-columns:1fr;
-gap:45px
-}
-}
-
-/* MOBILE */
 @media(max-width:600px){
 
-.wrap{
-width:90%
+  .wrap{
+    width:90%;
+  }
+
+  .hero{
+    min-height:auto;
+
+    padding:
+      120px 0
+      75px;
+  }
+
+  .hero h1{
+    margin:
+      24px 0
+      28px;
+
+    font-size:
+      17vw;
+
+    line-height:.78;
+  }
+
+  .heroText{
+    font-size:14px;
+    line-height:1.8;
+  }
+
+  .actions{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .heroImg{
+    height:455px;
+  }
+
+  .heroImg::before{
+    inset:10px;
+  }
+
+  .heroLabel{
+    bottom:15px;
+    right:8px;
+
+    padding:12px 14px;
+  }
+
+  .heroBottom{
+    display:none;
+  }
+
+  section{
+    padding:85px 0;
+  }
+
+  .title{
+    font-size:
+      clamp(48px,14vw,70px);
+  }
+
+  .eyebrow{
+    font-size:8px;
+    letter-spacing:.24em;
+  }
+
 }
 
-.hero{
-padding-top:110px
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+
 }
 
-.hero h1{
-font-size:18vw
-}
-
-.hero p{
-font-size:15px
-}
-
-.heroImg{
-height:460px
-}
-
-.label{
-right:10px;
-bottom:15px
-}
-
-.hero .actions .btn{
-width:100%
-}
-
-section{
-padding:85px 0
-}
-
-.title{
-font-size:52px
-}
-
-.aboutMain,
-.aboutSide{
-padding:28px
-}
-
-.aboutMain p{
-font-size:19px
-}
-
-.aboutBottom{
-margin-top:20px
-}
-
-.stat b{
-font-size:48px
-}
-
-.service{
-grid-template-columns:32px 1fr 25px;
-gap:12px
-}
-
-.service h3{
-font-size:21px
-}
-
-.service p{
-font-size:11px
-}
-
-.projectImg,
-.project.big .projectImg{
-height:420px
-}
-
-.gallery{
-columns:2 145px;
-column-gap:7px
-}
-
-.galleryItem{
-margin-bottom:7px
-}
-
-.process{
-grid-template-columns:1fr
-}
-
-.step{
-min-height:190px
-}
-
-.step h3{
-margin-top:50px
-}
-
-.contactBox{
-padding:48px 22px
-}
-
-.contactBox h2{
-font-size:17vw
-}
-
-.footer{
-display:block
-}
-
-.footerLinks{
-margin-top:18px
-}
-}
-
-/* EXTRA NAV SAFETY */
-@media(min-width:901px){
-.mobileNav{
-display:none!important
-}
-}
 </style>
 
 <script>
-document.documentElement.classList.add('js');
+document.documentElement.classList.add("js");
 </script>
 
 </head>
 
 <body>
 
-<nav>
-<div class="wrap nav">
+<!-- =======================================================
+     PRELOADER
+     ======================================================= -->
 
-<a class="logo" href="#home">LEO</a>
+<div class="preloader" id="preloader">
 
-<div class="navlinks" id="navlinks">
+  <div class="loaderInner">
 
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#work">Work</a>
-<a href="#process">Process</a>
+    <div class="loaderLogo">
+      LEO
+    </div>
 
-<details class="talkMenu">
-<summary>Let's Talk ↗</summary>
+    <div class="loaderLine">
+      <div class="loaderProgress"></div>
+    </div>
 
-<div class="talkPanel">
+    <div class="loaderText">
+      Visual Experience
+    </div>
 
-<a href="https://wa.me/918870562129" target="_blank" rel="noopener">
-<span>WhatsApp</span><span>↗</span>
-</a>
-
-<a href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener">
-<span>Instagram</span><span>↗</span>
-</a>
-
-<a href="mailto:murugadoss2211@gmail.com">
-<span>Email</span><span>↗</span>
-</a>
-
-<a href="tel:+918870562129">
-<span>Call</span><span>↗</span>
-</a>
-
-</div>
-</details>
+  </div>
 
 </div>
 
-<details class="mobileNav">
 
-<summary aria-label="Open navigation">☰</summary>
+<!-- SCROLL PROGRESS -->
 
-<div class="mobilePanel">
-
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#work">Work</a>
-<a href="#process">Process</a>
-
-<div class="mobileTalk" style="padding:14px 8px;text-align:center">
-
-<div style="font-weight:900;margin-bottom:10px">
-Let's Talk
+<div
+  class="scrollProgress"
+  id="scrollProgress">
 </div>
 
-<a href="https://wa.me/918870562129" target="_blank" rel="noopener">
-WhatsApp ↗
-</a>
 
-<a href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener">
-Instagram ↗
-</a>
+<!-- =======================================================
+     NAVIGATION
+     ======================================================= -->
 
-<a href="mailto:murugadoss2211@gmail.com">
-Email ↗
-</a>
+<nav id="mainNav">
 
-<a href="tel:+918870562129">
-Call ↗
-</a>
+  <div class="wrap nav">
 
-</div>
+    <a
+      class="logo"
+      href="#home"
+      aria-label="Leo home">
+      LEO
+    </a>
 
-</div>
 
-</details>
+    <!-- DESKTOP NAV -->
 
-</div>
+    <div
+      class="navlinks"
+      id="navlinks">
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#services">
+        Services
+      </a>
+
+      <a href="#work">
+        Work
+      </a>
+
+      <a href="#process">
+        Process
+      </a>
+
+
+      <details class="talkMenu">
+
+        <summary>
+          Let's Talk ↗
+        </summary>
+
+        <div class="talkPanel">
+
+          <a
+            href="https://wa.me/918870562129"
+            target="_blank"
+            rel="noopener">
+
+            <span>WhatsApp</span>
+            <span>↗</span>
+
+          </a>
+
+          <a
+            href="https://www.instagram.com/leodosssss/"
+            target="_blank"
+            rel="noopener">
+
+            <span>Instagram</span>
+            <span>↗</span>
+
+          </a>
+
+          <a
+            href="mailto:murugadoss2211@gmail.com">
+
+            <span>Email</span>
+            <span>↗</span>
+
+          </a>
+
+          <a
+            href="tel:+918870562129">
+
+            <span>Call</span>
+            <span>↗</span>
+
+          </a>
+
+        </div>
+
+      </details>
+
+    </div>
+
+
+    <!-- MOBILE NAV -->
+
+    <details class="mobileNav">
+
+      <summary
+        aria-label="Open navigation">
+        ☰
+      </summary>
+
+      <div class="mobilePanel">
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#services">
+          Services
+        </a>
+
+        <a href="#work">
+          Work
+        </a>
+
+        <a href="#process">
+          Process
+        </a>
+
+
+        <div class="mobileTalk">
+
+          <div class="mobileTalkTitle">
+            Let's Talk
+          </div>
+
+          <a
+            href="https://wa.me/918870562129"
+            target="_blank"
+            rel="noopener">
+            WhatsApp ↗
+          </a>
+
+          <a
+            href="https://www.instagram.com/leodosssss/"
+            target="_blank"
+            rel="noopener">
+            Instagram ↗
+          </a>
+
+          <a
+            href="mailto:murugadoss2211@gmail.com">
+            Email ↗
+          </a>
+
+          <a
+            href="tel:+918870562129">
+            Call ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </details>
+
+  </div>
+
 </nav>
 
-<main id="home">
 
-<section class="hero">
-
-<div class="wrap heroGrid">
-
-<div class="reveal">
-
-<div class="eyebrow">
-Visual Creator / Virudhunagar, Tamil Nadu
-</div>
-
-<h1>
-<span>CREATE.</span>
-<span class="outline">CAPTURE.</span>
-<span>DEFINE.</span>
-</h1>
-
-<p>
-I'm Leo — a visual creator focused on photography, portraiture, creative editing and visual design. I turn ideas and moments into visuals with character, emotion and a cinematic point of view.
-</p>
-
-<div class="actions">
-
-<a class="btn primary" href="#work">
-Explore My Work ↗
-</a>
-
-<a class="btn" href="#contact" aria-label="Start a project and contact Leo">
-Start a Project ↘
-</a>
-
-</div>
-
-</div>
-
-<div class="heroVisual reveal">
-
-<div class="heroImg">
-<img src="work-2.jpg" alt="Leo — Visual Creator">
-</div>
-
-<div class="label">
-Visual Creator
-</div>
-
-</div>
-
-</div>
-
-</section>
+<!-- =======================================================
+     MAIN
+     ====
+  <!-- =======================================================
+     ABOUT
+     ======================================================= -->
 
 <section id="about">
 
-<div class="wrap">
+  <div class="wrap">
 
-<div class="head">
+    <div class="head">
 
-<div>
+      <div>
 
-<div class="num">01 — About</div>
+        <div class="num">
+          01 — About
+        </div>
 
-<h2 class="title">
-THE PERSON<br>
-BEHIND THE WORK.
-</h2>
+        <h2 class="title">
+          THE PERSON<br>
+          BEHIND THE WORK.
+        </h2>
 
-</div>
+      </div>
 
-<p class="desc">
-A creative space built around photography, visual storytelling, editing and the constant pursuit of better work.
-</p>
+      <p class="desc">
+        A creative space built around photography,
+        visual storytelling, editing and the constant
+        pursuit of better work.
+      </p>
 
-</div>
+    </div>
 
-<div class="aboutGrid">
 
-<div class="aboutMain">
+    <div class="aboutGrid">
 
-<p>
-I'm <strong>Leo</strong>, a visual creator from Virudhunagar, Tamil Nadu. I create photographs, portraits and visual designs that focus on <strong>style, atmosphere and emotion.</strong>
-</p>
+      <div class="aboutMain">
 
-<p>
-I'm continuously learning, experimenting and developing my own visual language — one project at a time.
-</p>
+        <p>
+          I'm <strong>Leo</strong>, a visual creator from
+          Virudhunagar, Tamil Nadu. I create photographs,
+          portraits and visual designs that focus on
+          <strong>style, atmosphere and emotion.</strong>
+        </p>
 
-<div class="aboutBottom">
+        <p>
+          I'm continuously learning, experimenting and
+          developing my own visual language — one project
+          at a time.
+        </p>
 
-<div class="location">
-Based in<br>
-Virudhunagar, Tamil Nadu, India
-</div>
 
-<div class="stat">
-<b>1+</b>
-<span>Years Creating</span>
-</div>
+        <div class="aboutBottom">
 
-</div>
+          <div class="location">
 
-</div>
+            Based in<br>
 
-<div class="aboutSide">
+            Virudhunagar, Tamil Nadu, India
 
-<h3>Creative Toolkit</h3>
+          </div>
 
-<div class="skills">
 
-<span class="skill">Photography</span>
-<span class="skill">Portraits</span>
-<span class="skill">Photo Editing</span>
-<span class="skill">Album Design</span>
-<span class="skill">Creative Design</span>
-<span class="skill">Visual Storytelling</span>
+          <div class="stat">
 
-</div>
+            <b class="counter" data-target="1">
+              0
+            </b>
 
-<p class="small">
-Always learning. Always experimenting. Always looking for the next visual idea worth creating.
-</p>
+            <span>
+              Years Creating
+            </span>
 
-</div>
+          </div>
 
-</div>
+        </div>
 
-</div>
+      </div>
+
+
+      <div class="aboutSide">
+
+        <h3>
+          Creative Toolkit
+        </h3>
+
+
+        <div class="skills">
+
+          <span class="skill">
+            Photography
+          </span>
+
+          <span class="skill">
+            Portraits
+          </span>
+
+          <span class="skill">
+            Photo Editing
+          </span>
+
+          <span class="skill">
+            Album Design
+          </span>
+
+          <span class="skill">
+            Creative Design
+          </span>
+
+          <span class="skill">
+            Visual Storytelling
+          </span>
+
+        </div>
+
+
+        <p class="small">
+          Always learning. Always experimenting.
+          Always looking for the next visual idea
+          worth creating.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
+
+
+
+<!-- =======================================================
+     SERVICES
+     ======================================================= -->
 
 <section id="services">
 
-<div class="wrap">
+  <div class="wrap">
 
-<div class="head">
+    <div class="head">
 
-<div>
+      <div>
 
-<div class="num">02 — Services</div>
+        <div class="num">
+          02 — Services
+        </div>
 
-<h2 class="title">
-WHAT I<br>
-CREATE.
-</h2>
+        <h2 class="title">
+          WHAT I<br>
+          CREATE.
+        </h2>
 
-</div>
+      </div>
 
-<p class="desc">
-From capturing a moment to shaping the final visual, every service is approached with attention to detail and creative intent.
-</p>
+      <p class="desc">
+        From capturing a moment to shaping the final
+        visual, every service is approached with
+        attention to detail and creative intent.
+      </p>
 
-</div>
+    </div>
 
-<div class="services">
 
-<div class="service">
-<div class="serviceNo">01</div>
-<div>
-<h3>Photography</h3>
-<p>Creative photography built around mood, composition and story.</p>
-</div>
-<div class="arrow">↗</div>
-</div>
+    <div class="services">
 
-<div class="service">
-<div class="serviceNo">02</div>
-<div>
-<h3>Portrait Photography</h3>
-<p>Portraits designed around personality, expression and style.</p>
-</div>
-<div class="arrow">↗</div>
-</div>
 
-<div class="service">
-<div class="serviceNo">03</div>
-<div>
-<h3>Photo Editing</h3>
-<p>Colour, retouching and cinematic finishing for stronger visuals.</p>
-</div>
-<div class="arrow">↗</div>
-</div>
+      <div class="service">
 
-<div class="service">
-<div class="serviceNo">04</div>
-<div>
-<h3>Album Design</h3>
-<p>Modern visual layouts that turn memories into premium albums.</p>
-</div>
-<div class="arrow">↗</div>
-</div>
+        <div class="serviceNo">
+          01
+        </div>
 
-<div class="service">
-<div class="serviceNo">05</div>
-<div>
-<h3>Creative Design</h3>
-<p>Digital visuals, concepts and creative assets for creators and projects.</p>
-</div>
-<div class="arrow">↗</div>
-</div>
+        <div>
 
-</div>
+          <h3>
+            Photography
+          </h3>
 
-</div>
+          <p>
+            Creative photography built around mood,
+            composition and story.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          02
+        </div>
+
+        <div>
+
+          <h3>
+            Portrait Photography
+          </h3>
+
+          <p>
+            Portraits designed around personality,
+            expression and style.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          03
+        </div>
+
+        <div>
+
+          <h3>
+            Photo Editing
+          </h3>
+
+          <p>
+            Colour, retouching and cinematic finishing
+            for stronger visuals.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          04
+        </div>
+
+        <div>
+
+          <h3>
+            Album Design
+          </h3>
+
+          <p>
+            Modern visual layouts that turn memories
+            into premium albums.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          05
+        </div>
+
+        <div>
+
+          <h3>
+            Creative Design
+          </h3>
+
+          <p>
+            Digital visuals, concepts and creative
+            assets for creators and projects.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
 
 </section>
+
+
+
+<!-- =======================================================
+     SELECTED WORK
+     ======================================================= -->
 
 <section id="work">
 
-<div class="wrap">
+  <div class="wrap">
 
-<div class="head">
+    <div class="head">
 
-<div>
+      <div>
 
-<div class="num">03 — Selected Work</div>
+        <div class="num">
+          03 — Selected Work
+        </div>
 
-<h2 class="title">
-A FEW<br>
-THINGS I'VE MADE.
-</h2>
+        <h2 class="title">
+          A FEW<br>
+          THINGS I'VE MADE.
+        </h2>
 
-</div>
+      </div>
 
-<p class="desc">
-A selection of portraits, creative experiments, lifestyle frames and visual studies from my growing portfolio.
-</p>
+      <p class="desc">
+        A selection of portraits, creative experiments,
+        lifestyle frames and visual studies from my
+        growing portfolio.
+      </p>
 
-</div>
+    </div>
 
-<div class="featured">
 
-<div class="project big">
+    <div class="featured">
 
-<div class="projectImg">
-<img src="work-1.jpg" alt="Creative portrait">
-</div>
 
-<div class="projectInfo">
-<strong>Creative Portrait</strong>
-<span class="meta">Photography / Portrait</span>
-</div>
+      <!-- PROJECT 01 -->
 
-</div>
+      <article
+        class="project big"
+        data-project="Creative Portrait">
 
-<div class="project">
+        <div class="projectImg">
 
-<div class="projectImg">
-<img src="work-3.jpg" alt="Black and white portrait">
-</div>
+          <img
+            src="work-1.jpg"
+            alt="Creative portrait"
+            loading="lazy">
 
-<div class="projectInfo">
-<strong>Monochrome</strong>
-<span class="meta">Portrait Study</span>
-</div>
+          <div class="projectOverlay">
 
-</div>
+            <span>
+              VIEW PROJECT
+            </span>
 
-<div class="project">
+            <span>
+              ↗
+            </span>
 
-<div class="projectImg">
-<img src="work-5.jpg" alt="Beach portrait">
-</div>
+          </div>
 
-<div class="projectInfo">
-<strong>Open Air</strong>
-<span class="meta">Lifestyle</span>
-</div>
+        </div>
 
-</div>
 
-</div>
+        <div class="projectInfo">
 
-</div>
+          <div>
+
+            <strong>
+              Creative Portrait
+            </strong>
+
+            <div class="projectNumber">
+              PROJECT 01
+            </div>
+
+          </div>
+
+          <span class="meta">
+            Photography / Portrait
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PROJECT 02 -->
+
+      <article
+        class="project"
+        data-project="Monochrome">
+
+        <div class="projectImg">
+
+          <img
+            src="work-3.jpg"
+            alt="Black and white portrait"
+            loading="lazy">
+
+          <div class="projectOverlay">
+
+            <span>
+              VIEW
+            </span>
+
+            <span>
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="projectInfo">
+
+          <div>
+
+            <strong>
+              Monochrome
+            </strong>
+
+            <div class="projectNumber">
+              PROJECT 02
+            </div>
+
+          </div>
+
+          <span class="meta">
+            Portrait Study
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PROJECT 03 -->
+
+      <article
+        class="project"
+        data-project="Open Air">
+
+        <div class="projectImg">
+
+          <img
+            src="work-5.jpg"
+            alt="Beach portrait"
+            loading="lazy">
+
+          <div class="projectOverlay">
+
+            <span>
+              VIEW
+            </span>
+
+            <span>
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="projectInfo">
+
+          <div>
+
+            <strong>
+              Open Air
+            </strong>
+
+            <div class="projectNumber">
+              PROJECT 03
+            </div>
+
+          </div>
+
+          <span class="meta">
+            Lifestyle
+          </span>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
 
 </section>
+
+
+
+<!-- =======================================================
+     CINEMATIC MARQUEE
+     ======================================================= -->
 
 <div class="marquee">
 
-<div class="track">
-PHOTOGRAPHY
-<span>✦</span>
-VISUAL STORYTELLING
-<span>✦</span>
-CREATIVE DESIGN
-<span>✦</span>
-PHOTO EDITING
-<span>✦</span>
-ALBUM DESIGN
-<span>✦</span>
-PHOTOGRAPHY
-<span>✦</span>
-VISUAL STORYTELLING
-<span>✦</span>
-</div>
+  <div class="track">
+
+    PHOTOGRAPHY
+
+    <span>✦</span>
+
+    VISUAL STORYTELLING
+
+    <span>✦</span>
+
+    CREATIVE DESIGN
+
+    <span>✦</span>
+
+    PHOTO EDITING
+
+    <span>✦</span>
+
+    ALBUM DESIGN
+
+    <span>✦</span>
+
+    PHOTOGRAPHY
+
+    <span>✦</span>
+
+    VISUAL STORYTELLING
+
+    <span>✦</span>
+
+    CREATIVE DESIGN
+
+    <span>✦</span>
+
+    PHOTO EDITING
+
+    <span>✦</span>
 
   </div>
-  <section>
-
-<div class="wrap">
-
-<div class="head">
-
-<div>
-
-<div class="num">04 — Archive</div>
-
-<h2 class="title">
-MORE<br>
-WORK.
-</h2>
 
 </div>
 
-<p class="desc">
-The archive — different moments, different styles, one evolving visual language.
-</p>
 
-</div>
 
-<div class="gallery">
+<!-- =======================================================
+     EXTRA CSS FOR PART 2
+     ======================================================= -->
 
-<div class="galleryItem">
-<img src="work-2.jpg" alt="Motorcycle portrait">
-</div>
+<style>
 
-<div class="galleryItem">
-<img src="work-4.png" alt="Night street photography">
-</div>
+.aboutGrid{
+  display:grid;
 
-<div class="galleryItem">
-<img src="work-6.png" alt="Studio football portrait">
-</div>
+  grid-template-columns:
+    1.28fr
+    .72fr;
 
-<div class="galleryItem">
-<img src="work-7.png" alt="Fashion portrait">
-</div>
+  gap:18px;
+}
 
-<div class="galleryItem">
-<img src="work-8.png" alt="Football field portrait">
-</div>
+.aboutMain,
+.aboutSide{
 
-<div class="galleryItem">
-<img src="work-9.jpg" alt="Creative silhouette">
-</div>
+  position:relative;
 
-<div class="galleryItem">
-<img src="work-10.jpg" alt="Motorcycle and temple portrait">
-</div>
+  background:
+    linear-gradient(
+      145deg,
+      rgba(29,26,21,.92),
+      rgba(15,14,12,.96)
+    );
 
-<div class="galleryItem">
-<img src="work-11.jpg" alt="Museum lifestyle photography">
-</div>
+  border:1px solid var(--line);
 
-<div class="galleryItem">
-<img src="work-12.jpg" alt="Museum window portrait">
-</div>
+  padding:50px;
 
-<div class="galleryItem">
-<img src="work-13.jpg" alt="Outdoor lifestyle portrait">
-</div>
+  overflow:hidden;
 
-<div class="galleryItem">
-<img src="work-14.jpg" alt="Portrait against brick wall">
-</div>
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.16);
 
-<div class="galleryItem">
-<img src="work-15.jpg" alt="Creative fashion portrait">
-</div>
+  transition:
+    transform .5s var(--ease),
+    border-color .4s ease;
+}
 
-<div class="galleryItem">
-<img src="work-16.png" alt="Cinematic silhouette">
-</div>
+.aboutMain::before,
+.aboutSide::before{
 
-<div class="galleryItem">
-<img src="retouch_2026043014161577.jpg" alt="Cinematic creative edit">
-</div>
+  content:"";
 
-</div>
+  position:absolute;
 
-</div>
+  width:180px;
+  height:180px;
+
+  right:-80px;
+  top:-80px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201,170,112,.1),
+      transparent 70%
+    );
+
+  pointer-events:none;
+}
+
+.aboutMain:hover,
+.aboutSide:hover{
+
+  transform:translateY(-4px);
+
+  border-color:
+    rgba(201,170,112,.3);
+}
+
+.aboutMain p{
+
+  max-width:800px;
+
+  color:#c8c1b6;
+
+  font-size:
+    clamp(19px,2vw,25px);
+
+  line-height:1.6;
+
+  letter-spacing:-.025em;
+
+  margin-bottom:30px;
+}
+
+.aboutMain p:last-of-type{
+  margin-bottom:65px;
+}
+
+.aboutMain strong{
+  color:var(--cream);
+}
+
+.aboutBottom{
+
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:30px;
+}
+
+.location{
+
+  color:#716b62;
+
+  font-size:9px;
+  font-weight:700;
+
+  line-height:1.9;
+
+  letter-spacing:.13em;
+
+  text-transform:uppercase;
+}
+
+.stat{
+  text-align:right;
+}
+
+.stat b{
+
+  display:block;
+
+  color:var(--cream);
+
+  font-size:68px;
+
+  line-height:.75;
+
+  letter-spacing:-.09em;
+}
+
+.stat span{
+
+  display:block;
+
+  margin-top:12px;
+
+  color:#6d675e;
+
+  font-size:8px;
+
+  font-weight:800;
+
+  letter-spacing:.2em;
+
+  text-transform:uppercase;
+}
+
+.aboutSide h3{
+
+  margin-bottom:28px;
+
+  color:#726b61;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:.25em;
+
+  text-transform:uppercase;
+}
+
+.skills{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+}
+
+.skill{
+
+  padding:9px 13px;
+
+  border:
+    1px solid
+    rgba(201,170,112,.23);
+
+  border-radius:999px;
+
+  color:#d3cabc;
+
+  background:
+    rgba(201,170,112,.035);
+
+  font-size:10px;
+  font-weight:700;
+
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    transform .3s var(--ease);
+}
+
+.skill:hover{
+
+  transform:translateY(-2px);
+
+  color:#15120e;
+
+  background:var(--gold2);
+
+  border-color:var(--gold2);
+}
+
+.small{
+
+  margin-top:45px;
+
+  color:#706a61;
+
+  font-size:12px;
+
+  line-height:1.9;
+}
+
+
+/* SERVICES */
+
+.services{
+
+  border-top:1px solid var(--line);
+
+  border-bottom:1px solid var(--line);
+}
+
+.service{
+
+  position:relative;
+
+  display:grid;
+
+  grid-template-columns:
+    70px
+    1fr
+    60px;
+
+  align-items:center;
+
+  gap:25px;
+
+  padding:30px 15px;
+
+  border-bottom:1px solid var(--line);
+
+  overflow:hidden;
+
+  transition:
+    padding .45s var(--ease),
+    background .35s ease;
+}
+
+.service:last-child{
+  border-bottom:0;
+}
+
+.service::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  top:0;
+  bottom:0;
+
+  width:2px;
+
+  background:var(--gold);
+
+  transform:
+    scaleY(0);
+
+  transform-origin:center;
+
+  transition:
+    transform .45s var(--ease);
+}
+
+.service:hover{
+
+  padding-left:30px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(201,170,112,.055),
+      transparent 65%
+    );
+}
+
+.service:hover::before{
+  transform:scaleY(1);
+}
+
+.serviceNo{
+
+  color:#504b44;
+
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:.15em;
+}
+
+.service h3{
+
+  color:#eee7dc;
+
+  font-size:
+    clamp(24px,3.4vw,43px);
+
+  line-height:1;
+
+  letter-spacing:-.055em;
+
+  transition:
+    color .3s ease;
+}
+
+.service:hover h3{
+  color:var(--gold2);
+}
+
+.service p{
+
+  margin-top:8px;
+
+  color:#6e6860;
+
+  font-size:11px;
+}
+
+.arrow{
+
+  width:45px;
+  height:45px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--line);
+
+  border-radius:50%;
+
+  color:#686158;
+
+  transition:
+    transform .4s var(--ease),
+    color .3s ease,
+    border-color .3s ease,
+    background .3s ease;
+}
+
+.service:hover .arrow{
+
+  transform:
+    rotate(45deg);
+
+  color:#111;
+
+  background:var(--gold2);
+
+  border-color:var(--gold2);
+}
+
+
+/* FEATURED WORK */
+
+.featured{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:18px;
+}
+
+.project{
+
+  position:relative;
+
+  background:#11100d;
+
+  border:1px solid var(--line);
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  transition:
+    transform .6s var(--ease),
+    border-color .4s ease;
+}
+
+.project.big{
+  grid-column:1/-1;
+}
+
+.project:hover{
+
+  transform:translateY(-5px);
+
+  border-color:
+    rgba(201,170,112,.35);
+}
+
+.projectImg{
+
+  position:relative;
+
+  height:540px;
+
+  overflow:hidden;
+
+  background:#080807;
+}
+
+.project.big .projectImg{
+  height:700px;
+}
+
+.projectImg::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.65),
+      transparent 45%
+    );
+
+  opacity:.45;
+
+  pointer-events:none;
+
+  transition:
+    opacity .5s ease;
+}
+
+.project:hover .projectImg::after{
+  opacity:.75;
+}
+
+.projectImg img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  object-position:center;
+
+  background:#080807;
+
+  transition:
+    transform 1s var(--ease),
+    filter .8s ease;
+}
+
+.project:hover .projectImg img{
+
+  transform:scale(1.055);
+
+  filter:
+    saturate(1.06)
+    contrast(1.02);
+}
+
+
+/* PROJECT OVERLAY */
+
+.projectOverlay{
+
+  position:absolute;
+
+  left:24px;
+  right:24px;
+  bottom:24px;
+
+  z-index:4;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  padding:15px 17px;
+
+  border:1px solid rgba(255,255,255,.16);
+
+  background:
+    rgba(10,9,8,.55);
+
+  backdrop-filter:blur(15px);
+
+  color:#eee5d7;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:.2em;
+
+  opacity:0;
+
+  transform:
+    translateY(15px);
+
+  transition:
+    opacity .45s ease,
+    transform .5s var(--ease);
+}
+
+.project:hover .projectOverlay{
+
+  opacity:1;
+
+  transform:none;
+}
+
+.projectOverlay span:last-child{
+  color:var(--gold2);
+
+  font-size:16px;
+
+  letter-spacing:0;
+}
+
+.projectInfo{
+
+  min-height:85px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:20px;
+
+  background:#12110e;
+}
+
+.projectInfo strong{
+
+  display:block;
+
+  color:#e7dfd3;
+
+  font-size:14px;
+
+  letter-spacing:-.01em;
+}
+
+.projectNumber{
+
+  margin-top:6px;
+
+  color:#575149;
+
+  font-size:8px;
+  font-weight:800;
+
+  letter-spacing:.18em;
+}
+
+.meta{
+
+  color:#686159;
+
+  font-size:8px;
+  font-weight:800;
+
+  letter-spacing:.14em;
+
+  text-transform:uppercase;
+
+  text-align:right;
+}
+
+
+/* MARQUEE */
+
+.marquee{
+
+  position:relative;
+
+  border-top:1px solid var(--line);
+
+  border-bottom:1px solid var(--line);
+
+  padding:28px 0;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  background:#0a0908;
+}
+
+.track{
+
+  display:inline-block;
+
+  color:#d5cbbb;
+
+  font-size:
+    clamp(30px,4vw,52px);
+
+  font-weight:950;
+
+  letter-spacing:-.055em;
+
+  animation:
+    marqueeMove 28s linear infinite;
+}
+
+.track span{
+
+  color:var(--gold);
+
+  margin:
+    0 30px;
+
+  font-size:.55em;
+}
+
+@keyframes marqueeMove{
+
+  from{
+    transform:translateX(0);
+  }
+
+  to{
+    transform:translateX(-50%);
+  }
+
+}
+
+
+/* TABLET */
+
+@media(max-width:900px){
+
+  .aboutGrid{
+    grid-template-columns:1fr;
+  }
+
+  .aboutMain,
+  .aboutSide{
+    padding:38px;
+  }
+
+  .featured{
+    grid-template-columns:1fr;
+  }
+
+  .project.big{
+    grid-column:auto;
+  }
+
+  .projectImg,
+  .project.big .projectImg{
+    height:540px;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .aboutMain,
+  .aboutSide{
+    padding:27px;
+  }
+
+  .aboutMain p{
+    font-size:19px;
+  }
+
+  .aboutMain p:last-of-type{
+    margin-bottom:45px;
+  }
+
+  .aboutBottom{
+    align-items:flex-end;
+  }
+
+  .stat b{
+    font-size:52px;
+  }
+
+  .service{
+
+    grid-template-columns:
+      32px
+      1fr
+      45px;
+
+    gap:12px;
+
+    padding:
+      25px 5px;
+  }
+
+  .service:hover{
+    padding-left:12px;
+  }
+
+  .service h3{
+    font-size:22px;
+  }
+
+  .service p{
+    font-size:10px;
+    line-height:1.6;
+  }
+
+  .projectImg,
+  .project.big .projectImg{
+    height:430px;
+  }
+
+  .projectOverlay{
+    left:12px;
+    right:12px;
+    bottom:12px;
+
+    opacity:1;
+
+    transform:none;
+
+    padding:12px;
+  }
+
+  .projectInfo{
+    min-height:78px;
+    padding:15px;
+  }
+
+  .meta{
+    font-size:7px;
+  }
+
+  .track{
+    font-size:31px;
+  }
+
+}
+
+</style>
+
+
+
+<!-- =======================================================
+     PART 2 ENDS HERE
+     PART 3 CONTINUES BELOW
+     ======================================================= -->
+  <!-- =======================================================
+     ABOUT
+     ======================================================= -->
+
+<section id="about">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="num">
+          01 — About
+        </div>
+
+        <h2 class="title">
+          THE PERSON<br>
+          BEHIND THE WORK.
+        </h2>
+
+      </div>
+
+      <p class="desc">
+        A creative space built around photography,
+        visual storytelling, editing and the constant
+        pursuit of better work.
+      </p>
+
+    </div>
+
+
+    <div class="aboutGrid">
+
+      <div class="aboutMain">
+
+        <p>
+          I'm <strong>Leo</strong>, a visual creator from
+          Virudhunagar, Tamil Nadu. I create photographs,
+          portraits and visual designs that focus on
+          <strong>style, atmosphere and emotion.</strong>
+        </p>
+
+        <p>
+          I'm continuously learning, experimenting and
+          developing my own visual language — one project
+          at a time.
+        </p>
+
+
+        <div class="aboutBottom">
+
+          <div class="location">
+
+            Based in<br>
+
+            Virudhunagar, Tamil Nadu, India
+
+          </div>
+
+
+          <div class="stat">
+
+            <b class="counter" data-target="1">
+              0
+            </b>
+
+            <span>
+              Years Creating
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="aboutSide">
+
+        <h3>
+          Creative Toolkit
+        </h3>
+
+
+        <div class="skills">
+
+          <span class="skill">
+            Photography
+          </span>
+
+          <span class="skill">
+            Portraits
+          </span>
+
+          <span class="skill">
+            Photo Editing
+          </span>
+
+          <span class="skill">
+            Album Design
+          </span>
+
+          <span class="skill">
+            Creative Design
+          </span>
+
+          <span class="skill">
+            Visual Storytelling
+          </span>
+
+        </div>
+
+
+        <p class="small">
+          Always learning. Always experimenting.
+          Always looking for the next visual idea
+          worth creating.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
+
+
+<!-- =======================================================
+     SERVICES
+     ======================================================= -->
+
+<section id="services">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="num">
+          02 — Services
+        </div>
+
+        <h2 class="title">
+          WHAT I<br>
+          CREATE.
+        </h2>
+
+      </div>
+
+      <p class="desc">
+        From capturing a moment to shaping the final
+        visual, every service is approached with
+        attention to detail and creative intent.
+      </p>
+
+    </div>
+
+
+    <div class="services">
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          01
+        </div>
+
+        <div>
+
+          <h3>
+            Photography
+          </h3>
+
+          <p>
+            Creative photography built around mood,
+            composition and story.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          02
+        </div>
+
+        <div>
+
+          <h3>
+            Portrait Photography
+          </h3>
+
+          <p>
+            Portraits designed around personality,
+            expression and style.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          03
+        </div>
+
+        <div>
+
+          <h3>
+            Photo Editing
+          </h3>
+
+          <p>
+            Colour, retouching and cinematic finishing
+            for stronger visuals.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          04
+        </div>
+
+        <div>
+
+          <h3>
+            Album Design
+          </h3>
+
+          <p>
+            Modern visual layouts that turn memories
+            into premium albums.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+
+      <div class="service">
+
+        <div class="serviceNo">
+          05
+        </div>
+
+        <div>
+
+          <h3>
+            Creative Design
+          </h3>
+
+          <p>
+            Digital visuals, concepts and creative
+            assets for creators and projects.
+          </p>
+
+        </div>
+
+        <div class="arrow">
+          ↗
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SELECTED WORK
+     ======================================================= -->
+
+<section id="work">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="num">
+          03 — Selected Work
+        </div>
+
+        <h2 class="title">
+          A FEW<br>
+          THINGS I'VE MADE.
+        </h2>
+
+      </div>
+
+      <p class="desc">
+        A selection of portraits, creative experiments,
+        lifestyle frames and visual studies from my
+        growing portfolio.
+      </p>
+
+    </div>
+
+
+    <div class="featured">
+
+
+      <!-- PROJECT 01 -->
+
+      <article
+        class="project big"
+        data-project="Creative Portrait">
+
+        <div class="projectImg">
+
+          <img
+            src="work-1.jpg"
+            alt="Creative portrait"
+            loading="lazy">
+
+          <div class="projectOverlay">
+
+            <span>
+              VIEW PROJECT
+            </span>
+
+            <span>
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="projectInfo">
+
+          <div>
+
+            <strong>
+              Creative Portrait
+            </strong>
+
+            <div class="projectNumber">
+              PROJECT 01
+            </div>
+
+          </div>
+
+          <span class="meta">
+            Photography / Portrait
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PROJECT 02 -->
+
+      <article
+        class="project"
+        data-project="Monochrome">
+
+        <div class="projectImg">
+
+          <img
+            src="work-3.jpg"
+            alt="Black and white portrait"
+            loading="lazy">
+
+          <div class="projectOverlay">
+
+            <span>
+              VIEW
+            </span>
+
+            <span>
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="projectInfo">
+
+          <div>
+
+            <strong>
+              Monochrome
+            </strong>
+
+            <div class="projectNumber">
+              PROJECT 02
+            </div>
+
+          </div>
+
+          <span class="meta">
+            Portrait Study
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- PROJECT 03 -->
+
+      <article
+        class="project"
+        data-project="Open Air">
+
+        <div class="projectImg">
+
+          <img
+            src="work-5.jpg"
+            alt="Beach portrait"
+            loading="lazy">
+
+          <div class="projectOverlay">
+
+            <span>
+              VIEW
+            </span>
+
+            <span>
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="projectInfo">
+
+          <div>
+
+            <strong>
+              Open Air
+            </strong>
+
+            <div class="projectNumber">
+              PROJECT 03
+            </div>
+
+          </div>
+
+          <span class="meta">
+            Lifestyle
+          </span>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CINEMATIC MARQUEE
+     ======================================================= -->
+
+<div class="marquee">
+
+  <div class="track">
+
+    PHOTOGRAPHY
+
+    <span>✦</span>
+
+    VISUAL STORYTELLING
+
+    <span>✦</span>
+
+    CREATIVE DESIGN
+
+    <span>✦</span>
+
+    PHOTO EDITING
+
+    <span>✦</span>
+
+    ALBUM DESIGN
+
+    <span>✦</span>
+
+    PHOTOGRAPHY
+
+    <span>✦</span>
+
+    VISUAL STORYTELLING
+
+    <span>✦</span>
+
+    CREATIVE DESIGN
+
+    <span>✦</span>
+
+    PHOTO EDITING
+
+    <span>✦</span>
+
+  </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     EXTRA CSS FOR PART 2
+     ======================================================= -->
+
+<style>
+
+.aboutGrid{
+  display:grid;
+
+  grid-template-columns:
+    1.28fr
+    .72fr;
+
+  gap:18px;
+}
+
+.aboutMain,
+.aboutSide{
+
+  position:relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(29,26,21,.92),
+      rgba(15,14,12,.96)
+    );
+
+  border:1px solid var(--line);
+
+  padding:50px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.16);
+
+  transition:
+    transform .5s var(--ease),
+    border-color .4s ease;
+}
+
+.aboutMain::before,
+.aboutSide::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  right:-80px;
+  top:-80px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201,170,112,.1),
+      transparent 70%
+    );
+
+  pointer-events:none;
+}
+
+.aboutMain:hover,
+.aboutSide:hover{
+
+  transform:translateY(-4px);
+
+  border-color:
+    rgba(201,170,112,.3);
+}
+
+.aboutMain p{
+
+  max-width:800px;
+
+  color:#c8c1b6;
+
+  font-size:
+    clamp(19px,2vw,25px);
+
+  line-height:1.6;
+
+  letter-spacing:-.025em;
+
+  margin-bottom:30px;
+}
+
+.aboutMain p:last-of-type{
+  margin-bottom:65px;
+}
+
+.aboutMain strong{
+  color:var(--cream);
+}
+
+.aboutBottom{
+
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:30px;
+}
+
+.location{
+
+  color:#716b62;
+
+  font-size:9px;
+  font-weight:700;
+
+  line-height:1.9;
+
+  letter-spacing:.13em;
+
+  text-transform:uppercase;
+}
+
+.stat{
+  text-align:right;
+}
+
+.stat b{
+
+  display:block;
+
+  color:var(--cream);
+
+  font-size:68px;
+
+  line-height:.75;
+
+  letter-spacing:-.09em;
+}
+
+.stat span{
+
+  display:block;
+
+  margin-top:12px;
+
+  color:#6d675e;
+
+  font-size:8px;
+
+  font-weight:800;
+
+  letter-spacing:.2em;
+
+  text-transform:uppercase;
+}
+
+.aboutSide h3{
+
+  margin-bottom:28px;
+
+  color:#726b61;
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:.25em;
+
+  text-transform:uppercase;
+}
+
+.skills{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+}
+
+.skill{
+
+  padding:9px 13px;
+
+  border:
+    1px solid
+    rgba(201,170,112,.23);
+
+  border-radius:999px;
+
+  color:#d3cabc;
+
+  background:
+    rgba(201,170,112,.035);
+
+  font-size:10px;
+  font-weight:700;
+
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    transform .3s var(--ease);
+}
+
+.skill:hover{
+
+  transform:translateY(-2px);
+
+  color:#15120e;
+
+  background:var(--gold2);
+
+  border-color:var(--gold2);
+}
+
+.small{
+
+  margin-top:45px;
+
+  color:#706a61;
+
+  font-size:12px;
+
+  line-height:1.9;
+}
+
+
+/* SERVICES */
+
+.services{
+
+  border-top:1px solid var(--line);
+
+  border-bottom:1px solid var(--line);
+}
+
+.service{
+
+  position:relative;
+
+  display:grid;
+
+  grid-template-columns:
+    70px
+    1fr
+    60px;
+
+  align-items:center;
+
+  gap:25px;
+
+  padding:30px 15px;
+
+  border-bottom:1px solid var(--line);
+
+  overflow:hidden;
+
+  transition:
+    padding .45s var(--ease),
+    background .35s ease;
+}
+
+.service:last-child{
+  border-bottom:0;
+}
+
+.service::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  top:0;
+  bottom:0;
+
+  width:2px;
+
+  background:var(--gold);
+
+  transform:
+    scaleY(0);
+
+  transform-origin:center;
+
+  transition:
+    transform .45s var(--ease);
+}
+
+.service:hover{
+
+  padding-left:30px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(201,170,112,.055),
+      transparent 65%
+    );
+}
+
+.service:hover::before{
+  transform:scaleY(1);
+}
+
+.serviceNo{
+
+  color:#504b44;
+
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:.15em;
+}
+
+.service h3{
+
+  color:#eee7dc;
+
+  font-size:
+    clamp(24px,3.4vw,43px);
+
+  line-height:1;
+
+  letter-spacing:-.055em;
+
+  transition:
+    color .3s ease;
+}
+
+.service:hover h3{
+  color:var(--gold2);
+}
+
+.service p{
+
+  margin-top:8px;
+
+  color:#6e6860;
+
+  font-size:11px;
+}
+
+.arrow{
+
+  width:45px;
+  height:45px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--line);
+
+  border-radius:50%;
+
+  color:#686158;
+
+  transition:
+    transform .4s var(--ease),
+    color .3s ease,
+    border-color .3s ease,
+    background .3s ease;
+}
+
+.service:hover .arrow{
+
+  transform:
+    rotate(45deg);
+
+  color:#111;
+
+  background:var(--gold2);
+
+  border-color:var(--gold2);
+}
+
+
+/* FEATURED WORK */
+
+.featured{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:18px;
+}
+
+.project{
+
+  position:relative;
+
+  background:#11100d;
+
+  border:1px solid var(--line);
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  transition:
+    transform .6s var(--ease),
+    border-color .4s ease;
+}
+
+.project.big{
+  grid-column:1/-1;
+}
+
+.project:hover{
+
+  transform:translateY(-5px);
+
+  border-color:
+    rgba(201,170,112,.35);
+}
+
+.projectImg{
+
+  position:relative;
+
+  height:540px;
+
+  overflow:hidden;
+
+  background:#080807;
+}
+
+.project.big .projectImg{
+  height:700px;
+}
+
+.projectImg::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.65),
+      transparent 45%
+    );
+
+  opacity:.45;
+
+  pointer-events:none;
+
+  transition:
+    opacity .5s ease;
+}
+
+.project:hover .projectImg::after{
+  opacity:.75;
+}
+
+.projectImg img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  object-position:center;
+
+  background:#080807;
+
+  transition:
+    transform 1s var(--ease),
+    filter .8s ease;
+}
+
+.project:hover .projectImg img{
+
+  transform:scale(1.055);
+
+  filter:
+    saturate(1.06)
+    contrast(1.02);
+}
+
+
+/* PROJECT OVERLAY */
+
+.projectOverlay{
+
+  position:absolute;
+
+  left:24px;
+  right:24px;
+  bottom:24px;
+
+  z-index:4;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  padding:15px 17px;
+
+  border:1px solid rgba(255,255,255,.16);
+
+  background:
+    rgba(10,9,8,.55);
+
+  backdrop-filter:blur(15px);
+
+  color:#eee5d7;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:.2em;
+
+  opacity:0;
+
+  transform:
+    translateY(15px);
+
+  transition:
+    opacity .45s ease,
+    transform .5s var(--ease);
+}
+
+.project:hover .projectOverlay{
+
+  opacity:1;
+
+  transform:none;
+}
+
+.projectOverlay span:last-child{
+  color:var(--gold2);
+
+  font-size:16px;
+
+  letter-spacing:0;
+}
+
+.projectInfo{
+
+  min-height:85px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:20px;
+
+  background:#12110e;
+}
+
+.projectInfo strong{
+
+  display:block;
+
+  color:#e7dfd3;
+
+  font-size:14px;
+
+  letter-spacing:-.01em;
+}
+
+.projectNumber{
+
+  margin-top:6px;
+
+  color:#575149;
+
+  font-size:8px;
+  font-weight:800;
+
+  letter-spacing:.18em;
+}
+
+.meta{
+
+  color:#686159;
+
+  font-size:8px;
+  font-weight:800;
+
+  letter-spacing:.14em;
+
+  text-transform:uppercase;
+
+  text-align:right;
+}
+
+
+/* MARQUEE */
+
+.marquee{
+
+  position:relative;
+
+  border-top:1px solid var(--line);
+
+  border-bottom:1px solid var(--line);
+
+  padding:28px 0;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  background:#0a0908;
+}
+
+.track{
+
+  display:inline-block;
+
+  color:#d5cbbb;
+
+  font-size:
+    clamp(30px,4vw,52px);
+
+  font-weight:950;
+
+  letter-spacing:-.055em;
+
+  animation:
+    marqueeMove 28s linear infinite;
+}
+
+.track span{
+
+  color:var(--gold);
+
+  margin:
+    0 30px;
+
+  font-size:.55em;
+}
+
+@keyframes marqueeMove{
+
+  from{
+    transform:translateX(0);
+  }
+
+  to{
+    transform:translateX(-50%);
+  }
+
+}
+
+
+/* TABLET */
+
+@media(max-width:900px){
+
+  .aboutGrid{
+    grid-template-columns:1fr;
+  }
+
+  .aboutMain,
+  .aboutSide{
+    padding:38px;
+  }
+
+  .featured{
+    grid-template-columns:1fr;
+  }
+
+  .project.big{
+    grid-column:auto;
+  }
+
+  .projectImg,
+  .project.big .projectImg{
+    height:540px;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .aboutMain,
+  .aboutSide{
+    padding:27px;
+  }
+
+  .aboutMain p{
+    font-size:19px;
+  }
+
+  .aboutMain p:last-of-type{
+    margin-bottom:45px;
+  }
+
+  .aboutBottom{
+    align-items:flex-end;
+  }
+
+  .stat b{
+    font-size:52px;
+  }
+
+  .service{
+
+    grid-template-columns:
+      32px
+      1fr
+      45px;
+
+    gap:12px;
+
+    padding:
+      25px 5px;
+  }
+
+  .service:hover{
+    padding-left:12px;
+  }
+
+  .service h3{
+    font-size:22px;
+  }
+
+  .service p{
+    font-size:10px;
+    line-height:1.6;
+  }
+
+  .projectImg,
+  .project.big .projectImg{
+    height:430px;
+  }
+
+  .projectOverlay{
+    left:12px;
+    right:12px;
+    bottom:12px;
+
+    opacity:1;
+
+    transform:none;
+
+    padding:12px;
+  }
+
+  .projectInfo{
+    min-height:78px;
+    padding:15px;
+  }
+
+  .meta{
+    font-size:7px;
+  }
+
+  .track{
+    font-size:31px;
+  }
+
+}
+
+</style>
+
+
+
+<!-- =======================================================
+     PART 2 ENDS HERE
+     PART 3 CONTINUES BELOW 
+     ======================================================= -->
+  <!-- =======================================================
+     ARCHIVE
+     ======================================================= -->
+
+<section id="archive">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="num">
+          04 — Archive
+        </div>
+
+        <h2 class="title">
+          MORE<br>
+          WORK.
+        </h2>
+
+      </div>
+
+      <p class="desc">
+        The archive — different moments, different
+        styles, one evolving visual language.
+      </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+
+      <div class="galleryItem">
+        <img
+          src="work-2.jpg"
+          alt="Motorcycle portrait"
+          loading="lazy">
+        <div class="galleryTag">01 / PORTRAIT</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-4.png"
+          alt="Night street photography"
+          loading="lazy">
+        <div class="galleryTag">02 / STREET</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-6.png"
+          alt="Studio football portrait"
+          loading="lazy">
+        <div class="galleryTag">03 / SPORT</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-7.png"
+          alt="Fashion portrait"
+          loading="lazy">
+        <div class="galleryTag">04 / FASHION</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-8.png"
+          alt="Football field portrait"
+          loading="lazy">
+        <div class="galleryTag">05 / LIFESTYLE</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-9.jpg"
+          alt="Creative silhouette"
+          loading="lazy">
+        <div class="galleryTag">06 / CREATIVE</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-10.jpg"
+          alt="Motorcycle and temple portrait"
+          loading="lazy">
+        <div class="galleryTag">07 / CULTURE</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-11.jpg"
+          alt="Museum lifestyle photography"
+          loading="lazy">
+        <div class="galleryTag">08 / LIFESTYLE</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-12.jpg"
+          alt="Museum window portrait"
+          loading="lazy">
+        <div class="galleryTag">09 / PORTRAIT</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-13.jpg"
+          alt="Outdoor lifestyle portrait"
+          loading="lazy">
+        <div class="galleryTag">10 / OUTDOOR</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-14.jpg"
+          alt="Portrait against brick wall"
+          loading="lazy">
+        <div class="galleryTag">11 / PORTRAIT</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-15.jpg"
+          alt="Creative fashion portrait"
+          loading="lazy">
+        <div class="galleryTag">12 / FASHION</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="work-16.png"
+          alt="Cinematic silhouette"
+          loading="lazy">
+        <div class="galleryTag">13 / CINEMATIC</div>
+      </div>
+
+
+      <div class="galleryItem">
+        <img
+          src="retouch_2026043014161577.jpg"
+          alt="Cinematic creative edit"
+          loading="lazy">
+        <div class="galleryTag">14 / RETOUCH</div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     BEFORE / AFTER
+     ======================================================= -->
+
+<section id="retouch">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="num">
+          05 — Retouch
+        </div>
+
+        <h2 class="title">
+          BEFORE.<br>
+          AFTER.
+        </h2>
+
+      </div>
+
+      <p class="desc">
+        Good editing is not about changing everything.
+        It's about refining the image while keeping
+        the original character alive.
+      </p>
+
+    </div>
+
+
+    <div class="compare">
+
+      <div class="compareImage beforeImage">
+
+        <img
+          src="work-1.jpg"
+          alt="Before retouch example">
+
+        <span class="compareLabel left">
+          BEFORE
+        </span>
+
+      </div>
+
+
+      <div class="compareImage afterImage">
+
+        <img
+          src="retouch_2026043014161577.jpg"
+          alt="After retouch example">
+
+        <span class="compareLabel right">
+          AFTER
+        </span>
+
+      </div>
+
+
+      <div
+        class="compareHandle"
+        id="compareHandle">
+
+        <span>↔</span>
+
+      </div>
+
+
+      <input
+        class="compareRange"
+        id="compareRange"
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        aria-label="Compare before and after">
+
+    </div>
+
+
+    <div class="compareNote">
+
+      <span>
+        DRAG TO COMPARE
+      </span>
+
+      <span>
+        COLOR / RETOUCH / FINISH
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     PROCESS
+     ======================================================= -->
 
 <section id="process">
 
-<div class="wrap">
+  <div class="wrap">
 
-<div class="head">
+    <div class="head">
 
-<div>
+      <div>
 
-<div class="num">05 — Process</div>
+        <div class="num">
+          06 — Process
+        </div>
 
-<h2 class="title">
-FROM IDEA<br>
-TO FINAL.
-</h2>
+        <h2 class="title">
+          FROM IDEA<br>
+          TO FINAL.
+        </h2>
 
-</div>
+      </div>
 
-<p class="desc">
-Every project moves through a clear creative workflow — from the first conversation to the final polished delivery.
-</p>
+      <p class="desc">
+        Every project moves through a clear creative
+        workflow — from the first conversation to
+        the final polished delivery.
+      </p>
 
-</div>
-
-<div class="process">
-
-<div class="step">
-
-<div class="stepNo">
-01 / DISCOVER
-</div>
-
-<h3>Listen</h3>
-
-<p>
-Understand your idea, requirements, purpose, style, mood and expectations.
-</p>
-
-</div>
+    </div>
 
 
-<div class="step">
-
-<div class="stepNo">
-02 / PLAN
-</div>
-
-<h3>Plan</h3>
-
-<p>
-Choose the location, outfit, lighting, references, composition and creative direction.
-</p>
-
-</div>
+    <div class="process">
 
 
-<div class="step">
+      <div class="step">
 
-<div class="stepNo">
-03 / CREATE
-</div>
+        <div class="stepTop">
 
-<h3>Capture</h3>
+          <span class="stepNo">
+            01
+          </span>
 
-<p>
-Turn the plan into photographs, designs or visual content with attention to detail.
-</p>
+          <span class="stepArrow">
+            ↗
+          </span>
 
-</div>
+        </div>
 
+        <div class="stepCategory">
+          DISCOVER
+        </div>
 
-<div class="step">
+        <h3>
+          Listen
+        </h3>
 
-<div class="stepNo">
-04 / SELECT
-</div>
+        <p>
+          Understand your idea, requirements,
+          purpose, style, mood and expectations.
+        </p>
 
-<h3>Curate</h3>
-
-<p>
-Review the work and select the strongest frames or visual elements for the final result.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="stepNo">
-05 / REFINE
-</div>
-
-<h3>Polish</h3>
-
-<p>
-Colour grade, retouch, edit and refine every important detail to create a premium finish.
-</p>
-
-</div>
+      </div>
 
 
-<div class="step">
 
-<div class="stepNo">
-06 / DELIVER
-</div>
+      <div class="step">
 
-<h3>Deliver</h3>
+        <div class="stepTop">
 
-<p>
-Prepare the final files and deliver the finished work in a clean, professional format.
-</p>
+          <span class="stepNo">
+            02
+          </span>
 
-</div>
+          <span class="stepArrow">
+            ↗
+          </span>
 
-</div>
+        </div>
 
-</div>
+        <div class="stepCategory">
+          PLAN
+        </div>
+
+        <h3>
+          Plan
+        </h3>
+
+        <p>
+          Choose the location, outfit, lighting,
+          references, composition and creative direction.
+        </p>
+
+      </div>
+
+
+
+      <div class="step">
+
+        <div class="stepTop">
+
+          <span class="stepNo">
+            03
+          </span>
+
+          <span class="stepArrow">
+            ↗
+          </span>
+
+        </div>
+
+        <div class="stepCategory">
+          CREATE
+        </div>
+
+        <h3>
+          Capture
+        </h3>
+
+        <p>
+          Turn the plan into photographs, designs
+          or visual content with attention to detail.
+        </p>
+
+      </div>
+
+
+
+      <div class="step">
+
+        <div class="stepTop">
+
+          <span class="stepNo">
+            04
+          </span>
+
+          <span class="stepArrow">
+            ↗
+          </span>
+
+        </div>
+
+        <div class="stepCategory">
+          SELECT
+        </div>
+
+        <h3>
+          Curate
+        </h3>
+
+        <p>
+          Review the work and select the strongest
+          frames or visual elements for the final result.
+        </p>
+
+      </div>
+
+
+
+      <div class="step">
+
+        <div class="stepTop">
+
+          <span class="stepNo">
+            05
+          </span>
+
+          <span class="stepArrow">
+            ↗
+          </span>
+
+        </div>
+
+        <div class="stepCategory">
+          REFINE
+        </div>
+
+        <h3>
+          Polish
+        </h3>
+
+        <p>
+          Colour grade, retouch, edit and refine
+          every important detail to create a premium finish.
+        </p>
+
+      </div>
+
+
+
+      <div class="step">
+
+        <div class="stepTop">
+
+          <span class="stepNo">
+            06
+          </span>
+
+          <span class="stepArrow">
+            ↗
+          </span>
+
+        </div>
+
+        <div class="stepCategory">
+          DELIVER
+        </div>
+
+        <h3>
+          Deliver
+        </h3>
+
+        <p>
+          Prepare the final files and deliver the
+          finished work in a clean, professional format.
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="processLine">
+
+      <span></span>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<section id="contact" class="contactSection">
 
-<div class="wrap">
+<!-- =======================================================
+     CREATIVE STATEMENT
+     ======================================================= -->
 
-<div class="contactBox">
+<section class="statement">
 
-<div class="eyebrow">
-06 — Contact / Available for Projects
-</div>
+  <div class="wrap">
 
-<h2>
-LET'S MAKE<br>
-SOMETHING<br>
-MEMORABLE.
-</h2>
+    <div class="statementInner">
 
-<p>
-Have a photography project, portrait session, album, editing work or creative idea? Tell me what you're building and let's start a conversation.
-</p>
+      <div class="num">
+        07 — Creative Direction
+      </div>
 
-<div class="contactGrid">
+      <h2>
+        I DON'T JUST<br>
+        <span>MAKE IMAGES.</span><br>
+        I BUILD A FEELING.
+      </h2>
 
-<div class="contactLinks">
+      <p>
+        Every frame has a mood. Every detail has a reason.
+        The goal is simple — create visuals that people
+        remember after they stop looking at them.
+      </p>
 
-<a class="contactLink"
-href="https://wa.me/918870562129"
-target="_blank"
-rel="noopener">
+      <div class="statementMark">
+        LEO<span>®</span>
+      </div>
 
-<span>WhatsApp</span>
-<span>↗</span>
+    </div>
 
-</a>
-
-
-<a class="contactLink"
-href="tel:+918870562129">
-
-<span>Call · 8870562129</span>
-<span>↗</span>
-
-</a>
-
-
-<a class="contactLink"
-href="mailto:murugadoss2211@gmail.com">
-
-<span>Email</span>
-<span>↗</span>
-
-</a>
-
-
-<a class="contactLink"
-href="https://www.instagram.com/leodosssss/"
-target="_blank"
-rel="noopener">
-
-<span>Instagram</span>
-<span>↗</span>
-
-</a>
-
-
-<div class="contactLink">
-
-<span>
-Virudhunagar · Tamil Nadu · India
-</span>
-
-<span>●</span>
-
-</div>
-
-</div>
-
-
-<form class="form" id="contactForm">
-
-<input
-id="name"
-type="text"
-placeholder="Your Name"
-required
->
-
-<input
-id="email"
-type="email"
-placeholder="Your Email"
-required
->
-
-<input
-id="phone"
-type="tel"
-placeholder="Your Phone"
->
-
-
-<select id="service" required>
-
-<option value="">
-Select a Service
-</option>
-
-<option>
-Photography
-</option>
-
-<option>
-Portrait Photography
-</option>
-
-<option>
-Photo Editing
-</option>
-
-<option>
-Album Design
-</option>
-
-<option>
-Creative Design
-</option>
-
-<option>
-Other
-</option>
-
-</select>
-
-
-<textarea
-id="message"
-placeholder="Tell me about your project..."
-required
-></textarea>
-
-
-<button type="submit">
-SEND ENQUIRY VIA WHATSAPP ↗
-</button>
-
-<div class="note">
-Submitting opens WhatsApp with your enquiry already prepared.
-</div>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
-</main>
 
 
-<footer>
+<!-- =======================================================
+     TESTIMONIAL / SOCIAL PROOF
+     ======================================================= -->
 
-<div class="wrap footer">
+<section id="experience">
 
-<div>
+  <div class="wrap">
 
-<div class="footerLogo">
-LEO
-</div>
+    <div class="head">
 
-<div style="margin-top:8px">
-Visual Creator · Virudhunagar, Tamil Nadu
-</div>
+      <div>
 
-</div>
+        <div class="num">
+          08 — Experience
+        </div>
+
+        <h2 class="title">
+          BUILT ON<br>
+          DETAILS.
+        </h2>
+
+      </div>
+
+      <p class="desc">
+        A creative approach built around communication,
+        attention to detail and a clear visual direction.
+      </p>
+
+    </div>
 
 
-<div class="footerLinks">
+    <div class="experienceGrid">
 
-<a
-href="https://www.instagram.com/leodosssss/"
-target="_blank"
-rel="noopener">
-Instagram
-</a>
 
-<a href="mailto:murugadoss2211@gmail.com">
-Email
-</a>
+      <div class="experienceCard">
 
-<a
-href="https://wa.me/918870562129"
-target="_blank"
-rel="noopener">
-WhatsApp
-</a>
+        <div class="quoteMark">
+          “
+        </div>
 
-<a href="#home">
-Back to top ↑
-</a>
+        <p>
+          The best creative work starts with understanding
+          the person, the story and the feeling behind the idea.
+        </p>
 
-</div>
+        <div class="experienceFooter">
 
-</div>
+          <span>
+            CREATIVE PRINCIPLE
+          </span>
+
+          <span>
+            01
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="experienceCard darkCard">
+
+        <div class="experienceNumber">
+          01
+        </div>
+
+        <h3>
+          ATTENTION<br>
+          TO DETAIL.
+        </h3>
+
+        <p>
+          Composition, lighting, colour and finishing
+          all work together to create the final visual.
+        </p>
+
+      </div>
+
+
+
+      <div class="experienceCard">
+
+        <div class="experienceNumber">
+          02
+        </div>
+
+        <h3>
+          ALWAYS<br>
+          EVOLVING.
+        </h3>
+
+        <p>
+          New references, new experiments and new
+          techniques keep the visual language moving forward.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     PART 3 EXTRA CSS
+     ======================================================= -->
+
+<style>
+
+/* ARCHIVE */
+
+.gallery{
+
+  columns:
+    3 270px;
+
+  column-gap:14px;
+}
+
+.galleryItem{
+
+  position:relative;
+
+  break-inside:avoid;
+
+  margin:
+    0 0 14px;
+
+  overflow:hidden;
+
+  background:#0d0c0a;
+
+  border:1px solid var(--line);
+
+  cursor:pointer;
+}
+
+.galleryItem img{
+
+  width:100%;
+  height:auto;
+
+  transition:
+    transform 1s var(--ease),
+    filter .8s ease;
+}
+
+.galleryItem::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.75),
+      transparent 45%
+    );
+
+  opacity:0;
+
+  transition:
+    opacity .5s ease;
+}
+
+.galleryItem:hover img{
+
+  transform:scale(1.045);
+
+  filter:
+    contrast(1.04)
+    saturate(1.04);
+}
+
+.galleryItem:hover::after{
+  opacity:1;
+}
+
+.galleryTag{
+
+  position:absolute;
+
+  left:14px;
+  bottom:13px;
+
+  z-index:3;
+
+  color:#eee5d8;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:.2em;
+
+  opacity:0;
+
+  transform:
+    translateY(8px);
+
+  transition:
+    opacity .4s ease,
+    transform .4s var(--ease);
+}
+
+.galleryItem:hover .galleryTag{
+
+  opacity:1;
+
+  transform:none;
+}
+
+
+/* BEFORE / AFTER */
+
+.compare{
+
+  position:relative;
+
+  width:100%;
+
+  height:
+    min(680px,70vw);
+
+  min-height:420px;
+
+  overflow:hidden;
+
+  background:#080807;
+
+  border:1px solid var(--line);
+
+  user-select:none;
+}
+
+.compareImage{
+
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+}
+
+.compareImage img{
+
+  position:absolute;
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  background:#080807;
+}
+
+.afterImage{
+
+  width:50%;
+
+  border-right:
+    1px solid
+    rgba(238,227,208,.5);
+
+  z-index:2;
+}
+
+.beforeImage{
+  z-index:1;
+}
+
+.compareLabel{
+
+  position:absolute;
+
+  top:20px;
+
+  z-index:5;
+
+  padding:9px 12px;
+
+  background:
+    rgba(10,9,8,.72);
+
+  border:
+    1px solid
+    rgba(255,255,255,.14);
+
+  color:#e9e0d3;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:.2em;
+
+  backdrop-filter:blur(12px);
+}
+
+.compareLabel.left{
+  left:20px;
+}
+
+.compareLabel.right{
+  right:20px;
+}
+
+.compareHandle{
+
+  position:absolute;
+
+  left:50%;
+
+  top:0;
+  bottom:0;
+
+  width:1px;
+
+  z-index:10;
+
+  background:
+    rgba(255,255,255,.8);
+
+  pointer-events:none;
+}
+
+.compareHandle span{
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  width:48px;
+  height:48px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:
+    1px solid
+    rgba(255,255,255,.4);
+
+  border-radius:50%;
+
+  color:#111;
+
+  background:#eee5d7;
+
+  font-size:18px;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.35);
+}
+
+.compareRange{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:20;
+
+  width:100%;
+  height:100%;
+
+  margin:0;
+
+  opacity:0;
+
+  cursor:ew-resize;
+}
+
+.compareNote{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  padding-top:14px;
+
+  color:#5f5a53;
+
+  font-size:8px;
+  font-weight:800;
+
+  letter-spacing:.2em;
+}
+
+
+/* PROCESS */
+
+.process{
+
+  position:relative;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:1px;
+
+  background:var(--line);
+
+  border:
+    1px solid
+    var(--line);
+
+  overflow:hidden;
+}
+
+.step{
+
+  position:relative;
+
+  min-height:320px;
+
+  padding:30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #13120f,
+      #0b0a08
+    );
+
+  overflow:hidden;
+
+  transition:
+    background .45s ease,
+    transform .5s var(--ease);
+}
+
+.step::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:170px;
+  height:170px;
+
+  right:-90px;
+  bottom:-90px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201,170,112,.1),
+      transparent 70%
+    );
+
+  opacity:0;
+
+  transition:
+    opacity .5s ease;
+}
+
+.step:hover{
+
+  background:#17140f;
+
+  transform:
+    translateY(-4px);
+
+  z-index:2;
+}
+
+.step:hover::before{
+  opacity:1;
+}
+
+.stepTop{
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+}
+
+.stepNo{
+
+  color:#5d574f;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:.18em;
+}
+
+.stepArrow{
+
+  color:#514b43;
+
+  font-size:18px;
+
+  transition:
+    transform .4s var(--ease),
+    color .3s ease;
+}
+
+.step:hover .stepArrow{
+
+  transform:
+    translate(4px,-4px);
+
+  color:var(--gold2);
+}
+
+.stepCategory{
+
+  margin-top:75px;
+
+  color:var(--gold);
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:.25em;
+}
+
+.step h3{
+
+  margin-top:10px;
+
+  color:#eee7dc;
+
+  font-size:28px;
+
+  line-height:1;
+
+  letter-spacing:-.05em;
+}
+
+.step p{
+
+  max-width:300px;
+
+  margin-top:14px;
+
+  color:#6c665e;
+
+  font-size:11px;
+
+  line-height:1.75;
+}
+
+.processLine{
+
+  position:relative;
+
+  width:100%;
+
+  height:1px;
+
+  margin-top:28px;
+
+  background:#24211c;
+
+  overflow:hidden;
+}
+
+.processLine span{
+
+  display:block;
+
+  width:35%;
+
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold)
+    );
+}
+
+
+/* CREATIVE STATEMENT */
+
+.statement{
+
+  padding:
+    180px 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(201,170,112,.07),
+      transparent 42%
+    );
+
+  border-top:1px solid var(--line2);
+}
+
+.statementInner{
+
+  max-width:1000px;
+
+  margin:auto;
+
+  text-align:center;
+}
+
+.statementInner .num{
+
+  justify-content:center;
+}
+
+.statementInner h2{
+
+  margin-top:35px;
+
+  color:#eee7dc;
+
+  font-size:
+    clamp(52px,8.5vw,115px);
+
+  line-height:.83;
+
+  letter-spacing:-.09em;
+
+  font-weight:950;
+}
+
+.statementInner h2 span{
+
+  color:transparent;
+
+  -webkit-text-stroke:
+    1px rgba(214,198,169,.55);
+}
+
+.statementInner p{
+
+  max-width:560px;
+
+  margin:38px auto 0;
+
+  color:#777169;
+
+  font-size:13px;
+
+  line-height:1.9;
+}
+
+.statementMark{
+
+  margin-top:55px;
+
+  color:#5b554d;
+
+  font-size:11px;
+  font-weight:950;
+
+  letter-spacing:.35em;
+}
+
+.statementMark span{
+
+  color:var(--gold);
+
+  font-size:7px;
+
+  vertical-align:top;
+}
+
+
+/* EXPERIENCE */
+
+.experienceGrid{
+
+  display:grid;
+
+  grid-template-columns:
+    1.35fr
+    .825fr
+    .825fr;
+
+  gap:14px;
+}
+
+.experienceCard{
+
+  position:relative;
+
+  min-height:350px;
+
+  padding:34px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:space-between;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1a1712,
+      #100f0c
+    );
+
+  border:1px solid var(--line);
+
+  overflow:hidden;
+
+  transition:
+    transform .5s var(--ease),
+    border-color .4s ease;
+}
+
+.experienceCard:hover{
+
+  transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(201,170,112,.3);
+}
+
+.darkCard{
+
+  background:#0e0d0b;
+}
+
+.quoteMark{
+
+  color:var(--gold);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:80px;
+
+  line-height:.5;
+
+  opacity:.7;
+}
+
+.experienceCard p{
+
+  max-width:440px;
+
+  color:#aaa298;
+
+  font-size:15px;
+
+  line-height:1.8;
+}
+
+.experienceFooter{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  padding-top:20px;
+
+  border-top:1px solid var(--line);
+
+  color:#5e5850;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:.2em;
+}
+
+.experienceNumber{
+
+  color:#575149;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:.2em;
+}
+
+.experienceCard h3{
+
+  margin-top:auto;
+  margin-bottom:25px;
+
+  color:#e9e1d5;
+
+  font-size:34px;
+
+  line-height:.9;
+
+  letter-spacing:-.06em;
+}
+
+
+/* TABLET */
+
+@media(max-width:900px){
+
+  .gallery{
+    columns:2 220px;
+  }
+
+  .process{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .experienceGrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .experienceCard:first-child{
+    grid-column:1/-1;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .gallery{
+    columns:2 140px;
+
+    column-gap:7px;
+  }
+
+  .galleryItem{
+    margin-bottom:7px;
+  }
+
+  .galleryTag{
+    left:9px;
+    bottom:9px;
+
+    font-size:6px;
+  }
+
+  .compare{
+
+    height:430px;
+
+    min-height:0;
+  }
+
+  .compareLabel{
+
+    top:12px;
+
+    padding:7px 9px;
+
+    font-size:6px;
+  }
+
+  .compareLabel.left{
+    left:12px;
+  }
+
+  .compareLabel.right{
+    right:12px;
+  }
+
+  .compareHandle span{
+
+    width:42px;
+    height:42px;
+
+    font-size:15px;
+  }
+
+  .compareNote{
+
+    font-size:6px;
+  }
+
+  .process{
+    grid-template-columns:1fr;
+  }
+
+  .step{
+    min-height:240px;
+
+    padding:25px;
+  }
+
+  .stepCategory{
+    margin-top:55px;
+  }
+
+  .statement{
+    padding:120px 0;
+  }
+
+  .statementInner h2{
+    font-size:14vw;
+  }
+
+  .statementInner p{
+    font-size:12px;
+  }
+
+  .experienceGrid{
+    grid-template-columns:1fr;
+  }
+
+  .experienceCard:first-child{
+    grid-column:auto;
+  }
+
+  .experienceCard{
+    min-height:300px;
+    padding:27px;
+  }
+
+  .experienceCard h3{
+    font-size:29px;
+  }
+
+}
+
+</style>
+
+
+
+<!-- =======================================================
+     PART 3 ENDS HERE
+     PART 4 CONTINUES DIRECTLY BELOW
+     ======================================================= -->
+  <!-- =========================
+     PART 4A / 4
+     CONTACT + ENQUIRY + FOOTER
+     ========================= -->
+
+<section class="contactSection" id="contact">
+
+  <div class="contactBox">
+
+    <div class="contactIntro">
+
+      <div class="eyebrow">
+        04 — LET'S TALK
+      </div>
+
+      <h2>
+        LET'S MAKE<br>
+        <span>SOMETHING</span><br>
+        MEMORABLE.
+      </h2>
+
+      <p>
+        Have a project, shoot, brand idea or creative vision?
+        Tell me what you're building. Let's turn the idea into
+        something people remember.
+      </p>
+
+      <div class="availability">
+        <span class="availabilityDot"></span>
+        AVAILABLE FOR PROJECTS
+      </div>
+
+    </div>
+
+
+    <div class="contactInfo">
+
+      <a
+        class="contactLink"
+        href="https://wa.me/918870562129"
+        target="_blank"
+        rel="noopener">
+
+        <span>
+          <small>WHATSAPP / CALL</small>
+          +91 8870562129
+        </span>
+
+        <b>↗</b>
+
+      </a>
+
+
+      <a
+        class="contactLink"
+        href="mailto:murugadoss2211@gmail.com">
+
+        <span>
+          <small>EMAIL</small>
+          murugadoss2211@gmail.com
+        </span>
+
+        <b>↗</b>
+
+      </a>
+
+
+      <a
+        class="contactLink"
+        href="https://www.instagram.com/leodosssss/"
+        target="_blank"
+        rel="noopener">
+
+        <span>
+          <small>INSTAGRAM</small>
+          @leodosssss
+        </span>
+
+        <b>↗</b>
+
+      </a>
+
+
+      <div class="contactLink">
+
+        <span>
+          <small>BASED IN</small>
+          Virudhunagar, Tamil Nadu, India
+        </span>
+
+        <b>●</b>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       PROJECT ENQUIRY
+       ========================= -->
+
+  <div class="enquiryWrap">
+
+    <div class="enquiryHead">
+
+      <div class="eyebrow">
+        START A PROJECT
+      </div>
+
+      <h3>
+        Tell me about<br>
+        <span>your idea.</span>
+      </h3>
+
+    </div>
+
+
+    <form
+      id="projectForm"
+      class="projectForm">
+
+
+      <div class="formRow">
+
+        <div class="formField">
+
+          <label for="clientName">
+            YOUR NAME
+          </label>
+
+          <input
+            type="text"
+            id="clientName"
+            name="name"
+            placeholder="Enter your name"
+            required>
+
+        </div>
+
+
+        <div class="formField">
+
+          <label for="clientEmail">
+            EMAIL
+          </label>
+
+          <input
+            type="email"
+            id="clientEmail"
+            name="email"
+            placeholder="your@email.com"
+            required>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="formRow">
+
+        <div class="formField">
+
+          <label for="clientPhone">
+            PHONE
+          </label>
+
+          <input
+            type="tel"
+            id="clientPhone"
+            name="phone"
+            placeholder="+91"
+            required>
+
+        </div>
+
+
+        <div class="formField">
+
+          <label for="serviceType">
+            PROJECT TYPE
+          </label>
+
+          <select
+            id="serviceType"
+            name="service"
+            required>
+
+            <option
+              value=""
+              selected
+              disabled>
+              Select a service
+            </option>
+
+            <option>
+              Photography
+            </option>
+
+            <option>
+              Portrait Shoot
+            </option>
+
+            <option>
+              Wedding / Engagement
+            </option>
+
+            <option>
+              Brand Content
+            </option>
+
+            <option>
+              Photo Retouching
+            </option>
+
+            <option>
+              Album Design
+            </option>
+
+            <option>
+              Creative Direction
+            </option>
+
+            <option>
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="formField">
+
+        <label for="projectMessage">
+          TELL ME MORE
+        </label>
+
+        <textarea
+          id="projectMessage"
+          name="message"
+          rows="6"
+          placeholder="Tell me about your project, idea, date, location or anything important..."
+          required></textarea>
+
+      </div>
+
+
+
+      <button
+        class="sendButton"
+        type="submit">
+
+        <span>
+          SEND ENQUIRY
+        </span>
+
+        <b>↗</b>
+
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+     ========================= -->
+
+<footer class="siteFooter">
+
+  <div class="footerTop">
+
+
+    <div class="footerBrand">
+
+      <div class="footerLogo">
+        LEO<span>®</span>
+      </div>
+
+      <p>
+        Visual Creator & Digital Creative.
+        Creating visuals with intention,
+        emotion and identity.
+      </p>
+
+    </div>
+
+
+
+    <div class="footerNav">
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#services">
+        Services
+      </a>
+
+      <a href="#work">
+        Work
+      </a>
+
+      <a href="#process">
+        Process
+      </a>
+
+      <a href="#contact">
+        Let's Talk
+      </a>
+
+    </div>
+
+
+
+    <div class="footerSocial">
+
+      <a
+        href="https://www.instagram.com/leodosssss/"
+        target="_blank"
+        rel="noopener">
+        Instagram ↗
+      </a>
+
+      <a
+        href="https://wa.me/918870562129"
+        target="_blank"
+        rel="noopener">
+        WhatsApp ↗
+      </a>
+
+      <a
+        href="mailto:murugadoss2211@gmail.com">
+        Email ↗
+      </a>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="footerBottom">
+
+    <span>
+      © 2026 LEO — ALL RIGHTS RESERVED.
+    </span>
+
+    <span>
+      VIRUDHUNAGAR / INDIA
+    </span>
+
+    <span>
+      BUILT WITH INTENT.
+    </span>
+
+  </div>
 
 </footer>
 
 
+<!-- =========================
+     PART 4A ENDS HERE
+     PART 4B CONTINUES DIRECTLY BELOW
+     ========================= -->
+  <!-- =========================
+     PART 4B-1
+     LIGHTBOX + CURSOR + CSS
+     ========================= -->
+
+
+<!-- =========================
+     LIGHTBOX
+     ========================= -->
+
+<div
+  class="lightbox"
+  id="lightbox"
+  aria-hidden="true">
+
+  <button
+    class="lightboxClose"
+    id="lightboxClose"
+    aria-label="Close image viewer">
+    ×
+  </button>
+
+  <button
+    class="lightboxArrow lightboxPrev"
+    id="lightboxPrev"
+    aria-label="Previous image">
+    ←
+  </button>
+
+  <div class="lightboxStage">
+
+    <img
+      id="lightboxImage"
+      src=""
+      alt="">
+
+    <div class="lightboxMeta">
+
+      <div>
+
+        <small>
+          SELECTED WORK
+        </small>
+
+        <span id="lightboxTitle">
+          LEO — VISUALS
+        </span>
+
+      </div>
+
+      <div id="lightboxCounter">
+        01 / 01
+      </div>
+
+    </div>
+
+  </div>
+
+  <button
+    class="lightboxArrow lightboxNext"
+    id="lightboxNext"
+    aria-label="Next image">
+    →
+  </button>
+
+</div>
+
+
+
+<!-- =========================
+     CUSTOM CURSOR
+     ========================= -->
+
+<div
+  class="cursorDot"
+  id="cursorDot">
+</div>
+
+<div
+  class="cursorLabel"
+  id="cursorLabel">
+  VIEW
+</div>
+
+
+
+<!-- =========================
+     PART 4B-1 CSS
+     ========================= -->
+
+<style>
+
+/* =========================
+   CONTACT
+   ========================= */
+
+.contactSection{
+  padding:110px 5vw 70px;
+  position:relative;
+}
+
+.contactBox{
+  position:relative;
+  overflow:hidden;
+
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:70px;
+
+  padding:75px;
+
+  border:1px solid var(--line2);
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(210,170,90,.13),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.045),
+      rgba(255,255,255,.012)
+    );
+}
+
+.contactBox:before{
+  content:"";
+
+  position:absolute;
+
+  width:400px;
+  height:400px;
+
+  right:-180px;
+  bottom:-220px;
+
+  border-radius:50%;
+
+  border:1px solid
+    rgba(210,170,90,.12);
+
+  pointer-events:none;
+}
+
+.contactIntro h2{
+  margin:18px 0 25px;
+
+  font-size:
+    clamp(52px,7vw,105px);
+
+  line-height:.86;
+
+  letter-spacing:-.055em;
+
+  font-weight:600;
+}
+
+.contactIntro h2 span{
+  color:transparent;
+
+  -webkit-text-stroke:
+    1px rgba(245,241,232,.65);
+}
+
+.contactIntro p{
+  max-width:530px;
+
+  color:var(--muted);
+
+  line-height:1.8;
+
+  font-size:15px;
+}
+
+.availability{
+  margin-top:35px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  font-size:10px;
+
+  letter-spacing:.16em;
+
+  color:var(--soft);
+}
+
+.availabilityDot{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--gold);
+
+  box-shadow:
+    0 0 14px
+    rgba(210,170,90,.7);
+
+  animation:pulseDot 1.8s infinite;
+}
+
+@keyframes pulseDot{
+
+  0%,100%{
+    opacity:1;
+    transform:scale(1);
+  }
+
+  50%{
+    opacity:.35;
+    transform:scale(.65);
+  }
+
+}
+
+.contactInfo{
+  align-self:center;
+}
+
+.contactLink{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:25px 0;
+
+  border-bottom:
+    1px solid var(--line2);
+
+  color:var(--text);
+
+  text-decoration:none;
+
+  transition:
+    padding .4s var(--ease),
+    color .4s var(--ease);
+}
+
+.contactLink:first-child{
+  border-top:
+    1px solid var(--line2);
+}
+
+.contactLink:hover{
+  padding-left:12px;
+
+  color:var(--gold2);
+}
+
+.contactLink span{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+  font-size:15px;
+}
+
+.contactLink small{
+  font-size:9px;
+
+  letter-spacing:.17em;
+
+  color:var(--muted);
+}
+
+.contactLink b{
+  font-size:20px;
+
+  font-weight:400;
+
+  transition:
+    transform .35s ease;
+}
+
+.contactLink:hover b{
+  transform:
+    translate(4px,-4px);
+}
+
+
+/* =========================
+   ENQUIRY
+   ========================= */
+
+.enquiryWrap{
+  margin-top:90px;
+
+  padding:70px;
+
+  border:1px solid var(--line);
+
+  background:
+    rgba(255,255,255,.018);
+}
+
+.enquiryHead h3{
+  margin:18px 0 55px;
+
+  font-size:
+    clamp(42px,5vw,75px);
+
+  line-height:.9;
+
+  letter-spacing:-.045em;
+
+  font-weight:500;
+}
+
+.enquiryHead h3 span{
+  color:var(--gold2);
+}
+
+.projectForm{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:30px;
+}
+
+.formRow{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:25px;
+}
+
+.formField{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:11px;
+}
+
+.formField label{
+  font-size:9px;
+
+  letter-spacing:.18em;
+
+  color:var(--muted);
+}
+
+.formField input,
+.formField textarea,
+.formField select{
+  width:100%;
+
+  border:none;
+
+  outline:none;
+
+  border-bottom:
+    1px solid #303030;
+
+  background:transparent;
+
+  padding:15px 0;
+
+  color:var(--text);
+
+  font-family:inherit;
+
+  font-size:15px;
+
+  border-radius:0;
+
+  transition:
+    border-color .3s ease;
+}
+
+.formField textarea{
+  resize:vertical;
+
+  min-height:130px;
+}
+
+.formField select{
+  appearance:none;
+
+  cursor:pointer;
+}
+
+.formField select option{
+  background:#111;
+
+  color:#fff;
+}
+
+.formField input::placeholder,
+.formField textarea::placeholder{
+  color:#555;
+}
+
+.formField input:focus,
+.formField textarea:focus,
+.formField select:focus{
+  border-color:var(--gold);
+}
+
+.sendButton{
+  margin-top:15px;
+
+  width:100%;
+
+  min-height:70px;
+
+  padding:0 28px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  border:1px solid var(--gold);
+
+  background:var(--gold);
+
+  color:#080808;
+
+  font-family:inherit;
+
+  cursor:pointer;
+
+  letter-spacing:.13em;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  transition:
+    background .35s ease,
+    color .35s ease,
+    transform .35s ease;
+}
+
+.sendButton b{
+  font-size:20px;
+
+  font-weight:400;
+
+  transition:
+    transform .35s ease;
+}
+
+.sendButton:hover{
+  background:transparent;
+
+  color:var(--gold2);
+
+  transform:
+    translateY(-3px);
+}
+
+.sendButton:hover b{
+  transform:
+    translate(5px,-5px);
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.siteFooter{
+  margin-top:20px;
+
+  padding:70px 5vw 30px;
+
+  border-top:
+    1px solid var(--line);
+}
+
+.footerTop{
+  display:grid;
+
+  grid-template-columns:
+    1.5fr 1fr .8fr;
+
+  gap:60px;
+
+  padding-bottom:70px;
+}
+
+.footerLogo{
+  font-size:45px;
+
+  font-weight:700;
+
+  letter-spacing:-.07em;
+}
+
+.footerLogo span{
+  color:var(--gold2);
+
+  font-size:11px;
+
+  vertical-align:top;
+
+  margin-left:4px;
+}
+
+.footerBrand p{
+  max-width:320px;
+
+  margin-top:20px;
+
+  color:var(--muted);
+
+  line-height:1.7;
+
+  font-size:13px;
+}
+
+.footerNav,
+.footerSocial{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+}
+
+.footerNav a,
+.footerSocial a{
+  color:var(--soft);
+
+  text-decoration:none;
+
+  font-size:13px;
+
+  transition:
+    color .3s ease;
+}
+
+.footerNav a:hover,
+.footerSocial a:hover{
+  color:var(--gold2);
+}
+
+.footerBottom{
+  padding-top:25px;
+
+  border-top:
+    1px solid var(--line);
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  color:#5f5f5f;
+
+  font-size:8px;
+
+  letter-spacing:.15em;
+}
+
+
+/* =========================
+   LIGHTBOX
+   ========================= */
+
+.lightbox{
+  position:fixed;
+
+  inset:0;
+
+  z-index:9999;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:35px;
+
+  background:
+    rgba(4,4,4,.96);
+
+  backdrop-filter:
+    blur(20px);
+
+  opacity:0;
+
+  visibility:hidden;
+
+  pointer-events:none;
+
+  transition:
+    opacity .45s ease,
+    visibility .45s ease;
+}
+
+.lightbox.active{
+  opacity:1;
+
+  visibility:visible;
+
+  pointer-events:auto;
+}
+
+.lightboxStage{
+  width:
+    min(1100px,82vw);
+
+  height:
+    min(78vh,780px);
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  position:relative;
+}
+
+.lightboxStage img{
+  max-width:100%;
+
+  max-height:
+    calc(100% - 55px);
+
+  object-fit:contain;
+
+  display:block;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.55);
+}
+
+.lightboxMeta{
+  width:100%;
+
+  margin-top:18px;
+
+  display:flex;
+
+  align-items:flex-end;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  color:var(--soft);
+}
+
+.lightboxMeta small{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:8px;
+
+  letter-spacing:.17em;
+
+  margin-bottom:5px;
+}
+
+.lightboxMeta span{
+  font-size:12px;
+
+  letter-spacing:.08em;
+}
+
+#lightboxCounter{
+  color:var(--gold2);
+
+  font-size:10px;
+
+  letter-spacing:.15em;
+}
+
+.lightboxClose{
+  position:absolute;
+
+  top:25px;
+
+  right:30px;
+
+  width:50px;
+
+  height:50px;
+
+  border:1px solid #333;
+
+  background:
+    rgba(255,255,255,.03);
+
+  color:#fff;
+
+  font-size:28px;
+
+  font-weight:200;
+
+  cursor:pointer;
+
+  z-index:2;
+
+  transition:
+    border-color .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+.lightboxClose:hover{
+  border-color:var(--gold);
+
+  color:var(--gold2);
+
+  transform:
+    rotate(90deg);
+}
+
+.lightboxArrow{
+  position:absolute;
+
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  width:55px;
+
+  height:55px;
+
+  border:1px solid #333;
+
+  background:
+    rgba(255,255,255,.025);
+
+  color:#fff;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+  z-index:2;
+
+  transition:
+    border-color .3s ease,
+    color .3s ease,
+    background .3s ease;
+}
+
+.lightboxArrow:hover{
+  border-color:var(--gold);
+
+  color:var(--gold2);
+
+  background:
+    rgba(210,170,90,.06);
+}
+
+.lightboxPrev{
+  left:30px;
+}
+
+.lightboxNext{
+  right:30px;
+}
+
+
+/* =========================
+   CUSTOM CURSOR
+   ========================= */
+
+.cursorDot,
+.cursorLabel{
+  position:fixed;
+
+  pointer-events:none;
+
+  z-index:10000;
+
+  opacity:0;
+}
+
+.cursorDot{
+  width:8px;
+
+  height:8px;
+
+  border-radius:50%;
+
+  background:var(--gold2);
+
+  transform:
+    translate(-50%,-50%);
+
+  transition:
+    transform .15s ease,
+    opacity .25s ease;
+}
+
+.cursorLabel{
+  width:55px;
+
+  height:55px;
+
+  border:
+    1px solid
+    rgba(210,170,90,.75);
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  transform:
+    translate(-50%,-50%);
+
+  font-size:8px;
+
+  letter-spacing:.13em;
+
+  color:var(--gold2);
+
+  background:
+    rgba(5,5,5,.45);
+
+  backdrop-filter:
+    blur(5px);
+
+  transition:
+    width .25s ease,
+    height .25s ease,
+    opacity .25s ease;
+}
+
+body.cursorReady{
+  cursor:none;
+}
+
+body.cursorReady a,
+body.cursorReady button,
+body.cursorReady input,
+body.cursorReady textarea,
+body.cursorReady select{
+  cursor:none;
+}
+
+
+/* =========================
+   REVEAL ANIMATION
+   ========================= */
+
+.revealItem{
+  opacity:0;
+
+  transform:
+    translateY(25px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s
+    cubic-bezier(.2,.8,.2,1);
+}
+
+.revealItem.show{
+  opacity:1;
+
+  transform:none;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media(max-width:900px){
+
+  .contactSection{
+    padding:
+      80px 5vw 50px;
+  }
+
+  .contactBox{
+    grid-template-columns:1fr;
+
+    gap:50px;
+
+    padding:45px 25px;
+  }
+
+  .contactIntro h2{
+    font-size:
+      clamp(48px,14vw,80px);
+  }
+
+  .enquiryWrap{
+    margin-top:55px;
+
+    padding:45px 25px;
+  }
+
+  .formRow{
+    grid-template-columns:1fr;
+
+    gap:30px;
+  }
+
+  .footerTop{
+    grid-template-columns:
+      1fr 1fr;
+
+    gap:45px 30px;
+  }
+
+  .footerBrand{
+    grid-column:
+      1 / -1;
+  }
+
+  .footerBottom{
+    flex-direction:column;
+
+    gap:12px;
+  }
+
+  .lightbox{
+    padding:20px;
+  }
+
+  .lightboxStage{
+    width:88vw;
+
+    height:75vh;
+  }
+
+  .lightboxArrow{
+    width:44px;
+
+    height:44px;
+  }
+
+  .lightboxPrev{
+    left:10px;
+  }
+
+  .lightboxNext{
+    right:10px;
+  }
+
+  .lightboxClose{
+    top:15px;
+
+    right:15px;
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  .contactBox{
+    padding:38px 20px;
+  }
+
+  .enquiryWrap{
+    padding:38px 20px;
+  }
+
+  .footerTop{
+    grid-template-columns:1fr;
+  }
+
+  .footerBrand{
+    grid-column:auto;
+  }
+
+  .footerBottom{
+    font-size:7px;
+  }
+
+  .lightboxStage{
+    width:90vw;
+
+    height:70vh;
+  }
+
+  .lightboxMeta{
+    margin-top:12px;
+  }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before{
+    scroll-behavior:auto !important;
+
+    animation-duration:.01ms !important;
+
+    animation-iteration-count:1 !important;
+
+    transition-duration:.01ms !important;
+  }
+
+}
+
+</style>
+
+
+<!-- =========================
+     PART 4B-1 ENDS HERE
+     PART 4B-2 CONTINUES BELOW
+     ========================= -->
+  <!-- =========================
+     PART 4B-2 / FINAL
+     JAVASCRIPT
+     ========================= -->
+
 <script>
 
-document
-.getElementById("contactForm")
-.addEventListener("submit",function(e){
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
-e.preventDefault();
+    /* =========================
+       PRELOADER
+       ========================= */
 
-const name =
-document.getElementById("name")
-.value.trim();
+    const preloader =
+      document.getElementById(
+        "preloader"
+      );
 
-const email =
-document.getElementById("email")
-.value.trim();
+    window.addEventListener(
+      "load",
+      function(){
 
-const phone =
-document.getElementById("phone")
-.value.trim() ||
-"Not provided";
+        setTimeout(
+          function(){
 
-const service =
-document.getElementById("service")
-.value;
+            if(preloader){
+              preloader.classList.add(
+                "hide"
+              );
+            }
 
-const message =
-document.getElementById("message")
-.value.trim();
+          },
+          1100
+        );
+
+      }
+    );
 
 
-const text = `Hello Leo! 👋
+    /* =========================
+       SCROLL PROGRESS
+       ========================= */
 
-I would like to enquire about a project.
+    const progress =
+      document.getElementById(
+        "scrollProgress"
+      );
+
+    function updateProgress(){
+
+      const scrollTop =
+        window.scrollY ||
+        document.documentElement.scrollTop;
+
+      const scrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+      const percentage =
+        scrollHeight > 0
+        ? (scrollTop / scrollHeight) * 100
+        : 0;
+
+      if(progress){
+
+        progress.style.width =
+          percentage + "%";
+
+      }
+
+    }
+
+    window.addEventListener(
+      "scroll",
+      updateProgress,
+      {passive:true}
+    );
+
+    updateProgress();
+
+
+    /* =========================
+       NAV SCROLL EFFECT
+       ========================= */
+
+    const nav =
+      document.querySelector(
+        ".nav"
+      );
+
+    function navScroll(){
+
+      if(!nav) return;
+
+      if(window.scrollY > 40){
+
+        nav.classList.add(
+          "navScrolled"
+        );
+
+      }else{
+
+        nav.classList.remove(
+          "navScrolled"
+        );
+
+      }
+
+    }
+
+    window.addEventListener(
+      "scroll",
+      navScroll,
+      {passive:true}
+    );
+
+    navScroll();
+
+
+    /* =========================
+       MOBILE MENU
+       ========================= */
+
+    const menuButton =
+      document.querySelector(
+        ".menuBtn"
+      );
+
+    const mobileMenu =
+      document.querySelector(
+        ".mobileMenu"
+      );
+
+    if(
+      menuButton &&
+      mobileMenu
+    ){
+
+      menuButton.addEventListener(
+        "click",
+        function(){
+
+          menuButton.classList.toggle(
+            "active"
+          );
+
+          mobileMenu.classList.toggle(
+            "active"
+          );
+
+        }
+      );
+
+
+      mobileMenu
+        .querySelectorAll("a")
+        .forEach(
+          function(link){
+
+            link.addEventListener(
+              "click",
+              function(){
+
+                menuButton.classList.remove(
+                  "active"
+                );
+
+                mobileMenu.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    /* =========================
+       ACTIVE NAV
+       ========================= */
+
+    const sections = [
+      "about",
+      "services",
+      "work",
+      "process",
+      "contact"
+    ];
+
+    const navLinks =
+      document.querySelectorAll(
+        ".desktopNav a, .mobileMenu a"
+      );
+
+    const sectionObserver =
+      new IntersectionObserver(
+        function(entries){
+
+          entries.forEach(
+            function(entry){
+
+              if(entry.isIntersecting){
+
+                navLinks.forEach(
+                  function(link){
+
+                    link.classList.remove(
+                      "active"
+                    );
+
+                    const href =
+                      link.getAttribute(
+                        "href"
+                      );
+
+                    if(
+                      href ===
+                      "#" + entry.target.id
+                    ){
+
+                      link.classList.add(
+                        "active"
+                      );
+
+                    }
+
+                  }
+                );
+
+              }
+
+            }
+          );
+
+        },
+        {
+          rootMargin:
+            "-35% 0px -55% 0px",
+
+          threshold:0
+        }
+      );
+
+
+    sections.forEach(
+      function(id){
+
+        const section =
+          document.getElementById(
+            id
+          );
+
+        if(section){
+
+          sectionObserver.observe(
+            section
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       REVEAL ANIMATION
+       ========================= */
+
+    const revealTargets =
+      document.querySelectorAll(
+        ".aboutMain, .aboutSide, " +
+        ".service, .project, " +
+        ".galleryItem, .step, " +
+        ".statement, .experienceCard, " +
+        ".contactBox, .enquiryWrap"
+      );
+
+
+    revealTargets.forEach(
+      function(item){
+
+        item.classList.add(
+          "revealItem"
+        );
+
+      }
+    );
+
+
+    const revealObserver =
+      new IntersectionObserver(
+        function(
+          entries,
+          observer
+        ){
+
+          entries.forEach(
+            function(entry){
+
+              if(entry.isIntersecting){
+
+                entry.target.classList.add(
+                  "show"
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+          );
+
+        },
+        {
+          threshold:.12
+        }
+      );
+
+
+    revealTargets.forEach(
+      function(item){
+
+        revealObserver.observe(
+          item
+        );
+
+      }
+    );
+
+
+    /* =========================
+       LIGHTBOX
+       ========================= */
+
+    const lightbox =
+      document.getElementById(
+        "lightbox"
+      );
+
+    const lightboxImage =
+      document.getElementById(
+        "lightboxImage"
+      );
+
+    const lightboxTitle =
+      document.getElementById(
+        "lightboxTitle"
+      );
+
+    const lightboxCounter =
+      document.getElementById(
+        "lightboxCounter"
+      );
+
+    const lightboxClose =
+      document.getElementById(
+        "lightboxClose"
+      );
+
+    const lightboxPrev =
+      document.getElementById(
+        "lightboxPrev"
+      );
+
+    const lightboxNext =
+      document.getElementById(
+        "lightboxNext"
+      );
+
+
+    const imageElements =
+      Array.from(
+        document.querySelectorAll(
+          ".projectImg img, .galleryItem img"
+        )
+      );
+
+
+    const imageData = [];
+
+
+    imageElements.forEach(
+      function(img){
+
+        const src =
+          img.getAttribute(
+            "src"
+          );
+
+        if(!src) return;
+
+
+        const alreadyExists =
+          imageData.some(
+            function(item){
+
+              return item.src === src;
+
+            }
+          );
+
+
+        if(!alreadyExists){
+
+          imageData.push({
+
+            src:src,
+
+            title:
+              img.getAttribute(
+                "alt"
+              ) ||
+              "LEO — VISUALS"
+
+          });
+
+        }
+
+      }
+    );
+
+
+    let currentImage = 0;
+
+
+    function showImage(index){
+
+      if(!imageData.length){
+        return;
+      }
+
+
+      if(index < 0){
+
+        index =
+          imageData.length - 1;
+
+      }
+
+
+      if(
+        index >=
+        imageData.length
+      ){
+
+        index = 0;
+
+      }
+
+
+      currentImage = index;
+
+
+      const item =
+        imageData[
+          currentImage
+        ];
+
+
+      lightboxImage.src =
+        item.src;
+
+      lightboxImage.alt =
+        item.title;
+
+      lightboxTitle.textContent =
+        item.title;
+
+
+      const number =
+        String(
+          currentImage + 1
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      const total =
+        String(
+          imageData.length
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      lightboxCounter.textContent =
+        number +
+        " / " +
+        total;
+
+    }
+
+
+    function openLightbox(index){
+
+      if(!imageData.length){
+        return;
+      }
+
+
+      showImage(index);
+
+
+      lightbox.classList.add(
+        "active"
+      );
+
+
+      lightbox.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+    function closeLightbox(){
+
+      lightbox.classList.remove(
+        "active"
+      );
+
+
+      lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    imageElements.forEach(
+      function(img){
+
+        img.style.cursor =
+          "pointer";
+
+
+        img.addEventListener(
+          "click",
+          function(){
+
+            const src =
+              img.getAttribute(
+                "src"
+              );
+
+
+            const index =
+              imageData.findIndex(
+                function(item){
+
+                  return item.src === src;
+
+                }
+              );
+
+
+            openLightbox(
+              index >= 0
+              ? index
+              : 0
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    if(lightboxClose){
+
+      lightboxClose.addEventListener(
+        "click",
+        closeLightbox
+      );
+
+    }
+
+
+    if(lightboxPrev){
+
+      lightboxPrev.addEventListener(
+        "click",
+        function(){
+
+          showImage(
+            currentImage - 1
+          );
+
+        }
+      );
+
+    }
+
+
+    if(lightboxNext){
+
+      lightboxNext.addEventListener(
+        "click",
+        function(){
+
+          showImage(
+            currentImage + 1
+          );
+
+        }
+      );
+
+    }
+
+
+    if(lightbox){
+
+      lightbox.addEventListener(
+        "click",
+        function(e){
+
+          if(
+            e.target ===
+            lightbox
+          ){
+
+            closeLightbox();
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       KEYBOARD CONTROLS
+       ========================= */
+
+    document.addEventListener(
+      "keydown",
+      function(e){
+
+        if(
+          !lightbox.classList.contains(
+            "active"
+          )
+        ){
+
+          return;
+
+        }
+
+
+        if(e.key === "Escape"){
+
+          closeLightbox();
+
+        }
+
+
+        if(
+          e.key === "ArrowLeft"
+        ){
+
+          showImage(
+            currentImage - 1
+          );
+
+        }
+
+
+        if(
+          e.key === "ArrowRight"
+        ){
+
+          showImage(
+            currentImage + 1
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       BEFORE / AFTER SLIDER
+       ========================= */
+
+    const compareRange =
+      document.getElementById(
+        "compareRange"
+      );
+
+    const compareAfter =
+      document.querySelector(
+        ".compareAfter"
+      );
+
+    const compareHandle =
+      document.querySelector(
+        ".compareHandle"
+      );
+
+
+    if(
+      compareRange &&
+      compareAfter &&
+      compareHandle
+    ){
+
+      function updateCompare(){
+
+        const value =
+          compareRange.value;
+
+
+        compareAfter.style.width =
+          (100 - value) + "%";
+
+
+        compareHandle.style.left =
+          value + "%";
+
+      }
+
+
+      compareRange.addEventListener(
+        "input",
+        updateCompare
+      );
+
+
+      updateCompare();
+
+    }
+
+
+    /* =========================
+       WHATSAPP ENQUIRY
+       ========================= */
+
+    const projectForm =
+      document.getElementById(
+        "projectForm"
+      );
+
+
+    if(projectForm){
+
+      projectForm.addEventListener(
+        "submit",
+        function(e){
+
+          e.preventDefault();
+
+
+          const name =
+            document.getElementById(
+              "clientName"
+            ).value.trim();
+
+
+          const email =
+            document.getElementById(
+              "clientEmail"
+            ).value.trim();
+
+
+          const phone =
+            document.getElementById(
+              "clientPhone"
+            ).value.trim();
+
+
+          const service =
+            document.getElementById(
+              "serviceType"
+            ).value;
+
+
+          const message =
+            document.getElementById(
+              "projectMessage"
+            ).value.trim();
+
+
+          const whatsappMessage =
+`Hello Leo 👋
+
+I would like to discuss a project.
 
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
-Service: ${service}
+Project Type: ${service}
 
 Project Details:
 ${message}
 
-Sent from Leo's Portfolio Website.`;
+Sent from Leo Portfolio Website.`;
 
 
-window.location.href =
-"https://wa.me/918870562129?text=" +
-encodeURIComponent(text);
-
-});
-
-
-/* CLOSE MOBILE MENU AFTER CLICK */
-
-document
-.querySelectorAll(".mobilePanel a")
-.forEach(link => {
-
-link.addEventListener("click", () => {
-
-const details =
-link.closest("details");
-
-if(details){
-details.removeAttribute("open");
-}
-
-});
-
-});
+          const whatsappURL =
+            "https://wa.me/918870562129?text=" +
+            encodeURIComponent(
+              whatsappMessage
+            );
 
 
-/* IMAGE ERROR HANDLING */
+          window.open(
+            whatsappURL,
+            "_blank"
+          );
 
-document
-.querySelectorAll("img")
-.forEach(img => {
+        }
+      );
 
-img.addEventListener("error", () => {
+    }
 
-img.style.display = "none";
 
-const box =
-img.closest(
-".heroImg,.projectImg,.galleryItem"
+    /* =========================
+       CUSTOM CURSOR
+       ========================= */
+
+    const cursorDot =
+      document.getElementById(
+        "cursorDot"
+      );
+
+    const cursorLabel =
+      document.getElementById(
+        "cursorLabel"
+      );
+
+
+    const finePointer =
+      window.matchMedia(
+        "(pointer:fine)"
+      ).matches;
+
+
+    if(
+      finePointer &&
+      cursorDot &&
+      cursorLabel
+    ){
+
+      document.body.classList.add(
+        "cursorReady"
+      );
+
+
+      let mouseX = 0;
+      let mouseY = 0;
+
+      let dotX = 0;
+      let dotY = 0;
+
+      let labelX = 0;
+      let labelY = 0;
+
+
+      window.addEventListener(
+        "mousemove",
+        function(e){
+
+          mouseX =
+            e.clientX;
+
+          mouseY =
+            e.clientY;
+
+
+          cursorDot.style.opacity =
+            "1";
+
+          cursorLabel.style.opacity =
+            "1";
+
+        }
+      );
+
+
+      function animateCursor(){
+
+        dotX +=
+          (mouseX - dotX) *
+          .28;
+
+
+        dotY +=
+          (mouseY - dotY) *
+          .28;
+
+
+        labelX +=
+          (mouseX - labelX) *
+          .13;
+
+
+        labelY +=
+          (mouseY - labelY) *
+          .13;
+
+
+        cursorDot.style.left =
+          dotX + "px";
+
+
+        cursorDot.style.top =
+          dotY + "px";
+
+
+        cursorLabel.style.left =
+          labelX + "px";
+
+
+        cursorLabel.style.top =
+          labelY + "px";
+
+
+        requestAnimationFrame(
+          animateCursor
+        );
+
+      }
+
+
+      animateCursor();
+
+
+      const hoverElements =
+        document.querySelectorAll(
+          ".projectImg, .galleryItem, " +
+          ".heroVisual, .contactLink"
+        );
+
+
+      hoverElements.forEach(
+        function(el){
+
+          el.addEventListener(
+            "mouseenter",
+            function(){
+
+              cursorLabel.style.width =
+                "70px";
+
+              cursorLabel.style.height =
+                "70px";
+
+              cursorLabel.textContent =
+                "VIEW";
+
+            }
+          );
+
+
+          el.addEventListener(
+            "mouseleave",
+            function(){
+
+              cursorLabel.style.width =
+                "55px";
+
+              cursorLabel.style.height =
+                "55px";
+
+              cursorLabel.textContent =
+                "VIEW";
+
+            }
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       IMAGE FALLBACK
+       ========================= */
+
+    document
+      .querySelectorAll("img")
+      .forEach(
+        function(img){
+
+          img.addEventListener(
+            "error",
+            function(){
+
+              img.style.background =
+                "linear-gradient(135deg,#151515,#050505)";
+
+              img.style.objectFit =
+                "cover";
+
+            }
+          );
+
+        }
+      );
+
+
+    /* =========================
+       SMOOTH ANCHOR SCROLL
+       ========================= */
+
+    document
+      .querySelectorAll(
+        'a[href^="#"]'
+      )
+      .forEach(
+        function(link){
+
+          link.addEventListener(
+            "click",
+            function(e){
+
+              const targetId =
+                link.getAttribute(
+                  "href"
+                );
+
+
+              if(
+                !targetId ||
+                targetId === "#"
+              ){
+
+                return;
+
+              }
+
+
+              const target =
+                document.querySelector(
+                  targetId
+                );
+
+
+              if(target){
+
+                e.preventDefault();
+
+
+                const navHeight =
+                  nav
+                  ? nav.offsetHeight
+                  : 0;
+
+
+                const targetPosition =
+                  target.getBoundingClientRect().top +
+                  window.scrollY -
+                  navHeight -
+                  15;
+
+
+                window.scrollTo({
+
+                  top:
+                    targetPosition,
+
+                  behavior:
+                    "smooth"
+
+                });
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+    /* =========================
+       MAGNETIC BUTTONS
+       ========================= */
+
+    const magneticButtons =
+      document.querySelectorAll(
+        ".sendButton, .heroBtn, .viewAllBtn"
+      );
+
+
+    if(finePointer){
+
+      magneticButtons.forEach(
+        function(button){
+
+          button.addEventListener(
+            "mousemove",
+            function(e){
+
+              const rect =
+                button.getBoundingClientRect();
+
+
+              const x =
+                e.clientX -
+                rect.left -
+                rect.width / 2;
+
+
+              const y =
+                e.clientY -
+                rect.top -
+                rect.height / 2;
+
+
+              button.style.transform =
+                "translate(" +
+                (x * .08) +
+                "px," +
+                (y * .08) +
+                "px)";
+
+            }
+          );
+
+
+          button.addEventListener(
+            "mouseleave",
+            function(){
+
+              button.style.transform =
+                "";
+
+            }
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       BRAND CONSOLE
+       ========================= */
+
+    console.log(
+`
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        LEO — VISUAL CREATOR
+
+        CREATE. CAPTURE. DEFINE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+`
+    );
+
+
+  }
+
 );
-
-if(box){
-
-box.setAttribute(
-"data-image-error",
-"Image file not found"
-);
-
-box.style.minHeight = "180px";
-
-}
-
-});
-
-});
 
 </script>
 
+
 </body>
 </html>
+  
+  
+  
+  
+      
+
+
