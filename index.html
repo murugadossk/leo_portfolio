@@ -2023,4 +2023,120 @@ Every project moves through a clear creative workflow — from the first convers
 <div class="step">
 <div class="stepNo">05 / REFINE</div>
 <h3>Polish</h3>
-<p>Colour grade, retouch, edit and refine every
+</div>
+<p>Colour grade, retouch, edit and refine every important detail to create a premium fininsh.
+</p>
+</div>
+</div>
+</section>
+
+<section id="contact" class="contactSection">
+<div class="wrap">
+<div class="contactBox">
+<div class="eyebrow">06 — Contact / Available for Projects</div>
+<h2>LET'S MAKE<br>SOMETHING<br>MEMORABLE.</h2>
+<p>Have a photography project, portrait session, album, editing work or creative idea? Tell me what you're building and let's start a conversation.</p>
+
+<div class="contactGrid">
+
+<div class="contactLinks">
+<a class="contactLink" href="https://wa.me/918870562129" target="_blank" rel="noopener"><span>WhatsApp</span><span>↗</span></a>
+<a class="contactLink" href="tel:+918870562129"><span>Call · 8870562129</span><span>↗</span></a>
+<a class="contactLink" href="mailto:murugadoss2211@gmail.com"><span>Email</span><span>↗</span></a>
+<a class="contactLink" href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a>
+<div class="contactLink"><span>Virudhunagar · Tamil Nadu · India</span><span>●</span></div>
+</div>
+
+<form class="form" id="contactForm">
+<input id="name" type="text" placeholder="Your Name" required>
+<input id="email" type="email" placeholder="Your Email" required>
+<input id="phone" type="tel" placeholder="Your Phone">
+
+<select id="service" required>
+<option value="">Select a Service</option>
+<option>Photography</option>
+<option>Portrait Photography</option>
+<option>Photo Editing</option>
+<option>Album Design</option>
+<option>Creative Design</option>
+<option>Other</option>
+</select>
+
+<textarea id="message" placeholder="Tell me about your project..." required></textarea>
+
+<button type="submit">SEND ENQUIRY VIA WHATSAPP ↗</button>
+<div class="note">Submitting opens WhatsApp with your enquiry already prepared.</div>
+</form>
+
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="wrap footer">
+<div>
+<div class="footerLogo">LEO</div>
+<div style="margin-top:8px">Visual Creator · Virudhunagar, Tamil Nadu</div>
+</div>
+
+<div class="footerLinks">
+<a href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener">Instagram</a>
+<a href="mailto:murugadoss2211@gmail.com">Email</a>
+<a href="https://wa.me/918870562129" target="_blank" rel="noopener">WhatsApp</a>
+<a href="#home">Back to top ↑</a>
+</div>
+</div>
+</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+const name=document.getElementById("name").value.trim();
+const email=document.getElementById("email").value.trim();
+const phone=document.getElementById("phone").value.trim()||"Not provided";
+const service=document.getElementById("service").value;
+const message=document.getElementById("message").value.trim();
+
+const text=`Hello Leo! 👋
+
+I would like to enquire about a project.
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Service: ${service}
+
+Project Details:
+${message}
+
+Sent from Leo's Portfolio Website.`;
+
+window.location.href="https://wa.me/918870562129?text="+encodeURIComponent(text);
+});
+
+// Close the native mobile menu after selecting a link.
+document.querySelectorAll(".mobilePanel a").forEach(link=>{
+link.addEventListener("click",()=>{
+const details=link.closest("details");
+if(details) details.removeAttribute("open");
+});
+});
+
+document.querySelectorAll("img").forEach(img=>{
+img.addEventListener("error",()=>{
+img.style.display="none";
+const box=img.closest(".heroImg,.projectImg,.galleryItem");
+if(box){
+box.setAttribute("data-image-error","Image file not found");
+box.style.minHeight="180px";
+}
+});
+});
+</script>
+
+</body>
+</html>
