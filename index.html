@@ -56,6 +56,7 @@ width:min(1240px,92%);
 margin:auto
 }
 
+/* NAVIGATION */
 nav{
 position:fixed;
 top:0;
@@ -94,7 +95,13 @@ color:#aaa
 color:#fff
 }
 
-.navlinks .talk{
+.talkMenu{
+position:relative
+}
+
+.talkMenu summary{
+list-style:none;
+cursor:pointer;
 color:#111;
 background:linear-gradient(135deg,#d8bd82,#a9864b);
 padding:10px 17px;
@@ -103,8 +110,43 @@ font-weight:900;
 box-shadow:0 8px 30px rgba(199,167,106,.12)
 }
 
-.mobileNav{
+.talkMenu summary::-webkit-details-marker{
 display:none
+}
+
+.talkPanel{
+position:absolute;
+right:0;
+top:48px;
+width:220px;
+padding:10px;
+background:#10100f;
+border:1px solid #3a342b;
+box-shadow:0 18px 45px rgba(0,0,0,.45)
+}
+
+.talkPanel a{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:13px 10px;
+border-bottom:1px solid #29251f;
+color:#eee;
+font-size:13px
+}
+
+.talkPanel a:last-child{
+border-bottom:0
+}
+
+.talkPanel a:hover{
+color:#d8bd82
+}
+
+/* MOBILE NAV */
+.mobileNav{
+display:none!important;
+position:relative
 }
 
 .mobileNav summary{
@@ -120,14 +162,19 @@ display:none
 }
 
 .mobilePanel{
+display:none;
 position:absolute;
-right:4%;
-top:63px;
+right:0;
+top:50px;
 width:min(280px,88vw);
 padding:16px;
 background:#0c0c0c;
 border:1px solid #292929;
 box-shadow:0 18px 45px rgba(0,0,0,.45)
+}
+
+.mobileNav[open] .mobilePanel{
+display:block
 }
 
 .mobilePanel a{
@@ -151,6 +198,7 @@ font-weight:900;
 border-radius:999px
 }
 
+/* HERO */
 .hero{
 min-height:100svh;
 padding:130px 0 70px;
@@ -266,6 +314,7 @@ letter-spacing:.16em;
 text-transform:uppercase
 }
 
+/* SECTIONS */
 section{
 border-top:1px solid #28241f;
 padding:120px 0;
@@ -295,6 +344,7 @@ font-size:14px;
 line-height:1.8
 }
 
+/* ABOUT */
 .aboutGrid{
 display:grid;
 grid-template-columns:1.3fr .7fr;
@@ -383,6 +433,7 @@ line-height:1.8;
 margin-top:35px
 }
 
+/* SERVICES */
 .services{
 border-top:1px solid var(--line)
 }
@@ -424,6 +475,7 @@ color:#666;
 font-size:20px
 }
 
+/* WORK */
 .featured{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -481,6 +533,7 @@ text-transform:uppercase;
 letter-spacing:.14em
 }
 
+/* GALLERY */
 .gallery{
 columns:3 270px;
 column-gap:12px
@@ -504,6 +557,7 @@ transition:transform .6s
 transform:scale(1.025)
 }
 
+/* MARQUEE */
 .marquee{
 border-top:1px solid var(--line);
 border-bottom:1px solid var(--line);
@@ -531,6 +585,7 @@ transform:translateX(-50%)
 }
 }
 
+/* PROCESS */
 .process{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -564,6 +619,7 @@ line-height:1.7;
 margin:10px 0 0
 }
 
+/* CONTACT */
 .contactSection{
 padding-bottom:90px
 }
@@ -633,9 +689,7 @@ flex-direction:column;
 gap:11px
 }
 
-.form input,
-.form select,
-.form textarea{
+.form input,.form select,.form textarea{
 width:100%;
 border:1px solid #4a4135;
 background:rgba(255,255,255,.025);
@@ -650,10 +704,8 @@ min-height:125px;
 resize:vertical
 }
 
-.form input:focus,
-.form select:focus,
-.form textarea:focus{
-border-color:#111
+.form input:focus,.form select:focus,.form textarea:focus{
+border-color:#c7a76a
 }
 
 .form button{
@@ -675,6 +727,7 @@ color:#777;
 margin-top:10px
 }
 
+/* FOOTER */
 footer{
 border-top:1px solid #191919;
 padding:35px 0 55px;
@@ -706,6 +759,7 @@ flex-wrap:wrap
 color:#fff
 }
 
+/* REVEAL */
 .reveal{
 opacity:1;
 transform:none
@@ -726,14 +780,19 @@ transform:none
 }
 }
 
+/* TABLET */
 @media(max-width:900px){
 
 .navlinks{
-display:none
+display:none!important
 }
 
 .mobileNav{
-display:block
+display:block!important
+}
+
+.talkMenu{
+display:none!important
 }
 
 .heroGrid{
@@ -782,9 +841,9 @@ padding:60px 35px
 grid-template-columns:1fr;
 gap:45px
 }
-
 }
 
+/* MOBILE */
 @media(max-width:600px){
 
 .wrap{
@@ -895,7 +954,13 @@ display:block
 .footerLinks{
 margin-top:18px
 }
+}
 
+/* EXTRA NAV SAFETY */
+@media(min-width:901px){
+.mobileNav{
+display:none!important
+}
 }
 </style>
 
@@ -919,7 +984,29 @@ document.documentElement.classList.add('js');
 <a href="#work">Work</a>
 <a href="#process">Process</a>
 
-<a class="talk" href="#contact">Let's Talk ↗</a>
+<details class="talkMenu">
+<summary>Let's Talk ↗</summary>
+
+<div class="talkPanel">
+
+<a href="https://wa.me/918870562129" target="_blank" rel="noopener">
+<span>WhatsApp</span><span>↗</span>
+</a>
+
+<a href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener">
+<span>Instagram</span><span>↗</span>
+</a>
+
+<a href="mailto:murugadoss2211@gmail.com">
+<span>Email</span><span>↗</span>
+</a>
+
+<a href="tel:+918870562129">
+<span>Call</span><span>↗</span>
+</a>
+
+</div>
+</details>
 
 </div>
 
@@ -933,7 +1020,30 @@ document.documentElement.classList.add('js');
 <a href="#services">Services</a>
 <a href="#work">Work</a>
 <a href="#process">Process</a>
-<a class="mobileTalk" href="#contact">Let's Talk ↗</a>
+
+<div class="mobileTalk" style="padding:14px 8px;text-align:center">
+
+<div style="font-weight:900;margin-bottom:10px">
+Let's Talk
+</div>
+
+<a href="https://wa.me/918870562129" target="_blank" rel="noopener">
+WhatsApp ↗
+</a>
+
+<a href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener">
+Instagram ↗
+</a>
+
+<a href="mailto:murugadoss2211@gmail.com">
+Email ↗
+</a>
+
+<a href="tel:+918870562129">
+Call ↗
+</a>
+
+</div>
 
 </div>
 
@@ -941,7 +1051,6 @@ document.documentElement.classList.add('js');
 
 </div>
 </nav>
-
 
 <main id="home">
 
@@ -962,10 +1071,7 @@ Visual Creator / Virudhunagar, Tamil Nadu
 </h1>
 
 <p>
-I'm Leo — a visual creator focused on photography,
-portraiture, creative editing and visual design.
-I turn ideas and moments into visuals with character,
-emotion and a cinematic point of view.
+I'm Leo — a visual creator focused on photography, portraiture, creative editing and visual design. I turn ideas and moments into visuals with character, emotion and a cinematic point of view.
 </p>
 
 <div class="actions">
@@ -974,7 +1080,7 @@ emotion and a cinematic point of view.
 Explore My Work ↗
 </a>
 
-<a class="btn" href="#contact">
+<a class="btn" href="#contact" aria-label="Start a project and contact Leo">
 Start a Project ↘
 </a>
 
@@ -982,13 +1088,10 @@ Start a Project ↘
 
 </div>
 
-
 <div class="heroVisual reveal">
 
 <div class="heroImg">
-
 <img src="work-2.jpg" alt="Leo — Visual Creator">
-
 </div>
 
 <div class="label">
@@ -1001,7 +1104,6 @@ Visual Creator
 
 </section>
 
-
 <section id="about">
 
 <div class="wrap">
@@ -1010,9 +1112,7 @@ Visual Creator
 
 <div>
 
-<div class="num">
-01 — About
-</div>
+<div class="num">01 — About</div>
 
 <h2 class="title">
 THE PERSON<br>
@@ -1022,716 +1122,15 @@ BEHIND THE WORK.
 </div>
 
 <p class="desc">
-A creative space built around photography,
-visual storytelling, editing and the constant
-pursuit of better work.
-</p>
-
-</div>
-
-
-<div class="aboutGrid">
-
-<div class="aboutMain">
-
-<p>
-I'm <strong>Leo</strong>, a visual creator from
-Virudhunagar, Tamil Nadu. I create photographs,
-portraits and visual designs that focus on
-<strong>style, atmosphere and emotion.</strong>
-</p>
-
-<p>
-I'm continuously learning, experimenting and
-developing my own visual language —
-one project at a time.
-</p>
-
-<div class="aboutBottom">
-
-<div class="location">
-Based in<br>
-Virudhunagar, Tamil Nadu, India
-</div>
-
-<div class="stat">
-<b>1+</b>
-<span>Years Creating</span>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="aboutSide">
-
-<h3>
-Creative Toolkit
-</h3>
-
-<div class="skills">
-
-<span class="skill">Photography</span>
-<span class="skill">Portraits</span>
-<span class="skill">Photo Editing</span>
-<span class="skill">Album Design</span>
-<span class="skill">Creative Design</span>
-<span class="skill">Visual Storytelling</span>
-
-</div>
-
-<p class="small">
-Always learning. Always experimenting.
-Always looking for the next visual idea worth creating.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="services">
-
-<div class="wrap">
-
-<div class="head">
-
-<div>
-
-<div class="num">
-02 — Services
-</div>
-
-<h2 class="title">
-WHAT I<br>
-CREATE.
-</h2>
-
-</div>
-
-<p class="desc">
-From capturing a moment to shaping the final visual,
-every service is approached with attention to detail
-and creative intent.
-</p>
-
-</div>
-
-
-<div class="services">
-
-<div class="service">
-
-<div class="serviceNo">01</div>
-
-<div>
-<h3>Photography</h3>
-<p>
-Creative photography built around mood,
-composition and story.
-</p>
-</div>
-
-<div class="arrow">↗</div>
-
-</div>
-
-
-<div class="service">
-
-<div class="serviceNo">02</div>
-
-<div>
-<h3>Portrait Photography</h3>
-<p>
-Portraits designed around personality,
-expression and style.
-</p>
-</div>
-
-<div class="arrow">↗</div>
-
-</div>
-
-
-<div class="service">
-
-<div class="serviceNo">03</div>
-
-<div>
-<h3>Photo Editing</h3>
-<p>
-Colour, retouching and cinematic finishing
-for stronger visuals.
-</p>
-</div>
-
-<div class="arrow">↗</div>
-
-</div>
-
-
-<div class="service">
-
-<div class="serviceNo">04</div>
-
-<div>
-<h3>Album Design</h3>
-<p>
-Modern visual layouts that turn memories
-into premium albums.
-</p>
-</div>
-
-<div class="arrow">↗</div>
-
-</div>
-
-
-<div class="service">
-
-<div class="serviceNo">05</div>
-
-<div>
-<h3>Creative Design</h3>
-<p>
-Digital visuals, concepts and creative assets
-for creators and projects.
-</p>
-</div>
-
-<div class="arrow">↗</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="work">
-
-<div class="wrap">
-
-<div class="head">
-
-<div>
-
-<div class="num">
-03 — Selected Work
-</div>
-
-<h2 class="title">
-A FEW<br>
-THINGS I'VE MADE.
-</h2>
-
-</div>
-
-<p class="desc">
-A selection of portraits, creative experiments,
-lifestyle frames and visual studies from my
-growing portfolio.
-</p>
-
-</div>
-
-
-<div class="featured">
-
-<div class="project big">
-
-<div class="projectImg">
-
-<img src="work-1.jpg" alt="Creative portrait">
-
-</div>
-
-<div class="projectInfo">
-
-<strong>
-Creative Portrait
-</strong>
-
-<span class="meta">
-Photography / Portrait
-</span>
-
-</div>
-
-</div>
-
-
-<div class="project">
-
-<div class="projectImg">
-
-<img src="work-3.jpg" alt="Black and white portrait">
-
-</div>
-
-<div class="projectInfo">
-
-<strong>
-Monochrome
-</strong>
-
-<span class="meta">
-Portrait Study
-</span>
-
-</div>
-
-</div>
-
-
-<div class="project">
-
-<div class="projectImg">
-
-<img src="work-5.jpg" alt="Beach portrait">
-
-</div>
-
-<div class="projectInfo">
-
-<strong>
-Open Air
-</strong>
-
-<span class="meta">
-Lifestyle
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<div class="marquee">
-
-<div class="track">
-
-PHOTOGRAPHY
-<span>✦</span>
-
-VISUAL STORYTELLING
-<span>✦</span>
-
-CREATIVE DESIGN
-<span>✦</span>
-
-PHOTO EDITING
-<span>✦</span>
-
-ALBUM DESIGN
-<span>✦</span>
-
-PHOTOGRAPHY
-<span>✦</span>
-
-VISUAL STORYTELLING
-<span>✦</span>
-
-</div>
-
-</div>
-
-
-<section>
-
-<div class="wrap">
-
-<div class="head">
-
-<div>
-
-<div class="num">
-04 — Archive
-</div>
-
-<h2 class="title">
-MORE<br>
-WORK.
-</h2>
-
-</div>
-
-<p class="desc">
-The archive — different moments,
-different styles, one evolving visual language.
-</p>
-
-</div>
-
-
-<div class="gallery">
-
-<div class="galleryItem">
-<img src="work-2.jpg" alt="Motorcycle portrait">
-</div>
-
-<div class="galleryItem">
-<img src="work-4.png" alt="Night street photography">
-</div>
-
-<div class="galleryItem">
-<img src="work-6.png" alt="Studio football portrait">
-</div>
-
-<div class="galleryItem">
-<img src="work-7.png" alt="Fashion portrait">
-</div>
-
-<div class="galleryItem">
-<img src="work-8.png" alt="Football field portrait">
-</div>
-
-<div class="galleryItem">
-<img src="work-9.jpg" alt="Creative silhouette">
-</div>
-
-<div class="galleryItem">
-<img src="work-10.jpg" alt="Motorcycle and temple portrait">
-</div>
-
-<div class="galleryItem">
-<img src="work-11.jpg" alt="Museum lifestyle photography">
-</div>
-
-<div class="galleryItem">
-<img src="work-12.jpg" alt="Museum window portrait">
-</div>
-
-<div class="galleryItem">
-<img src="work-13.jpg" alt="Outdoor lifestyle portrait">
-</div>
-
-<div class="galleryItem">
-<img src="work-14.jpg" alt="Portrait against brick wall">
-</div>
-
-<div class="galleryItem">
-<img src="work-15.jpg" alt="Creative fashion portrait">
-</div>
-
-<div class="galleryItem">
-<img src="work-16.png" alt="Cinematic silhouette">
-</div>
-
-<div class="galleryItem">
-<img src="retouch_2026043014161577.jpg" alt="Cinematic creative edit">
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="process">
-
-<div class="wrap">
-
-<div class="head">
-
-<div>
-
-<div class="num">
-05 — Process
-</div>
-
-<h2 class="title">
-FROM IDEA<br>
-TO IMAGE.
-</h2>
-
-</div>
-
-<p class="desc">
-A simple creative process focused on understanding
-the idea, building the visual direction and delivering
-something worth remembering.
-</p>
-
-</div>
-
-
-<div class="process">
-
-<div class="step">
-
-<div class="stepNo">
-01 / DISCOVER
-</div>
-
-<h3>
-Understand
-</h3>
-
-<p>
-Understand the idea, purpose, mood and
-direction before creating.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="stepNo">
-02 / CONCEPT
-</div>
-
-<h3>
-Shape
-</h3>
-
-<p>
-Develop the visual direction, references,
-composition and creative approach.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="stepNo">
-03 / CREATE
-</div>
-
-<h3>
-Capture
-</h3>
-
-<p>
-Turn the concept into photographs,
-designs and visual content.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="stepNo">
-04 / REFINE
-</div>
-
-<h3>
-Finish
-</h3>
-
-<p>
-Edit, refine and polish the final visual.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="contact" class="contactSection">
-
-<div class="wrap">
-
-<div class="contactBox">
-
-<div class="eyebrow">
-06 — Contact / Available for Projects
-</div>
-
-<h2>
-LET'S MAKE<br>
-SOMETHING<br>
-MEMORABLE.
-</h2>
-
-<p>
-Have a photography project, portrait session,
-album, editing work or creative idea?
-Tell me what you're building and let's start a conversation.
-</p>
-
-
-<div class="contactGrid">
-
-<div class="contactLinks">
-
-<a class="contactLink"
-href="https://wa.me/918870562129"
-target="_blank"
-rel="noopener">
-
-<span>WhatsApp</span>
-<span>↗</span>
-
-</a>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Leo — Visual Creator in Virudhunagar, Tamil Nadu. Photography, portraits, photo editing, album design and creative design.">
-<meta name="theme-color" content="#080808">
-<title>Leo — Visual Creator</title>
-<style>
-:root{--bg:#11100e;--panel:#181613;--panel2:#211e19;--text:#f2ede3;--muted:#a59d90;--line:#39342c;--gold:#c7a76a;--cream:#eee5d4;--white:#fff}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 75% 10%,rgba(199,167,106,.07),transparent 28%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}img{display:block;max-width:100%}.wrap{width:min(1240px,92%);margin:auto}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}.nav{height:74px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:900;letter-spacing:.28em;font-size:16px;color:var(--cream)}.navlinks{display:flex;align-items:center;gap:30px;font-size:13px;color:#aaa}.navlinks a:hover{color:#fff}.navlinks .talk{color:#111;background:linear-gradient(135deg,#d8bd82,#a9864b);padding:10px 17px;border-radius:999px;font-weight:900;box-shadow:0 8px 30px rgba(199,167,106,.12)}.mobileNav{display:none}.mobileNav summary{list-style:none;cursor:pointer;color:#fff;font-size:25px;line-height:1}.mobileNav summary::-webkit-details-marker{display:none}.mobilePanel{position:absolute;right:4%;top:63px;width:min(280px,88vw);padding:16px;background:#0c0c0c;border:1px solid #292929;box-shadow:0 18px 45px rgba(0,0,0,.45)}.mobilePanel a{display:block;padding:14px 8px;border-bottom:1px solid #222;color:#ddd;font-size:14px}.mobilePanel a:last-child{border-bottom:0}.mobilePanel .mobileTalk{margin-top:8px;background:#fff;color:#000;text-align:center;font-weight:900;border-radius:999px}
-.hero{min-height:100svh;padding:130px 0 70px;display:flex;align-items:center}.heroGrid{display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center}.eyebrow,.num{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}.hero h1{font-size:clamp(64px,10vw,145px);line-height:.78;letter-spacing:-.09em;margin:24px 0 30px;font-weight:950}.hero h1 .outline{color:transparent;-webkit-text-stroke:1px #8d806d}.hero p{max-width:620px;color:#aaa;font-size:17px;line-height:1.75;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:1px solid #383838;border-radius:999px;font-size:13px;font-weight:800;transition:.25s}.btn:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 12px 35px rgba(199,167,106,.12)}.btn.primary{background:linear-gradient(135deg,#d8bd82,#a9864b);color:#111;border-color:#d8bd82;box-shadow:0 10px 30px rgba(199,167,106,.12)}.heroVisual{position:relative}.heroImg{height:650px;border:1px solid #4a4031;overflow:hidden;background:#0b0a09;box-shadow:0 25px 80px rgba(0,0,0,.38),inset 0 0 0 1px rgba(199,167,106,.08)}.heroImg img{width:100%;height:100%;object-fit:contain;object-position:center;background:#0b0a09;transition:transform .8s}.heroVisual:hover img{transform:scale(1.035)}.label{position:absolute;right:-15px;bottom:25px;background:#fff;color:#000;padding:12px 16px;font-size:9px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
-section{border-top:1px solid #28241f;padding:120px 0;scroll-margin-top:88px}.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:55px}.title{font-size:clamp(48px,7vw,88px);line-height:.86;letter-spacing:-.075em;margin:12px 0 0;font-weight:900}.desc{max-width:430px;color:#888;font-size:14px;line-height:1.8}
-.aboutGrid{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}.aboutMain,.aboutSide{background:linear-gradient(145deg,#1a1815,#12110f);border:1px solid #3a342b;padding:45px;box-shadow:0 25px 70px rgba(0,0,0,.16)}.aboutMain p{color:#c9c9c5;font-size:23px;line-height:1.55;letter-spacing:-.02em;margin:0 0 28px}.aboutMain p:last-of-type{margin-bottom:55px}.aboutBottom{display:flex;justify-content:space-between;align-items:end}.location{font-size:11px;line-height:1.8;color:#777;text-transform:uppercase;letter-spacing:.08em}.stat{text-align:right}.stat b{font-size:58px;line-height:.8;letter-spacing:-.08em}.stat span{display:block;color:#777;font-size:9px;text-transform:uppercase;letter-spacing:.18em;margin-top:10px}.aboutSide h3{font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#777;margin:0 0 25px}.skills{display:flex;flex-wrap:wrap;gap:8px}.skill{border:1px solid #4a4135;border-radius:999px;padding:9px 12px;font-size:12px;color:#d9cfbf;background:rgba(199,167,106,.04)}.small{font-size:13px;color:#777;line-height:1.8;margin-top:35px}
-.services{border-top:1px solid var(--line)}.service{display:grid;grid-template-columns:60px 1fr 40px;gap:25px;align-items:center;border-bottom:1px solid var(--line);padding:27px 10px;transition:.25s}.service:hover{background:#0d0d0d;padding-left:20px}.serviceNo{color:#555;font-size:11px}.service h3{font-size:clamp(23px,3vw,38px);letter-spacing:-.045em;margin:0}.service p{color:#777;font-size:12px;margin:5px 0 0}.arrow{color:#666;font-size:20px}
-.featured{display:grid;grid-template-columns:1fr 1fr;gap:16px}.project{background:var(--panel);border:1px solid var(--line);overflow:hidden}.project.big{grid-column:1/-1}.projectImg{height:530px;overflow:hidden;background:#111}.project.big .projectImg{height:680px}.projectImg img{width:100%;height:100%;object-fit:contain;object-position:center;background:#0b0a09;transition:transform .7s}.project:hover img{transform:scale(1.035)}.projectInfo{display:flex;justify-content:space-between;gap:15px;padding:17px 18px}.projectInfo strong{font-size:14px}.meta{font-size:10px;color:#777;text-transform:uppercase;letter-spacing:.14em}
-.gallery{columns:3 270px;column-gap:12px}.galleryItem{break-inside:avoid;margin:0 0 12px;background:#111;border:1px solid var(--line);overflow:hidden}.galleryItem img{width:100%;height:auto;transition:transform .6s}.galleryItem:hover img{transform:scale(1.025)}
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:23px 0}.track{display:inline-block;font-size:39px;font-weight:900;letter-spacing:-.04em;animation:move 24s linear infinite}.track span{color:#444;margin:0 25px}@keyframes move{to{transform:translateX(-50%)}}
-.process{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.step{background:#0c0c0c;padding:30px;min-height:245px}.stepNo{font-size:10px;letter-spacing:.2em;color:#555}.step h3{margin-top:75px;font-size:23px;letter-spacing:-.04em}.step p{font-size:12px;color:#777;line-height:1.7;margin:10px 0 0}
-.contactSection{padding-bottom:90px}.contactBox{background:radial-gradient(circle at 85% 15%,rgba(199,167,106,.13),transparent 30%),linear-gradient(145deg,#201d18,#12110f);color:var(--cream);border:1px solid #4a4031;padding:75px 65px;box-shadow:0 30px 100px rgba(0,0,0,.28)}.contactBox .eyebrow{color:var(--gold)}.contactBox h2{font-size:clamp(55px,9vw,120px);line-height:.82;letter-spacing:-.09em;margin:22px 0 30px;color:#eee5d4}.contactBox>p{max-width:600px;color:#a9a093;line-height:1.75}.contactGrid{display:grid;grid-template-columns:1fr 390px;gap:65px;margin-top:45px}.contactLinks{display:flex;flex-direction:column}.contactLink{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-top:1px solid #413a30;font-size:14px;font-weight:800;color:#e8dfd0}.contactLink:last-child{border-bottom:1px solid #413a30}.contactLink span:last-child{font-size:18px}.form{display:flex;flex-direction:column;gap:11px}.form input,.form select,.form textarea{width:100%;border:1px solid #4a4135;background:rgba(255,255,255,.025);color:#eee7db;padding:14px;outline:none;border-radius:0}.form textarea{min-height:125px;resize:vertical}.form input:focus,.form select:focus,.form textarea:focus{border-color:#111}.form button{border:1px solid #c7a76a;background:linear-gradient(135deg,#d8bd82,#a9864b);color:#111;padding:16px;cursor:pointer;font-weight:950}.form button:hover{background:#333}.note{font-size:10px;color:#777;margin-top:10px}
-footer{border-top:1px solid #191919;padding:35px 0 55px;color:#666;font-size:11px}.footer{display:flex;justify-content:space-between;gap:20px;align-items:center}.footerLogo{font-size:15px;color:#eee;font-weight:900;letter-spacing:.25em}.footerLinks{display:flex;gap:20px;flex-wrap:wrap}.footerLinks a:hover{color:#fff}
-.reveal{opacity:1;transform:none}.js .reveal{animation:rise .7s both}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-@media(max-width:900px){.navlinks{display:none}.mobileNav{display:block}.heroGrid{grid-template-columns:1fr;gap:45px}.heroImg{height:540px}.head{display:block}.desc{margin-top:20px}.aboutGrid{grid-template-columns:1fr}.featured{grid-template-columns:1fr}.project.big{grid-column:auto}.projectImg,.project.big .projectImg{height:500px}.process{grid-template-columns:1fr 1fr}.contactBox{padding:60px 35px}.contactGrid{grid-template-columns:1fr;gap:45px}}
-@media(max-width:600px){.wrap{width:90%}.hero{padding-top:110px}.hero h1{font-size:18vw}.hero p{font-size:15px}.heroImg{height:460px}.label{right:10px;bottom:15px}.hero .actions .btn{width:100%}section{padding:85px 0}.title{font-size:52px}.aboutMain,.aboutSide{padding:28px}.aboutMain p{font-size:19px}.aboutBottom{margin-top:20px}.stat b{font-size:48px}.service{grid-template-columns:32px 1fr 25px;gap:12px}.service h3{font-size:21px}.service p{font-size:11px}.projectImg,.project.big .projectImg{height:420px}.gallery{columns:2 145px;column-gap:7px}.galleryItem{margin-bottom:7px}.process{grid-template-columns:1fr}.step{min-height:190px}.step h3{margin-top:50px}.contactBox{padding:48px 22px}.contactBox h2{font-size:17vw}.footer{display:block}.footerLinks{margin-top:18px}}
-
-.talkMenu{position:relative}
-.talkMenu summary{list-style:none;cursor:pointer;color:#111;background:linear-gradient(135deg,#d8bd82,#a9864b);padding:10px 17px;border-radius:999px;font-weight:900;box-shadow:0 8px 30px rgba(199,167,106,.12)}
-.talkMenu summary::-webkit-details-marker{display:none}
-.talkPanel{position:absolute;right:0;top:48px;width:220px;padding:10px;background:#10100f;border:1px solid #3a342b;box-shadow:0 18px 45px rgba(0,0,0,.45)}
-.talkPanel a{display:flex;justify-content:space-between;align-items:center;padding:13px 10px;border-bottom:1px solid #29251f;color:#eee;font-size:13px}
-.talkPanel a:last-child{border-bottom:0}
-.talkPanel a:hover{color:#d8bd82}
-@media(max-width:900px){.talkMenu{display:none}}
-</style>
-<script>
-document.documentElement.classList.add('js');
-</script>
-</head>
-
-<body>
-
-<nav>
-<div class="wrap nav">
-<a class="logo" href="#home">LEO</a>
-
-<div class="navlinks" id="navlinks">
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#work">Work</a>
-<a href="#process">Process</a>
-
-<details class="talkMenu">
-<summary>Let's Talk ↗</summary>
-<div class="talkPanel">
-<a href="https://wa.me/918870562129" target="_blank" rel="noopener">
-<span>WhatsApp</span><span>↗</span>
-</a>
-<a href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener">
-<span>Instagram</span><span>↗</span>
-</a>
-<a href="mailto:murugadoss2211@gmail.com">
-<span>Email</span><span>↗</span>
-</a>
-<a href="tel:+918870562129">
-<span>Call</span><span>↗</span>
-</a>
-</div>
-</details>
-</div>
-
-<details class="mobileNav">
-<summary aria-label="Open navigation">☰</summary>
-
-<div class="mobilePanel">
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#work">Work</a>
-<a href="#process">Process</a>
-
-<div class="mobileTalk" style="padding:14px 8px;text-align:center">
-<div style="font-weight:900;margin-bottom:10px">Let's Talk</div>
-<a href="https://wa.me/918870562129" target="_blank" rel="noopener">WhatsApp ↗</a>
-<a href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener">Instagram ↗</a>
-<a href="mailto:murugadoss2211@gmail.com">Email ↗</a>
-<a href="tel:+918870562129">Call ↗</a>
-</div>
-</div>
-</details>
-
-</div>
-</nav>
-
-<main id="home">
-
-<section class="hero">
-<div class="wrap heroGrid">
-
-<div class="reveal">
-<div class="eyebrow">Visual Creator / Virudhunagar, Tamil Nadu</div>
-
-<h1>
-<span>CREATE.</span>
-<span class="outline">CAPTURE.</span>
-<span>DEFINE.</span>
-</h1>
-
-<p>
-I'm Leo — a visual creator focused on photography, portraiture, creative editing and visual design. I turn ideas and moments into visuals with character, emotion and a cinematic point of view.
-</p>
-
-<div class="actions">
-<a class="btn primary" href="#work">Explore My Work ↗</a>
-<a class="btn" href="#contact" aria-label="Start a project and contact Leo">Start a Project ↘</a>
-</div>
-</div>
-
-<div class="heroVisual reveal">
-<div class="heroImg">
-<img src="work-2.jpg" alt="Leo — Visual Creator">
-</div>
-<div class="label">Visual Creator</div>
-</div>
-
-</div>
-</section>
-
-<section id="about">
-<div class="wrap">
-
-<div class="head">
-<div>
-<div class="num">01 — About</div>
-<h2 class="title">THE PERSON<br>BEHIND THE WORK.</h2>
-</div>
-
-<p class="desc">
 A creative space built around photography, visual storytelling, editing and the constant pursuit of better work.
 </p>
+
 </div>
 
 <div class="aboutGrid">
 
 <div class="aboutMain">
+
 <p>
 I'm <strong>Leo</strong>, a visual creator from Virudhunagar, Tamil Nadu. I create photographs, portraits and visual designs that focus on <strong>style, atmosphere and emotion.</strong>
 </p>
@@ -1741,6 +1140,7 @@ I'm continuously learning, experimenting and developing my own visual language �
 </p>
 
 <div class="aboutBottom">
+
 <div class="location">
 Based in<br>
 Virudhunagar, Tamil Nadu, India
@@ -1750,42 +1150,59 @@ Virudhunagar, Tamil Nadu, India
 <b>1+</b>
 <span>Years Creating</span>
 </div>
+
 </div>
+
 </div>
 
 <div class="aboutSide">
+
 <h3>Creative Toolkit</h3>
 
 <div class="skills">
+
 <span class="skill">Photography</span>
 <span class="skill">Portraits</span>
 <span class="skill">Photo Editing</span>
 <span class="skill">Album Design</span>
 <span class="skill">Creative Design</span>
 <span class="skill">Visual Storytelling</span>
+
 </div>
 
 <p class="small">
 Always learning. Always experimenting. Always looking for the next visual idea worth creating.
 </p>
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 <section id="services">
+
 <div class="wrap">
 
 <div class="head">
+
 <div>
+
 <div class="num">02 — Services</div>
-<h2 class="title">WHAT I<br>CREATE.</h2>
+
+<h2 class="title">
+WHAT I<br>
+CREATE.
+</h2>
+
 </div>
 
 <p class="desc">
 From capturing a moment to shaping the final visual, every service is approached with attention to detail and creative intent.
 </p>
+
 </div>
 
 <div class="services">
@@ -1836,26 +1253,38 @@ From capturing a moment to shaping the final visual, every service is approached
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 <section id="work">
+
 <div class="wrap">
 
 <div class="head">
+
 <div>
+
 <div class="num">03 — Selected Work</div>
-<h2 class="title">A FEW<br>THINGS I'VE MADE.</h2>
+
+<h2 class="title">
+A FEW<br>
+THINGS I'VE MADE.
+</h2>
+
 </div>
 
 <p class="desc">
 A selection of portraits, creative experiments, lifestyle frames and visual studies from my growing portfolio.
 </p>
+
 </div>
 
 <div class="featured">
 
 <div class="project big">
+
 <div class="projectImg">
 <img src="work-1.jpg" alt="Creative portrait">
 </div>
@@ -1864,9 +1293,11 @@ A selection of portraits, creative experiments, lifestyle frames and visual stud
 <strong>Creative Portrait</strong>
 <span class="meta">Photography / Portrait</span>
 </div>
+
 </div>
 
 <div class="project">
+
 <div class="projectImg">
 <img src="work-3.jpg" alt="Black and white portrait">
 </div>
@@ -1875,9 +1306,11 @@ A selection of portraits, creative experiments, lifestyle frames and visual stud
 <strong>Monochrome</strong>
 <span class="meta">Portrait Study</span>
 </div>
+
 </div>
 
 <div class="project">
+
 <div class="projectImg">
 <img src="work-5.jpg" alt="Beach portrait">
 </div>
@@ -1886,36 +1319,56 @@ A selection of portraits, creative experiments, lifestyle frames and visual stud
 <strong>Open Air</strong>
 <span class="meta">Lifestyle</span>
 </div>
+
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 <div class="marquee">
+
 <div class="track">
-PHOTOGRAPHY <span>✦</span>
-VISUAL STORYTELLING <span>✦</span>
-CREATIVE DESIGN <span>✦</span>
-PHOTO EDITING <span>✦</span>
-ALBUM DESIGN <span>✦</span>
-PHOTOGRAPHY <span>✦</span>
-VISUAL STORYTELLING <span>✦</span>
-</div>
+PHOTOGRAPHY
+<span>✦</span>
+VISUAL STORYTELLING
+<span>✦</span>
+CREATIVE DESIGN
+<span>✦</span>
+PHOTO EDITING
+<span>✦</span>
+ALBUM DESIGN
+<span>✦</span>
+PHOTOGRAPHY
+<span>✦</span>
+VISUAL STORYTELLING
+<span>✦</span>
 </div>
 
-<section>
+  </div>
+  <section>
+
 <div class="wrap">
 
 <div class="head">
+
 <div>
+
 <div class="num">04 — Archive</div>
-<h2 class="title">MORE<br>WORK.</h2>
+
+<h2 class="title">
+MORE<br>
+WORK.
+</h2>
+
 </div>
 
 <p class="desc">
 The archive — different moments, different styles, one evolving visual language.
 </p>
+
 </div>
 
 <div class="gallery">
@@ -1977,131 +1430,373 @@ The archive — different moments, different styles, one evolving visual languag
 </div>
 
 </div>
+
 </div>
+
 </section>
 
+
 <section id="process">
+
 <div class="wrap">
 
 <div class="head">
+
 <div>
+
 <div class="num">05 — Process</div>
-<h2 class="title">FROM IDEA<br>TO FINAL.</h2>
+
+<h2 class="title">
+FROM IDEA<br>
+TO FINAL.
+</h2>
+
 </div>
 
 <p class="desc">
 Every project moves through a clear creative workflow — from the first conversation to the final polished delivery.
 </p>
+
 </div>
 
 <div class="process">
 
 <div class="step">
-<div class="stepNo">01 / DISCOVER</div>
+
+<div class="stepNo">
+01 / DISCOVER
+</div>
+
 <h3>Listen</h3>
-<p>Understand your idea, requirements, purpose, style, mood and expectations.</p>
-</div>
 
-<div class="step">
-<div class="stepNo">02 / PLAN</div>
-<h3>Plan</h3>
-<p>Choose the location, outfit, lighting, references, composition and creative direction.</p>
-</div>
-
-<div class="step">
-<div class="stepNo">03 / CREATE</div>
-<h3>Capture</h3>
-<p>Turn the plan into photographs, designs or visual content with attention to detail.</p>
-</div>
-
-<div class="step">
-<div class="stepNo">04 / SELECT</div>
-<h3>Curate</h3>
-<p>Review the work and select the strongest frames or visual elements for the final result.</p>
-</div>
-
-<div class="step">
-<div class="stepNo">05 / REFINE</div>
-<h3>Polish</h3>
-</div>
-<p>Colour grade, retouch, edit and refine every important detail to create a premium fininsh.
+<p>
+Understand your idea, requirements, purpose, style, mood and expectations.
 </p>
+
 </div>
+
+
+<div class="step">
+
+<div class="stepNo">
+02 / PLAN
 </div>
+
+<h3>Plan</h3>
+
+<p>
+Choose the location, outfit, lighting, references, composition and creative direction.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="stepNo">
+03 / CREATE
+</div>
+
+<h3>Capture</h3>
+
+<p>
+Turn the plan into photographs, designs or visual content with attention to detail.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="stepNo">
+04 / SELECT
+</div>
+
+<h3>Curate</h3>
+
+<p>
+Review the work and select the strongest frames or visual elements for the final result.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="stepNo">
+05 / REFINE
+</div>
+
+<h3>Polish</h3>
+
+<p>
+Colour grade, retouch, edit and refine every important detail to create a premium finish.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="stepNo">
+06 / DELIVER
+</div>
+
+<h3>Deliver</h3>
+
+<p>
+Prepare the final files and deliver the finished work in a clean, professional format.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
+
 <section id="contact" class="contactSection">
+
 <div class="wrap">
+
 <div class="contactBox">
-<div class="eyebrow">06 — Contact / Available for Projects</div>
-<h2>LET'S MAKE<br>SOMETHING<br>MEMORABLE.</h2>
-<p>Have a photography project, portrait session, album, editing work or creative idea? Tell me what you're building and let's start a conversation.</p>
+
+<div class="eyebrow">
+06 — Contact / Available for Projects
+</div>
+
+<h2>
+LET'S MAKE<br>
+SOMETHING<br>
+MEMORABLE.
+</h2>
+
+<p>
+Have a photography project, portrait session, album, editing work or creative idea? Tell me what you're building and let's start a conversation.
+</p>
 
 <div class="contactGrid">
 
 <div class="contactLinks">
-<a class="contactLink" href="https://wa.me/918870562129" target="_blank" rel="noopener"><span>WhatsApp</span><span>↗</span></a>
-<a class="contactLink" href="tel:+918870562129"><span>Call · 8870562129</span><span>↗</span></a>
-<a class="contactLink" href="mailto:murugadoss2211@gmail.com"><span>Email</span><span>↗</span></a>
-<a class="contactLink" href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a>
-<div class="contactLink"><span>Virudhunagar · Tamil Nadu · India</span><span>●</span></div>
+
+<a class="contactLink"
+href="https://wa.me/918870562129"
+target="_blank"
+rel="noopener">
+
+<span>WhatsApp</span>
+<span>↗</span>
+
+</a>
+
+
+<a class="contactLink"
+href="tel:+918870562129">
+
+<span>Call · 8870562129</span>
+<span>↗</span>
+
+</a>
+
+
+<a class="contactLink"
+href="mailto:murugadoss2211@gmail.com">
+
+<span>Email</span>
+<span>↗</span>
+
+</a>
+
+
+<a class="contactLink"
+href="https://www.instagram.com/leodosssss/"
+target="_blank"
+rel="noopener">
+
+<span>Instagram</span>
+<span>↗</span>
+
+</a>
+
+
+<div class="contactLink">
+
+<span>
+Virudhunagar · Tamil Nadu · India
+</span>
+
+<span>●</span>
+
 </div>
 
+</div>
+
+
 <form class="form" id="contactForm">
-<input id="name" type="text" placeholder="Your Name" required>
-<input id="email" type="email" placeholder="Your Email" required>
-<input id="phone" type="tel" placeholder="Your Phone">
+
+<input
+id="name"
+type="text"
+placeholder="Your Name"
+required
+>
+
+<input
+id="email"
+type="email"
+placeholder="Your Email"
+required
+>
+
+<input
+id="phone"
+type="tel"
+placeholder="Your Phone"
+>
+
 
 <select id="service" required>
-<option value="">Select a Service</option>
-<option>Photography</option>
-<option>Portrait Photography</option>
-<option>Photo Editing</option>
-<option>Album Design</option>
-<option>Creative Design</option>
-<option>Other</option>
+
+<option value="">
+Select a Service
+</option>
+
+<option>
+Photography
+</option>
+
+<option>
+Portrait Photography
+</option>
+
+<option>
+Photo Editing
+</option>
+
+<option>
+Album Design
+</option>
+
+<option>
+Creative Design
+</option>
+
+<option>
+Other
+</option>
+
 </select>
 
-<textarea id="message" placeholder="Tell me about your project..." required></textarea>
 
-<button type="submit">SEND ENQUIRY VIA WHATSAPP ↗</button>
-<div class="note">Submitting opens WhatsApp with your enquiry already prepared.</div>
+<textarea
+id="message"
+placeholder="Tell me about your project..."
+required
+></textarea>
+
+
+<button type="submit">
+SEND ENQUIRY VIA WHATSAPP ↗
+</button>
+
+<div class="note">
+Submitting opens WhatsApp with your enquiry already prepared.
+</div>
+
 </form>
 
 </div>
+
 </div>
+
 </div>
+
 </section>
 
 </main>
 
+
 <footer>
+
 <div class="wrap footer">
+
 <div>
-<div class="footerLogo">LEO</div>
-<div style="margin-top:8px">Visual Creator · Virudhunagar, Tamil Nadu</div>
+
+<div class="footerLogo">
+LEO
 </div>
+
+<div style="margin-top:8px">
+Visual Creator · Virudhunagar, Tamil Nadu
+</div>
+
+</div>
+
 
 <div class="footerLinks">
-<a href="https://www.instagram.com/leodosssss/" target="_blank" rel="noopener">Instagram</a>
-<a href="mailto:murugadoss2211@gmail.com">Email</a>
-<a href="https://wa.me/918870562129" target="_blank" rel="noopener">WhatsApp</a>
-<a href="#home">Back to top ↑</a>
+
+<a
+href="https://www.instagram.com/leodosssss/"
+target="_blank"
+rel="noopener">
+Instagram
+</a>
+
+<a href="mailto:murugadoss2211@gmail.com">
+Email
+</a>
+
+<a
+href="https://wa.me/918870562129"
+target="_blank"
+rel="noopener">
+WhatsApp
+</a>
+
+<a href="#home">
+Back to top ↑
+</a>
+
 </div>
+
 </div>
+
 </footer>
 
+
 <script>
-document.getElementById("contactForm").addEventListener("submit",function(e){
+
+document
+.getElementById("contactForm")
+.addEventListener("submit",function(e){
+
 e.preventDefault();
 
-const name=document.getElementById("name").value.trim();
-const email=document.getElementById("email").value.trim();
-const phone=document.getElementById("phone").value.trim()||"Not provided";
-const service=document.getElementById("service").value;
-const message=document.getElementById("message").value.trim();
+const name =
+document.getElementById("name")
+.value.trim();
 
-const text=`Hello Leo! 👋
+const email =
+document.getElementById("email")
+.value.trim();
+
+const phone =
+document.getElementById("phone")
+.value.trim() ||
+"Not provided";
+
+const service =
+document.getElementById("service")
+.value;
+
+const message =
+document.getElementById("message")
+.value.trim();
+
+
+const text = `Hello Leo! 👋
 
 I would like to enquire about a project.
 
@@ -2115,27 +1810,64 @@ ${message}
 
 Sent from Leo's Portfolio Website.`;
 
-window.location.href="https://wa.me/918870562129?text="+encodeURIComponent(text);
+
+window.location.href =
+"https://wa.me/918870562129?text=" +
+encodeURIComponent(text);
+
 });
 
-// Close the native mobile menu after selecting a link.
-document.querySelectorAll(".mobilePanel a").forEach(link=>{
-link.addEventListener("click",()=>{
-const details=link.closest("details");
-if(details) details.removeAttribute("open");
-});
-});
 
-document.querySelectorAll("img").forEach(img=>{
-img.addEventListener("error",()=>{
-img.style.display="none";
-const box=img.closest(".heroImg,.projectImg,.galleryItem");
-if(box){
-box.setAttribute("data-image-error","Image file not found");
-box.style.minHeight="180px";
+/* CLOSE MOBILE MENU AFTER CLICK */
+
+document
+.querySelectorAll(".mobilePanel a")
+.forEach(link => {
+
+link.addEventListener("click", () => {
+
+const details =
+link.closest("details");
+
+if(details){
+details.removeAttribute("open");
 }
+
 });
+
 });
+
+
+/* IMAGE ERROR HANDLING */
+
+document
+.querySelectorAll("img")
+.forEach(img => {
+
+img.addEventListener("error", () => {
+
+img.style.display = "none";
+
+const box =
+img.closest(
+".heroImg,.projectImg,.galleryItem"
+);
+
+if(box){
+
+box.setAttribute(
+"data-image-error",
+"Image file not found"
+);
+
+box.style.minHeight = "180px";
+
+}
+
+});
+
+});
+
 </script>
 
 </body>
