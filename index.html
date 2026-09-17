@@ -4,32 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Leo — Visual Creator from Virudhunagar, Tamil Nadu. Photography, portrait photography, photo editing, album design and creative design.">
-<meta name="author" content="Leo">
-
-<meta property="og:title" content="Leo — Visual Creator">
-<meta property="og:description" content="Photography, visual storytelling, editing and creative design.">
-<meta property="og:type" content="website">
+<meta name="description" content="Leo — Visual Creator. Photography, portraits, photo editing, album design and creative design.">
 
 <title>Leo — Visual Creator</title>
 
 <style>
 :root{
-  --bg:#070707;
-  --surface:#0d0d0d;
-  --surface2:#111;
+  --bg:#080808;
+  --panel:#101010;
   --text:#f5f5f2;
-  --muted:#999;
-  --soft:#cfcfc9;
-  --line:#242424;
+  --muted:#929292;
+  --line:#262626;
   --white:#fff;
-  --black:#050505;
 }
 
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
 }
 
 html{
@@ -37,15 +27,12 @@ html{
 }
 
 body{
+  margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:Inter,Arial,Helvetica,sans-serif;
+  font-family:Inter,Arial,sans-serif;
+  line-height:1.5;
   overflow-x:hidden;
-}
-
-body::selection{
-  background:#fff;
-  color:#000;
 }
 
 a{
@@ -53,160 +40,101 @@ a{
   text-decoration:none;
 }
 
-button,
-input,
-textarea,
-select{
-  font:inherit;
-}
-
 img{
-  max-width:100%;
+  display:block;
+  width:100%;
 }
 
-.container{
+.wrap{
   width:min(1240px,92%);
   margin:auto;
 }
 
-/* =========================
-   CURSOR
-========================= */
-
-.cursor{
-  position:fixed;
-  width:10px;
-  height:10px;
-  background:#fff;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9999;
-  transform:translate(-50%,-50%);
-  mix-blend-mode:difference;
-  transition:width .2s,height .2s;
-}
-
-@media(max-width:800px){
-  .cursor{
-    display:none;
-  }
-}
-
-/* =========================
-   NAVIGATION
-========================= */
+/* ================= NAVBAR ================= */
 
 nav{
   position:fixed;
   top:0;
   left:0;
-  width:100%;
+  right:0;
   z-index:1000;
-  background:rgba(7,7,7,.72);
+  background:rgba(8,8,8,.82);
   backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.nav-inner{
-  height:76px;
+.nav{
+  height:74px;
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
 .logo{
-  font-size:17px;
   font-weight:900;
   letter-spacing:.28em;
+  font-size:16px;
 }
 
-.nav-links{
+.navlinks{
   display:flex;
   align-items:center;
-  gap:34px;
-  color:#aaa;
+  gap:30px;
   font-size:13px;
+  color:#aaa;
 }
 
-.nav-links a{
-  position:relative;
-  transition:.3s ease;
-}
-
-.nav-links a:hover{
+.navlinks a:hover{
   color:#fff;
 }
 
-.nav-links a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-7px;
-  width:0;
-  height:1px;
+.navlinks .talk{
+  color:#000;
   background:#fff;
-  transition:.3s ease;
-}
-
-.nav-links a:hover::after{
-  width:100%;
-}
-
-.nav-contact{
-  border:1px solid #444;
-  padding:11px 17px;
+  padding:10px 16px;
   border-radius:999px;
-  color:#fff!important;
+  font-weight:800;
 }
 
-.nav-contact:hover{
-  background:#fff;
-  color:#000!important;
-}
-
-.menu-btn{
+.menu{
   display:none;
-  background:none;
   border:0;
+  background:none;
   color:#fff;
   font-size:25px;
   cursor:pointer;
 }
 
-/* =========================
-   HERO
-========================= */
+/* ================= HERO ================= */
 
 .hero{
-  min-height:100vh;
+  min-height:100svh;
+  padding:130px 0 70px;
   display:flex;
   align-items:center;
-  padding:150px 0 80px;
-  position:relative;
 }
 
-.hero-grid{
+.heroGrid{
   display:grid;
-  grid-template-columns:1.15fr .85fr;
+  grid-template-columns:1.08fr .92fr;
   gap:70px;
   align-items:center;
 }
 
-.eyebrow{
-  color:#888;
-  font-size:11px;
-  letter-spacing:.3em;
+.eyebrow,
+.num{
+  font-size:10px;
+  letter-spacing:.28em;
   text-transform:uppercase;
-  margin-bottom:26px;
+  color:#777;
 }
 
 .hero h1{
-  font-size:clamp(68px,10vw,148px);
-  line-height:.79;
-  letter-spacing:-.085em;
-  font-weight:900;
-  text-transform:uppercase;
+  font-size:clamp(64px,10vw,145px);
+  line-height:.78;
+  letter-spacing:-.09em;
+  margin:24px 0 30px;
+  font-weight:950;
 }
 
 .hero h1 span{
@@ -218,19 +146,15 @@ nav{
   -webkit-text-stroke:1px #777;
 }
 
-.hero-copy{
+.hero p{
   max-width:620px;
-  margin-top:38px;
-}
-
-.hero-copy p{
   color:#aaa;
   font-size:17px;
   line-height:1.75;
-  max-width:590px;
+  margin:0;
 }
 
-.hero-actions{
+.actions{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
@@ -241,18 +165,17 @@ nav{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
   min-height:48px;
-  padding:0 21px;
-  border:1px solid #353535;
+  padding:0 20px;
+  border:1px solid #383838;
   border-radius:999px;
   font-size:13px;
-  font-weight:700;
-  transition:.35s ease;
+  font-weight:800;
+  transition:.25s;
 }
 
 .btn:hover{
-  transform:translateY(-3px);
+  transform:translateY(-2px);
   border-color:#777;
 }
 
@@ -262,174 +185,133 @@ nav{
   border-color:#fff;
 }
 
-.btn.primary:hover{
-  background:#ddd;
-}
-
-.hero-visual{
+.heroVisual{
   position:relative;
 }
 
-.hero-image{
+.heroImg{
   height:650px;
-  border-radius:4px;
-  overflow:hidden;
   border:1px solid var(--line);
+  overflow:hidden;
   background:#111;
 }
 
-.hero-image img{
+.heroImg img{
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center;
-  filter:grayscale(8%);
-  transition:transform 1s cubic-bezier(.2,.8,.2,1);
+  transition:transform .8s;
 }
 
-.hero-visual:hover .hero-image img{
+.heroVisual:hover img{
   transform:scale(1.035);
 }
 
-.image-label{
+.label{
   position:absolute;
-  right:-18px;
-  bottom:35px;
+  right:-15px;
+  bottom:25px;
   background:#fff;
   color:#000;
-  padding:13px 18px;
-  font-size:10px;
-  letter-spacing:.18em;
+  padding:12px 16px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.16em;
   text-transform:uppercase;
-  font-weight:800;
 }
 
-.scroll-note{
-  position:absolute;
-  bottom:32px;
-  left:4%;
-  color:#666;
-  font-size:10px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  writing-mode:vertical-rl;
-}
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
+/* ================= SECTIONS ================= */
 
 section{
-  border-top:1px solid #171717;
-  padding:125px 0;
+  border-top:1px solid #191919;
+  padding:120px 0;
 }
 
-.section-top{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:40px;
-  margin-bottom:60px;
-}
-
-.section-number{
-  color:#555;
-  font-size:11px;
-  letter-spacing:.2em;
-  margin-bottom:16px;
-}
-
-.section-title{
-  font-size:clamp(48px,7vw,90px);
-  line-height:.88;
-  letter-spacing:-.07em;
-  font-weight:850;
-}
-
-.section-description{
-  max-width:430px;
-  color:#8f8f8f;
-  font-size:15px;
-  line-height:1.75;
-}
-
-/* =========================
-   ABOUT
-========================= */
-
-.about-grid{
-  display:grid;
-  grid-template-columns:1.3fr .7fr;
-  gap:20px;
-}
-
-.about-main{
-  min-height:420px;
-  background:#0c0c0c;
-  border:1px solid var(--line);
-  padding:50px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.about-main p{
-  max-width:760px;
-  color:#c8c8c4;
-  font-size:25px;
-  line-height:1.5;
-  letter-spacing:-.025em;
-}
-
-.about-main p strong{
-  color:#fff;
-}
-
-.about-bottom{
+.head{
   display:flex;
   justify-content:space-between;
   align-items:end;
-  margin-top:50px;
+  gap:40px;
+  margin-bottom:55px;
+}
+
+.title{
+  font-size:clamp(48px,7vw,88px);
+  line-height:.86;
+  letter-spacing:-.075em;
+  margin:12px 0 0;
+  font-weight:900;
+}
+
+.desc{
+  max-width:430px;
+  color:#888;
+  font-size:14px;
+  line-height:1.8;
+}
+
+/* ================= ABOUT ================= */
+
+.aboutGrid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:18px;
+}
+
+.aboutMain,
+.aboutSide{
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:45px;
+}
+
+.aboutMain p{
+  color:#c9c9c5;
+  font-size:23px;
+  line-height:1.55;
+  letter-spacing:-.02em;
+  margin:0 0 28px;
+}
+
+.aboutBottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
 }
 
 .location{
+  font-size:11px;
+  line-height:1.8;
   color:#777;
-  font-size:12px;
-  line-height:1.7;
+  text-transform:uppercase;
+  letter-spacing:.08em;
 }
 
 .stat{
   text-align:right;
 }
 
-.stat strong{
-  display:block;
+.stat b{
   font-size:58px;
-  line-height:.9;
-  letter-spacing:-.07em;
+  line-height:.8;
+  letter-spacing:-.08em;
 }
 
 .stat span{
   display:block;
   color:#777;
-  font-size:10px;
+  font-size:9px;
   text-transform:uppercase;
   letter-spacing:.18em;
   margin-top:10px;
 }
 
-.about-side{
-  border:1px solid var(--line);
-  padding:40px;
-  background:#0b0b0b;
-}
-
-.about-side h3{
-  font-size:12px;
-  letter-spacing:.2em;
+.aboutSide h3{
+  font-size:11px;
   text-transform:uppercase;
-  margin-bottom:28px;
-  color:#888;
+  letter-spacing:.2em;
+  color:#777;
+  margin:0 0 25px;
 }
 
 .skills{
@@ -439,23 +321,21 @@ section{
 }
 
 .skill{
-  border:1px solid #2b2b2b;
+  border:1px solid #2d2d2d;
   border-radius:999px;
-  padding:10px 13px;
-  color:#ccc;
+  padding:9px 12px;
   font-size:12px;
+  color:#ccc;
 }
 
-.about-side .mini-copy{
-  color:#777;
-  line-height:1.7;
+.small{
   font-size:13px;
+  color:#777;
+  line-height:1.8;
   margin-top:35px;
 }
 
-/* =========================
-   SERVICES
-========================= */
+/* ================= SERVICES ================= */
 
 .services{
   border-top:1px solid var(--line);
@@ -463,142 +343,155 @@ section{
 
 .service{
   display:grid;
-  grid-template-columns:90px 1fr 70px;
+  grid-template-columns:60px 1fr 40px;
+  gap:25px;
   align-items:center;
-  gap:30px;
-  padding:28px 0;
   border-bottom:1px solid var(--line);
-  transition:.35s ease;
+  padding:27px 10px;
+  transition:.25s;
 }
 
 .service:hover{
-  padding-left:15px;
-  background:#0a0a0a;
+  background:#0d0d0d;
+  padding-left:20px;
 }
 
-.service-no{
+.serviceNo{
   color:#555;
-  font-size:12px;
+  font-size:11px;
 }
 
 .service h3{
-  font-size:clamp(24px,3vw,40px);
-  letter-spacing:-.04em;
-  font-weight:700;
+  font-size:clamp(23px,3vw,38px);
+  letter-spacing:-.045em;
+  margin:0;
 }
 
 .service p{
   color:#777;
-  margin-top:7px;
-  font-size:13px;
+  font-size:12px;
+  margin:5px 0 0;
 }
 
-.service-arrow{
-  font-size:22px;
+.arrow{
   color:#666;
-  transition:.3s;
+  font-size:20px;
 }
 
-.service:hover .service-arrow{
-  color:#fff;
-  transform:translateX(6px);
-}
-
-/* =========================
-   FEATURED WORK
-========================= */
+/* ================= WORK ================= */
 
 .featured{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
+  gap:16px;
 }
 
 .project{
-  position:relative;
-  overflow:hidden;
-  background:#101010;
+  background:var(--panel);
   border:1px solid var(--line);
-}
-
-.project.large{
-  grid-column:span 2;
-}
-
-.project-image{
-  height:560px;
   overflow:hidden;
 }
 
-.project.large .project-image{
-  height:700px;
+.project.big{
+  grid-column:1/-1;
 }
 
-.project-image img{
+.projectImg{
+  height:530px;
+  overflow:hidden;
+  background:#111;
+}
+
+.project.big .projectImg{
+  height:680px;
+}
+
+.projectImg img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:transform .8s cubic-bezier(.2,.8,.2,1);
+  transition:transform .7s;
 }
 
-.project:hover .project-image img{
-  transform:scale(1.04);
-}
-
-.project-info{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  padding:19px 20px;
-  background:#0d0d0d;
-}
-
-.project-title{
-  font-size:15px;
-  font-weight:700;
-}
-
-.project-meta{
-  color:#777;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-}
-
-/* =========================
-   GALLERY
-========================= */
-
-.gallery{
-  columns:3 280px;
-  column-gap:14px;
-}
-
-.gallery-item{
-  break-inside:avoid;
-  margin-bottom:14px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  background:#111;
-  position:relative;
-}
-
-.gallery-item img{
-  display:block;
-  width:100%;
-  height:auto;
-  transition:transform .65s cubic-bezier(.2,.8,.2,1);
-}
-
-.gallery-item:hover img{
+.project:hover img{
   transform:scale(1.035);
 }
 
-/* =========================
-   PROCESS
-========================= */
+.projectInfo{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:17px 18px;
+}
 
-.process-grid{
+.projectInfo strong{
+  font-size:14px;
+}
+
+.meta{
+  font-size:10px;
+  color:#777;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+}
+
+/* ================= MARQUEE ================= */
+
+.marquee{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+  white-space:nowrap;
+  padding:23px 0;
+}
+
+.track{
+  display:inline-block;
+  font-size:39px;
+  font-weight:900;
+  letter-spacing:-.04em;
+  animation:move 24s linear infinite;
+}
+
+.track span{
+  color:#444;
+  margin:0 25px;
+}
+
+@keyframes move{
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+  columns:3 270px;
+  column-gap:12px;
+}
+
+.galleryItem{
+  break-inside:avoid;
+  margin:0 0 12px;
+  background:#111;
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+
+.galleryItem img{
+  width:100%;
+  height:auto;
+  transition:transform .6s;
+}
+
+.galleryItem:hover img{
+  transform:scale(1.025);
+}
+
+/* ================= PROCESS ================= */
+
+.process{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:1px;
@@ -606,296 +499,240 @@ section{
   border:1px solid var(--line);
 }
 
-.process-card{
-  background:#0b0b0b;
-  padding:35px 28px;
-  min-height:250px;
+.step{
+  background:#0c0c0c;
+  padding:30px;
+  min-height:245px;
 }
 
-.process-no{
-  color:#555;
-  font-size:11px;
-  letter-spacing:.2em;
-}
-
-.process-card h3{
-  margin-top:80px;
-  font-size:24px;
-  letter-spacing:-.04em;
-}
-
-.process-card p{
-  color:#777;
-  font-size:12px;
-  line-height:1.7;
-  margin-top:12px;
-}
-
-/* =========================
-   MARQUEE
-========================= */
-
-.marquee{
-  overflow:hidden;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:25px 0;
-  white-space:nowrap;
-}
-
-.marquee-track{
-  display:inline-block;
-  animation:marquee 22s linear infinite;
-  font-size:42px;
-  font-weight:850;
-  letter-spacing:-.04em;
-}
-
-.marquee-track span{
-  color:#444;
-  margin:0 25px;
-}
-
-@keyframes marquee{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact-section{
-  padding-bottom:100px;
-}
-
-.contact-box{
-  background:#f3f3f0;
-  color:#070707;
-  padding:80px 70px;
-  position:relative;
-  overflow:hidden;
-}
-
-.contact-eyebrow{
-  color:#777;
+.stepNo{
   font-size:10px;
-  letter-spacing:.25em;
-  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:#555;
 }
 
-.contact-box h2{
-  font-size:clamp(55px,9vw,125px);
+.step h3{
+  margin-top:75px;
+  font-size:23px;
+  letter-spacing:-.04em;
+}
+
+.step p{
+  font-size:12px;
+  color:#777;
+  line-height:1.7;
+  margin:10px 0 0;
+}
+
+/* ================= CONTACT ================= */
+
+.contactSection{
+  padding-bottom:90px;
+}
+
+.contactBox{
+  background:#f3f3ef;
+  color:#080808;
+  padding:75px 65px;
+}
+
+.contactBox .eyebrow{
+  color:#777;
+}
+
+.contactBox h2{
+  font-size:clamp(55px,9vw,120px);
   line-height:.82;
-  letter-spacing:-.085em;
+  letter-spacing:-.09em;
   margin:22px 0 30px;
 }
 
-.contact-box > p{
-  max-width:570px;
+.contactBox > p{
+  max-width:600px;
   color:#555;
-  line-height:1.7;
-  font-size:15px;
+  line-height:1.75;
 }
 
-.contact-layout{
+.contactGrid{
   display:grid;
-  grid-template-columns:1fr 380px;
-  gap:70px;
+  grid-template-columns:1fr 390px;
+  gap:65px;
   margin-top:45px;
 }
 
-.contact-links{
+.contactLinks{
   display:flex;
   flex-direction:column;
-  gap:10px;
 }
 
-.contact-link{
+.contactLink{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  border-top:1px solid #c7c7c4;
-  padding:17px 0;
+  align-items:center;
+  padding:18px 0;
+  border-top:1px solid #c8c8c4;
   font-size:14px;
-  font-weight:700;
+  font-weight:800;
 }
 
-.contact-link:last-child{
-  border-bottom:1px solid #c7c7c4;
+.contactLink:last-child{
+  border-bottom:1px solid #c8c8c4;
 }
 
-.contact-link span:last-child{
+.contactLink span:last-child{
   font-size:18px;
 }
 
 .form{
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:11px;
 }
 
 .form input,
-.form textarea,
-.form select{
+.form select,
+.form textarea{
   width:100%;
-  border:1px solid #c9c9c5;
+  border:1px solid #c8c8c4;
   background:transparent;
-  padding:14px 15px;
-  outline:none;
   color:#111;
+  padding:14px;
+  outline:none;
   border-radius:0;
 }
 
 .form textarea{
-  min-height:120px;
+  min-height:125px;
   resize:vertical;
 }
 
 .form input:focus,
-.form textarea:focus,
-.form select:focus{
+.form select:focus,
+.form textarea:focus{
   border-color:#111;
 }
 
 .form button{
-  margin-top:4px;
-  background:#070707;
+  border:1px solid #080808;
+  background:#080808;
   color:#fff;
-  border:1px solid #070707;
   padding:16px;
   cursor:pointer;
-  font-weight:800;
-  transition:.3s;
+  font-weight:900;
 }
 
 .form button:hover{
   background:#333;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.note{
+  font-size:10px;
+  color:#777;
+  margin-top:10px;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
+  border-top:1px solid #191919;
   padding:35px 0 55px;
   color:#666;
   font-size:11px;
-  border-top:1px solid #171717;
 }
 
-.footer-inner{
+.footer{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   gap:20px;
+  align-items:center;
 }
 
-.footer-logo{
-  color:#eee;
+.footerLogo{
   font-size:15px;
+  color:#eee;
   font-weight:900;
   letter-spacing:.25em;
 }
 
-.footer-links{
+.footerLinks{
   display:flex;
   gap:20px;
+  flex-wrap:wrap;
 }
 
-.footer-links a:hover{
+.footerLinks a:hover{
   color:#fff;
 }
 
-/* =========================
-   REVEAL
-========================= */
-
-.reveal{
-  opacity:0;
-  transform:translateY(35px);
-  transition:opacity .8s ease,transform .8s ease;
-}
-
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* =========================
-   MOBILE
-========================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:900px){
 
-  .nav-links{
+  .navlinks{
     display:none;
   }
 
-  .menu-btn{
+  .menu{
     display:block;
   }
 
-  .hero{
-    padding-top:130px;
+  .navlinks.open{
+    display:flex;
+    position:absolute;
+    top:74px;
+    left:0;
+    right:0;
+    background:#080808;
+    border-bottom:1px solid #222;
+    padding:22px 4%;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
   }
 
-  .hero-grid{
+  .heroGrid{
     grid-template-columns:1fr;
     gap:45px;
   }
 
-  .hero-image{
-    height:520px;
+  .heroImg{
+    height:540px;
   }
 
-  .scroll-note{
-    display:none;
-  }
-
-  .section-top{
+  .head{
     display:block;
-    margin-bottom:42px;
   }
 
-  .section-description{
+  .desc{
     margin-top:20px;
   }
 
-  .about-grid{
+  .aboutGrid{
     grid-template-columns:1fr;
-  }
-
-  .about-main{
-    padding:32px;
-  }
-
-  .about-main p{
-    font-size:21px;
   }
 
   .featured{
     grid-template-columns:1fr;
   }
 
-  .project.large{
-    grid-column:span 1;
+  .project.big{
+    grid-column:auto;
   }
 
-  .project-image,
-  .project.large .project-image{
-    height:480px;
+  .projectImg,
+  .project.big .projectImg{
+    height:500px;
   }
 
-  .process-grid{
+  .process{
     grid-template-columns:1fr 1fr;
   }
 
-  .contact-box{
-    padding:55px 30px;
+  .contactBox{
+    padding:60px 35px;
   }
 
-  .contact-layout{
+  .contactGrid{
     grid-template-columns:1fr;
     gap:45px;
   }
@@ -903,171 +740,159 @@ footer{
 
 @media(max-width:600px){
 
-  .container{
+  .wrap{
     width:90%;
   }
 
-  .nav-inner{
-    height:68px;
-  }
-
   .hero{
-    padding:115px 0 60px;
+    padding-top:110px;
   }
 
   .hero h1{
     font-size:18vw;
   }
 
-  .hero-copy p{
+  .hero p{
     font-size:15px;
   }
 
-  .hero-image{
-    height:450px;
+  .heroImg{
+    height:460px;
   }
 
-  .image-label{
+  .label{
     right:10px;
     bottom:15px;
+  }
+
+  .hero .actions .btn{
+    width:100%;
   }
 
   section{
     padding:85px 0;
   }
 
-  .section-title{
+  .title{
     font-size:52px;
   }
 
-  .about-main{
-    min-height:auto;
-    padding:27px;
-  }
-
-  .about-main p{
-    font-size:19px;
-  }
-
-  .about-bottom{
-    margin-top:45px;
-  }
-
-  .stat strong{
-    font-size:48px;
-  }
-
-  .about-side{
+  .aboutMain,
+  .aboutSide{
     padding:28px;
   }
 
+  .aboutMain p{
+    font-size:19px;
+  }
+
+  .aboutBottom{
+    margin-top:20px;
+  }
+
+  .stat b{
+    font-size:48px;
+  }
+
   .service{
-    grid-template-columns:35px 1fr 25px;
+    grid-template-columns:32px 1fr 25px;
     gap:12px;
   }
 
   .service h3{
-    font-size:22px;
+    font-size:21px;
   }
 
   .service p{
     font-size:11px;
   }
 
-  .featured{
-    gap:12px;
-  }
-
-  .project-image,
-  .project.large .project-image{
-    height:430px;
-  }
-
-  .project-info{
-    padding:15px;
+  .projectImg,
+  .project.big .projectImg{
+    height:420px;
   }
 
   .gallery{
-    columns:2 150px;
-    column-gap:8px;
+    columns:2 145px;
+    column-gap:7px;
   }
 
-  .gallery-item{
-    margin-bottom:8px;
+  .galleryItem{
+    margin-bottom:7px;
   }
 
-  .process-grid{
+  .process{
     grid-template-columns:1fr;
   }
 
-  .process-card{
-    min-height:200px;
+  .step{
+    min-height:190px;
   }
 
-  .process-card h3{
-    margin-top:55px;
+  .step h3{
+    margin-top:50px;
   }
 
-  .contact-box{
-    padding:45px 22px;
+  .contactBox{
+    padding:48px 22px;
   }
 
-  .contact-box h2{
+  .contactBox h2{
     font-size:17vw;
   }
 
-  .footer-inner{
+  .footer{
     display:block;
   }
 
-  .footer-links{
+  .footerLinks{
     margin-top:18px;
-    flex-wrap:wrap;
   }
 }
 </style>
+
+<script>
+document.documentElement.classList.add("js");
+</script>
+
 </head>
 
 <body>
 
-<div class="cursor"></div>
-
-<!-- =========================
-     NAV
-========================= -->
+<!-- ================= NAVIGATION ================= -->
 
 <nav>
-  <div class="container nav-inner">
+  <div class="wrap nav">
 
-    <a href="#home" class="logo">LEO</a>
+    <a class="logo" href="#home">LEO</a>
 
-    <div class="nav-links">
+    <div class="navlinks" id="navlinks">
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#work">Work</a>
       <a href="#process">Process</a>
-      <a href="#contact" class="nav-contact">Let's Talk ↗</a>
+      <a class="talk" href="#contact">Let's Talk ↗</a>
     </div>
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <button class="menu" id="menu" aria-label="Open menu">
+      ☰
+    </button>
 
   </div>
 </nav>
 
-
 <main id="home">
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
-  <div class="container hero-grid">
+
+  <div class="wrap heroGrid">
 
     <div class="reveal">
 
       <div class="eyebrow">
-        Visual Creator / Tamil Nadu, India
+        Visual Creator / Virudhunagar, Tamil Nadu
       </div>
 
       <h1>
@@ -1076,38 +901,37 @@ footer{
         <span>DEFINE.</span>
       </h1>
 
-      <div class="hero-copy">
-        <p>
-          I'm Leo — a visual creator focused on photography,
-          portraiture, creative editing and visual design.
-          I turn ideas and moments into visuals with character,
-          emotion and a cinematic point of view.
-        </p>
-      </div>
+      <p>
+        I'm Leo — a visual creator focused on photography,
+        portraiture, creative editing and visual design.
+        I turn ideas and moments into visuals with character,
+        emotion and a cinematic point of view.
+      </p>
 
-      <div class="hero-actions">
-        <a href="#work" class="btn primary">
+      <div class="actions">
+
+        <a class="btn primary" href="#work">
           Explore My Work ↗
         </a>
 
-        <a href="#contact" class="btn">
+        <a class="btn" href="#contact">
           Start a Project
         </a>
+
       </div>
 
     </div>
 
+    <div class="heroVisual reveal">
 
-    <div class="hero-visual reveal">
-
-      <div class="hero-image">
+      <div class="heroImg">
         <img
           src="work-2.jpg"
           alt="Leo — Visual Creator"
         >
       </div>
 
-      <div class="image-label">
+      <div class="label">
         Visual Creator
       </div>
 
@@ -1115,31 +939,28 @@ footer{
 
   </div>
 
-  <div class="scroll-note">
-    Scroll to explore
-  </div>
 </section>
 
-
-<!-- =========================
-     ABOUT
-========================= -->
+<!-- ================= ABOUT ================= -->
 
 <section id="about">
 
-  <div class="container">
+  <div class="wrap">
 
-    <div class="section-top reveal">
+    <div class="head">
 
       <div>
-        <div class="section-number">01 — ABOUT</div>
-        <h2 class="section-title">
+        <div class="num">
+          01 — About
+        </div>
+
+        <h2 class="title">
           THE PERSON<br>
           BEHIND THE WORK.
         </h2>
       </div>
 
-      <p class="section-description">
+      <p class="desc">
         A creative space built around photography,
         visual storytelling, editing and the constant
         pursuit of better work.
@@ -1147,10 +968,9 @@ footer{
 
     </div>
 
+    <div class="aboutGrid">
 
-    <div class="about-grid">
-
-      <div class="about-main reveal">
+      <div class="aboutMain">
 
         <p>
           I'm <strong>Leo</strong>, a visual creator from
@@ -1165,15 +985,15 @@ footer{
           at a time.
         </p>
 
-        <div class="about-bottom">
+        <div class="aboutBottom">
 
           <div class="location">
-            BASED IN<br>
+            Based in<br>
             Virudhunagar, Tamil Nadu, India
           </div>
 
           <div class="stat">
-            <strong>1+</strong>
+            <b>1+</b>
             <span>Years Creating</span>
           </div>
 
@@ -1181,23 +1001,24 @@ footer{
 
       </div>
 
+      <div class="aboutSide">
 
-      <div class="about-side reveal">
-
-        <h3>Creative Toolkit</h3>
+        <h3>
+          Creative Toolkit
+        </h3>
 
         <div class="skills">
+
           <span class="skill">Photography</span>
           <span class="skill">Portraits</span>
           <span class="skill">Photo Editing</span>
           <span class="skill">Album Design</span>
           <span class="skill">Creative Design</span>
           <span class="skill">Visual Storytelling</span>
-          <span class="skill">Content Creation</span>
-          <span class="skill">AI Creative Work</span>
+
         </div>
 
-        <p class="mini-copy">
+        <p class="small">
           Always learning. Always experimenting.
           Always looking for the next visual idea
           worth creating.
@@ -1211,25 +1032,28 @@ footer{
 
 </section>
 
-
-<!-- =========================
-     SERVICES
-========================= -->
+<!-- ================= SERVICES ================= -->
 
 <section id="services">
 
-  <div class="container">
+  <div class="wrap">
 
-    <div class="section-top reveal">
+    <div class="head">
 
       <div>
-        <div class="section-number">02 — SERVICES</div>
-        <h2 class="section-title">
-          WHAT I<br>CREATE.
+
+        <div class="num">
+          02 — Services
+        </div>
+
+        <h2 class="title">
+          WHAT I<br>
+          CREATE.
         </h2>
+
       </div>
 
-      <p class="section-description">
+      <p class="desc">
         From capturing a moment to shaping the final
         visual, every service is approached with
         attention to detail and creative intent.
@@ -1237,43 +1061,265 @@ footer{
 
     </div>
 
-
     <div class="services">
 
-      <div class="service reveal">
-        <div class="service-no">01</div>
+      <div class="service">
+
+        <div class="serviceNo">01</div>
+
         <div>
           <h3>Photography</h3>
-          <p>Creative photography built around mood, composition and story.</p>
+          <p>
+            Creative photography built around mood,
+            composition and story.
+          </p>
         </div>
-        <div class="service-arrow">↗</div>
+
+        <div class="arrow">↗</div>
+
       </div>
 
-      <div class="service reveal">
-        <div class="service-no">02</div>
+      <div class="service">
+
+        <div class="serviceNo">02</div>
+
         <div>
           <h3>Portrait Photography</h3>
-          <p>Portraits designed around personality, expression and style.</p>
+          <p>
+            Portraits designed around personality,
+            expression and style.
+          </p>
         </div>
-        <div class="service-arrow">↗</div>
+
+        <div class="arrow">↗</div>
+
       </div>
 
-      <div class="service reveal">
-        <div class="service-no">03</div>
+      <div class="service">
+
+        <div class="serviceNo">03</div>
+
         <div>
           <h3>Photo Editing</h3>
-          <p>Colour, retouching and cinematic finishing for stronger visuals.</p>
+          <p>
+            Colour, retouching and cinematic finishing
+            for stronger visuals.
+          </p>
         </div>
-        <div class="service-arrow">↗</div>
+
+        <div class="arrow">↗</div>
+
       </div>
 
-      <div class="service reveal">
-        <div class="service-no">04</div>
+      <div class="service">
+
+        <div class="serviceNo">04</div>
+
         <div>
           <h3>Album Design</h3>
-          <p>Modern visual layouts that turn memories into premium albums.</p>
+          <p>
+            Modern visual layouts that turn memories
+            into premium albums.
+          </p>
         </div>
-        <div class="service-arrow">↗</div>
+
+        <div class="arrow">↗</div>
+
       </div>
 
-      <div class="service reveal
+      <div class="service">
+
+        <div class="serviceNo">05</div>
+
+        <div>
+          <h3>Creative Design</h3>
+          <p>
+            Digital visuals, concepts and creative
+            assets for creators and projects.
+          </p>
+        </div>
+
+        <div class="arrow">↗</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= WORK ================= -->
+
+<section id="work">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="num">
+          03 — Selected Work
+        </div>
+
+        <h2 class="title">
+          A FEW<br>
+          THINGS I'VE MADE.
+        </h2>
+
+      </div>
+
+      <p class="desc">
+        A selection of portraits, creative experiments,
+        lifestyle frames and visual studies from my
+        growing portfolio.
+      </p>
+
+    </div>
+
+    <div class="featured">
+
+      <div class="project big">
+
+        <div class="projectImg">
+          <img
+            src="work-1.jpg"
+            alt="Creative portrait"
+          >
+        </div>
+
+        <div class="projectInfo">
+          <strong>Creative Portrait</strong>
+          <span class="meta">
+            Photography / Portrait
+          </span>
+        </div>
+
+      </div>
+
+      <div class="project">
+
+        <div class="projectImg">
+          <img
+            src="work-3.jpg"
+            alt="Black and white portrait"
+          >
+        </div>
+
+        <div class="projectInfo">
+          <strong>Monochrome</strong>
+          <span class="meta">
+            Portrait Study
+          </span>
+        </div>
+
+      </div>
+
+      <div class="project">
+
+        <div class="projectImg">
+          <img
+            src="work-5.jpg"
+            alt="Beach portrait"
+          >
+        </div>
+
+        <div class="projectInfo">
+          <strong>Open Air</strong>
+          <span class="meta">
+            Lifestyle
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= MARQUEE ================= -->
+
+<div class="marquee">
+
+  <div class="track">
+
+    PHOTOGRAPHY
+    <span>✦</span>
+
+    VISUAL STORYTELLING
+    <span>✦</span>
+
+    CREATIVE DESIGN
+    <span>✦</span>
+
+    PHOTO EDITING
+    <span>✦</span>
+
+    ALBUM DESIGN
+    <span>✦</span>
+
+    PHOTOGRAPHY
+    <span>✦</span>
+
+    VISUAL STORYTELLING
+    <span>✦</span>
+
+  </div>
+
+</div>
+
+<!-- ================= ARCHIVE ================= -->
+
+<section>
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="num">
+          04 — Archive
+        </div>
+
+        <h2 class="title">
+          MORE<br>
+          WORK.
+        </h2>
+
+      </div>
+
+      <p class="desc">
+        The archive — different moments, different
+        styles, one evolving visual language.
+      </p>
+
+    </div>
+
+    <div class="gallery">
+
+      <div class="galleryItem">
+        <img src="work-2.jpg" alt="Motorcycle portrait">
+      </div>
+
+      <div class="galleryItem">
+        <img src="work-4.png" alt="Night street photography">
+      </div>
+
+      <div class="galleryItem">
+        <img src="work-6.png" alt="Studio football portrait">
+      </div>
+
+      <div class="galleryItem">
+        <img src="work-7.png" alt="Fashion portrait">
+      </div>
+
+      <div class="galleryItem">
+        <img src="work-8.png" alt="Football field portrait">
+      </div>
+
+      <div class="galleryItem">
+        <img src="
