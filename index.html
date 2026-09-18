@@ -26942,6 +26942,228 @@ video{
 <!-- =========================================================
      LEO VISUALS — FINAL DOCUMENT CLOSE
 ========================================================= -->
+     <!-- =========================================================
+     EMERGENCY PRELOADER FIX
+========================================================= -->
+
+<style>
+
+.preloader,
+#preloader,
+.loading-screen,
+#loading-screen,
+.loader-screen,
+#loader-screen,
+.page-loader,
+#page-loader,
+.intro-loader,
+#intro-loader{
+    display:none !important;
+    visibility:hidden !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+}
+
+html,
+body{
+    overflow:auto !important;
+}
+
+</style>
+
+
+<script>
+
+(function(){
+
+    function removeLeoLoader(){
+
+        /*
+         * Hide common preloader names
+         */
+
+        const selectors = [
+            ".preloader",
+            "#preloader",
+            ".loading-screen",
+            "#loading-screen",
+            ".loader-screen",
+            "#loader-screen",
+            ".page-loader",
+            "#page-loader",
+            ".intro-loader",
+            "#intro-loader"
+        ];
+
+
+        selectors.forEach(function(selector){
+
+            document
+                .querySelectorAll(selector)
+                .forEach(function(element){
+
+                    element.style.setProperty(
+                        "display",
+                        "none",
+                        "important"
+                    );
+
+                    element.style.setProperty(
+                        "visibility",
+                        "hidden",
+                        "important"
+                    );
+
+                    element.style.setProperty(
+                        "opacity",
+                        "0",
+                        "important"
+                    );
+
+                    element.style.setProperty(
+                        "pointer-events",
+                        "none",
+                        "important"
+                    );
+
+                });
+
+        });
+
+
+        /*
+         * Extra safety:
+         * Find a full-screen fixed overlay
+         * that contains the LEO / percentage loader.
+         */
+
+        document
+            .querySelectorAll("body *")
+            .forEach(function(element){
+
+                const text =
+                    (element.innerText || "")
+                    .trim();
+
+
+                if(
+                    text === "LEO 000%" ||
+                    text === "LEO\n000%" ||
+                    (
+                        text.includes("LEO") &&
+                        text.includes("000%") &&
+                        element.children.length <= 5
+                    )
+                ){
+
+                    const style =
+                        window.getComputedStyle(
+                            element
+                        );
+
+
+                    if(
+                        style.position === "fixed" ||
+                        style.position === "absolute"
+                    ){
+
+                        element.style.setProperty(
+                            "display",
+                            "none",
+                            "important"
+                        );
+
+                        element.style.setProperty(
+                            "visibility",
+                            "hidden",
+                            "important"
+                        );
+
+                        element.style.setProperty(
+                            "opacity",
+                            "0",
+                            "important"
+                        );
+
+                        element.style.setProperty(
+                            "pointer-events",
+                            "none",
+                            "important"
+                        );
+
+                    }
+
+                }
+
+            });
+
+
+        /*
+         * Make sure the actual website can scroll.
+         */
+
+        document.documentElement.style
+            .setProperty(
+                "overflow",
+                "auto",
+                "important"
+            );
+
+        document.body.style
+            .setProperty(
+                "overflow",
+                "auto",
+                "important"
+            );
+
+    }
+
+
+    /*
+     * Run immediately
+     */
+
+    removeLeoLoader();
+
+
+    /*
+     * Run again after DOM is ready
+     */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        removeLeoLoader,
+        {
+            once:true
+        }
+    );
+
+
+    /*
+     * Run again after everything loads
+     */
+
+    window.addEventListener(
+        "load",
+        removeLeoLoader,
+        {
+            once:true
+        }
+    );
+
+
+    /*
+     * Final safety timeout
+     */
+
+    setTimeout(
+        removeLeoLoader,
+        800
+    );
+
+})();
+
+</script>
 
 </body>
 </html>
